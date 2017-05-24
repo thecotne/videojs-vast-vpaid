@@ -311,7 +311,6 @@ and install the dependencies
 ```
 $ cd videojs-vast-vpaid
 $ npm install
-$ bower install
 ```
 
 after installing the dependencies you are ready to go. If you want to see the available build tasks, run

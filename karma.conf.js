@@ -10,7 +10,7 @@ function karmaconf (karma) {
     basePath: './',
 
     files: [
-      'bower_components/videojs_4/dist/video-js/video.js',
+      'video.js',
       'test/test-utils.css',
       'test/**/*.spec.js'
     ],
