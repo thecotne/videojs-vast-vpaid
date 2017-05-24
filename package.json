@@ -24,10 +24,8 @@
     "build": "webpack",
     "lint": "npm-run-all lint-*",
     "lint-styles": "stylelint './src/**/*.{scss,sass,css}'",
-    "lint-scripts": "./node_modules/.bin/eslint '{src/**,test/**,demo/**}/*.js'",
+    "lint-scripts": "eslint '{src/**,test/**,demo/**}/*.js'",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "precommit": "npm run lint",
-    "prepush": "npm test",
     "start": "webpack-dev-server --content-base ./dist"
   },
   "files": [
