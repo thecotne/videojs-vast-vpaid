@@ -21,14 +21,14 @@
     "test": "karma start karma.conf.js  --single-run",
     "test-watch": "karma start karma.conf.js --log-level debug",
     "prebuild": "rimraf dist",
-    "build": "webpack --config ./webpackfile.babel.js",
+    "build": "webpack",
     "lint": "npm-run-all lint-*",
     "lint-styles": "stylelint './src/**/*.{scss,sass,css}'",
     "lint-scripts": "./node_modules/.bin/eslint '{src/**,test/**,demo/**}/*.js'",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "precommit": "npm run lint",
     "prepush": "npm test",
-    "start": "webpack-dev-server --config ./webpackfile.babel.js --content-base ./dist"
+    "start": "webpack-dev-server --content-base ./dist"
   },
   "files": [
     "dist",

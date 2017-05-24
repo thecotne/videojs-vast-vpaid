@@ -1,7 +1,7 @@
-import path from 'path';
-import webpack from 'webpack';
+const path = require('path')
+const webpack = require('webpack')
 
-export default {
+module.exports = {
   entry: {
     'videojs_4.vast.vpaid.js': path.join(__dirname, './src/scripts/videojs_4.vast.vpaid.js'),
     'videojs_4.vast.vpaid.min.js': path.join(__dirname, './src/scripts/videojs_4.vast.vpaid.js'),
