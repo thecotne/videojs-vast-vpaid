@@ -1,3 +1,4 @@
+/* eslint no-useless-escape: 0 */
 const NODE_TYPE_ELEMENT = 1;
 const SNAKE_CASE_REGEXP = /[A-Z]/g;
 const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i;
