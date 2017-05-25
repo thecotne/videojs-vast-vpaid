@@ -1,6 +1,6 @@
 require('babel-core/register');
 
-const webpack = require('./webpackfile.babel').default;
+const webpack = require('./webpack.config');
 
 function karmaconf (karma) {
   const config = {
@@ -10,7 +10,7 @@ function karmaconf (karma) {
     basePath: './',
 
     files: [
-      'video.js',
+      'node_modules/video.js/dist/video.js',
       'test/test-utils.css',
       'test/**/*.spec.js'
     ],
