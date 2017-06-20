@@ -43,9 +43,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -73,15 +70,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 56);
+/******/ 	return __webpack_require__(__webpack_require__.s = 52);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
+/***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -434,89 +428,6 @@ module.exports = utilities;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.unique = unique;
-exports.noop = noop;
-exports.callbackTimeout = callbackTimeout;
-exports.createElementWithID = createElementWithID;
-exports.isPositiveInt = isPositiveInt;
-exports.stringEndsWith = stringEndsWith;
-exports.hideFlashEl = hideFlashEl;
-function unique(prefix) {
-    var count = -1;
-    return function (f) {
-        return prefix + '_' + ++count;
-    };
-}
-
-function noop() {}
-
-function callbackTimeout(timer, onSuccess, onTimeout) {
-
-    var timeout = setTimeout(function () {
-
-        onSuccess = noop;
-        onTimeout();
-    }, timer);
-
-    return function () {
-        clearTimeout(timeout);
-        onSuccess.apply(this, arguments);
-    };
-}
-
-function createElementWithID(parent, id) {
-    var cleanContent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-    var nEl = document.createElement('div');
-    nEl.id = id;
-    if (cleanContent) {
-        parent.innerHTML = '';
-    }
-    parent.appendChild(nEl);
-    return nEl;
-}
-
-function isPositiveInt(newVal, oldVal) {
-    return !isNaN(parseFloat(newVal)) && isFinite(newVal) && newVal > 0 ? newVal : oldVal;
-}
-
-var endsWith = function () {
-    if (String.prototype.endsWith) return String.prototype.endsWith;
-    return function endsWith(searchString, position) {
-        var subjectString = this.toString();
-        if (position === undefined || position > subjectString.length) {
-            position = subjectString.length;
-        }
-        position -= searchString.length;
-        var lastIndex = subjectString.indexOf(searchString, position);
-        return lastIndex !== -1 && lastIndex === position;
-    };
-}();
-
-function stringEndsWith(string, search) {
-    return endsWith.call(string, search);
-}
-
-function hideFlashEl(el) {
-    // can't use display none or visibility none because will block flash in some browsers
-    el.style.position = 'absolute';
-    el.style.left = '-1px';
-    el.style.top = '-1px';
-    el.style.width = '1px';
-    el.style.height = '1px';
-}
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 var utilities = __webpack_require__(0);
@@ -691,35 +602,93 @@ xml.decode = function decodeXML(str) {
 module.exports = xml;
 
 /***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["unique"] = unique;
+/* harmony export (immutable) */ __webpack_exports__["noop"] = noop;
+/* harmony export (immutable) */ __webpack_exports__["callbackTimeout"] = callbackTimeout;
+/* harmony export (immutable) */ __webpack_exports__["createElementWithID"] = createElementWithID;
+/* harmony export (immutable) */ __webpack_exports__["isPositiveInt"] = isPositiveInt;
+/* harmony export (immutable) */ __webpack_exports__["stringEndsWith"] = stringEndsWith;
+/* harmony export (immutable) */ __webpack_exports__["hideFlashEl"] = hideFlashEl;
+
+
+function unique(prefix) {
+    var count = -1;
+    return function (f) {
+        return prefix + '_' + ++count;
+    };
+}
+
+function noop() {}
+
+function callbackTimeout(timer, onSuccess, onTimeout) {
+
+    var timeout = setTimeout(function () {
+
+        onSuccess = noop;
+        onTimeout();
+    }, timer);
+
+    return function () {
+        clearTimeout(timeout);
+        onSuccess.apply(this, arguments);
+    };
+}
+
+function createElementWithID(parent, id) {
+    var cleanContent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+    var nEl = document.createElement('div');
+    nEl.id = id;
+    if (cleanContent) {
+        parent.innerHTML = '';
+    }
+    parent.appendChild(nEl);
+    return nEl;
+}
+
+function isPositiveInt(newVal, oldVal) {
+    return !isNaN(parseFloat(newVal)) && isFinite(newVal) && newVal > 0 ? newVal : oldVal;
+}
+
+var endsWith = function () {
+    if (String.prototype.endsWith) return String.prototype.endsWith;
+    return function endsWith(searchString, position) {
+        var subjectString = this.toString();
+        if (position === undefined || position > subjectString.length) {
+            position = subjectString.length;
+        }
+        position -= searchString.length;
+        var lastIndex = subjectString.indexOf(searchString, position);
+        return lastIndex !== -1 && lastIndex === position;
+    };
+}();
+
+function stringEndsWith(string, search) {
+    return endsWith.call(string, search);
+}
+
+function hideFlashEl(el) {
+    // can't use display none or visibility none because will block flash in some browsers
+    el.style.position = 'absolute';
+    el.style.left = '-1px';
+    el.style.top = '-1px';
+    el.style.width = '1px';
+    el.style.height = '1px';
+}
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-function VASTError(message, code) {
-  this.message = 'VAST Error: ' + (message || '');
-  if (code) {
-    this.code = code;
-  }
-}
-
-VASTError.prototype = new Error();
-VASTError.prototype.name = 'VAST Error';
-
-module.exports = VASTError;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var VPAIDFLASHClient = __webpack_require__(12);
+var VPAIDFLASHClient = __webpack_require__(15);
 var utilities = __webpack_require__(0);
-var VPAIDHTML5Tech = __webpack_require__(42);
-var VPAIDFlashTech = __webpack_require__(41);
+var VPAIDHTML5Tech = __webpack_require__(40);
+var VPAIDFlashTech = __webpack_require__(45);
 
 var vastUtil = {
 
@@ -904,99 +873,27 @@ var vastUtil = {
 module.exports = vastUtil;
 
 /***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+
+
+function VASTError(message, code) {
+  this.message = 'VAST Error: ' + (message || '');
+  if (code) {
+    this.code = code;
+  }
+}
+
+VASTError.prototype = new Error();
+VASTError.prototype.name = 'VAST Error';
+
+module.exports = VASTError;
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-/* jshint unused:false */
-
-var _verbosity = 0;
-var _prefix = '[videojs-vast-vpaid] ';
-
-function setVerbosity(v) {
-  _verbosity = v;
-}
-
-function handleMsg(method, args) {
-  if (args.length > 0 && typeof args[0] === 'string') {
-    args[0] = _prefix + args[0];
-  }
-
-  if (method.apply) {
-    method.apply(console, Array.prototype.slice.call(args));
-  } else {
-    method(Array.prototype.slice.call(args));
-  }
-}
-
-function debug() {
-  if (_verbosity < 4) {
-    return;
-  }
-
-  if (typeof console.debug === 'undefined') {
-    // IE 10 doesn't have a console.debug() function
-    handleMsg(console.log, arguments);
-  } else {
-    handleMsg(console.debug, arguments);
-  }
-}
-
-function log() {
-  if (_verbosity < 3) {
-    return;
-  }
-
-  handleMsg(console.log, arguments);
-}
-
-function info() {
-  if (_verbosity < 2) {
-    return;
-  }
-
-  handleMsg(console.info, arguments);
-}
-
-function warn() {
-  if (_verbosity < 1) {
-    return;
-  }
-
-  handleMsg(console.warn, arguments);
-}
-
-function error() {
-  handleMsg(console.error, arguments);
-}
-
-var consoleLogger = {
-  setVerbosity: setVerbosity,
-  debug: debug,
-  log: log,
-  info: info,
-  warn: warn,
-  error: error
-};
-
-if (typeof console === 'undefined' || !console.log) {
-  // no console available; make functions no-op
-  consoleLogger.debug = function () {};
-  consoleLogger.log = function () {};
-  consoleLogger.info = function () {};
-  consoleLogger.warn = function () {};
-  consoleLogger.error = function () {};
-}
-
-module.exports = consoleLogger;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 var utilities = __webpack_require__(0);
@@ -1228,187 +1125,339 @@ dom.getDimension = function getDimension(element) {
 module.exports = dom;
 
 /***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+/* jshint unused:false */
+
+var _verbosity = 0;
+var _prefix = '[videojs-vast-vpaid] ';
+
+function setVerbosity(v) {
+  _verbosity = v;
+}
+
+function handleMsg(method, args) {
+  if (args.length > 0 && typeof args[0] === 'string') {
+    args[0] = _prefix + args[0];
+  }
+
+  if (method.apply) {
+    method.apply(console, Array.prototype.slice.call(args));
+  } else {
+    method(Array.prototype.slice.call(args));
+  }
+}
+
+function debug() {
+  if (_verbosity < 4) {
+    return;
+  }
+
+  if (typeof console.debug === 'undefined') {
+    // IE 10 doesn't have a console.debug() function
+    handleMsg(console.log, arguments);
+  } else {
+    handleMsg(console.debug, arguments);
+  }
+}
+
+function log() {
+  if (_verbosity < 3) {
+    return;
+  }
+
+  handleMsg(console.log, arguments);
+}
+
+function info() {
+  if (_verbosity < 2) {
+    return;
+  }
+
+  handleMsg(console.info, arguments);
+}
+
+function warn() {
+  if (_verbosity < 1) {
+    return;
+  }
+
+  handleMsg(console.warn, arguments);
+}
+
+function error() {
+  handleMsg(console.error, arguments);
+}
+
+var consoleLogger = {
+  setVerbosity: setVerbosity,
+  debug: debug,
+  log: log,
+  info: info,
+  warn: warn,
+  error: error
+};
+
+if (typeof console === 'undefined' || !console.log) {
+  // no console available; make functions no-op
+  consoleLogger.debug = function () {};
+  consoleLogger.log = function () {};
+  consoleLogger.info = function () {};
+  consoleLogger.warn = function () {};
+  consoleLogger.error = function () {};
+}
+
+module.exports = consoleLogger;
+
+/***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// Small subset of async
+
+var utilities = __webpack_require__(0);
+
+var async = {};
+
+async.setImmediate = function (fn) {
+  setTimeout(fn, 0);
+};
+
+async.iterator = function (tasks) {
+  var makeCallback = function makeCallback(index) {
+    var fn = function fn() {
+      if (tasks.length) {
+        tasks[index].apply(null, arguments);
+      }
+
+      return fn.next();
+    };
+
+    fn.next = function () {
+      return index < tasks.length - 1 ? makeCallback(index + 1) : null;
+    };
+
+    return fn;
+  };
+
+  return makeCallback(0);
+};
+
+async.waterfall = function (tasks, callback) {
+  callback = callback || function () {};
+  if (!utilities.isArray(tasks)) {
+    var err = new Error('First argument to waterfall must be an array of functions');
+
+    return callback(err);
+  }
+  if (!tasks.length) {
+    return callback();
+  }
+  var wrapIterator = function wrapIterator(iterator) {
+    return function (err) {
+      if (err) {
+        callback.apply(undefined, arguments);
+        callback = function callback() {};
+      } else {
+        var args = Array.prototype.slice.call(arguments, 1);
+        var next = iterator.next();
+
+        if (next) {
+          args.push(wrapIterator(next));
+        } else {
+          args.push(callback);
+        }
+        async.setImmediate(function () {
+          iterator.apply(undefined, args);
+        });
+      }
+    };
+  };
+
+  wrapIterator(async.iterator(tasks))();
+};
+
+async.when = function (condition, callback) {
+  if (!utilities.isFunction(callback)) {
+    throw new Error('async.when error: missing callback argument');
+  }
+
+  var isAllowed = utilities.isFunction(condition) ? condition : function () {
+    return Boolean(condition);
+  };
+
+  return function () {
+    var args = utilities.arrayLikeObjToArray(arguments);
+    var next = args.pop();
+
+    if (isAllowed.apply(undefined, args)) {
+      return callback.apply(this, arguments);
+    }
+
+    args.unshift(null);
+
+    return next.apply(undefined, args);
+  };
+};
+
+module.exports = async;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MultipleValuesRegistry", function() { return MultipleValuesRegistry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SingleValueRegistry", function() { return SingleValueRegistry; });
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MultipleValuesRegistry = exports.MultipleValuesRegistry = function () {
+var MultipleValuesRegistry = function () {
     function MultipleValuesRegistry() {
         _classCallCheck(this, MultipleValuesRegistry);
 
         this._registries = {};
     }
 
-    _createClass(MultipleValuesRegistry, [{
-        key: 'add',
-        value: function add(id, value) {
-            if (!this._registries[id]) {
-                this._registries[id] = [];
-            }
-            if (this._registries[id].indexOf(value) === -1) {
-                this._registries[id].push(value);
-            }
+    MultipleValuesRegistry.prototype.add = function add(id, value) {
+        if (!this._registries[id]) {
+            this._registries[id] = [];
         }
-    }, {
-        key: 'get',
-        value: function get(id) {
-            return this._registries[id] || [];
+        if (this._registries[id].indexOf(value) === -1) {
+            this._registries[id].push(value);
         }
-    }, {
-        key: 'filterKeys',
-        value: function filterKeys(handler) {
-            return Object.keys(this._registries).filter(handler);
-        }
-    }, {
-        key: 'findByValue',
-        value: function findByValue(value) {
-            var _this = this;
+    };
 
-            var keys = Object.keys(this._registries).filter(function (key) {
-                return _this._registries[key].indexOf(value) !== -1;
-            });
+    MultipleValuesRegistry.prototype.get = function get(id) {
+        return this._registries[id] || [];
+    };
 
-            return keys;
-        }
-    }, {
-        key: 'remove',
-        value: function remove(key, value) {
-            if (!this._registries[key]) {
-                return;
-            }
+    MultipleValuesRegistry.prototype.filterKeys = function filterKeys(handler) {
+        return Object.keys(this._registries).filter(handler);
+    };
 
-            var index = this._registries[key].indexOf(value);
+    MultipleValuesRegistry.prototype.findByValue = function findByValue(value) {
+        var _this = this;
 
-            if (index < 0) {
-                return;
-            }
-            return this._registries[key].splice(index, 1);
-        }
-    }, {
-        key: 'removeByKey',
-        value: function removeByKey(id) {
-            var old = this._registries[id];
-            delete this._registries[id];
-            return old;
-        }
-    }, {
-        key: 'removeByValue',
-        value: function removeByValue(value) {
-            var _this2 = this;
+        var keys = Object.keys(this._registries).filter(function (key) {
+            return _this._registries[key].indexOf(value) !== -1;
+        });
 
-            var keys = this.findByValue(value);
-            return keys.map(function (key) {
-                return _this2.remove(key, value);
-            });
+        return keys;
+    };
+
+    MultipleValuesRegistry.prototype.remove = function remove(key, value) {
+        if (!this._registries[key]) {
+            return;
         }
-    }, {
-        key: 'removeAll',
-        value: function removeAll() {
-            var old = this._registries;
-            this._registries = {};
-            return old;
+
+        var index = this._registries[key].indexOf(value);
+
+        if (index < 0) {
+            return;
         }
-    }, {
-        key: 'size',
-        value: function size() {
-            return Object.keys(this._registries).length;
-        }
-    }]);
+        return this._registries[key].splice(index, 1);
+    };
+
+    MultipleValuesRegistry.prototype.removeByKey = function removeByKey(id) {
+        var old = this._registries[id];
+        delete this._registries[id];
+        return old;
+    };
+
+    MultipleValuesRegistry.prototype.removeByValue = function removeByValue(value) {
+        var _this2 = this;
+
+        var keys = this.findByValue(value);
+        return keys.map(function (key) {
+            return _this2.remove(key, value);
+        });
+    };
+
+    MultipleValuesRegistry.prototype.removeAll = function removeAll() {
+        var old = this._registries;
+        this._registries = {};
+        return old;
+    };
+
+    MultipleValuesRegistry.prototype.size = function size() {
+        return Object.keys(this._registries).length;
+    };
 
     return MultipleValuesRegistry;
 }();
 
-var SingleValueRegistry = exports.SingleValueRegistry = function () {
+var SingleValueRegistry = function () {
     function SingleValueRegistry() {
         _classCallCheck(this, SingleValueRegistry);
 
         this._registries = {};
     }
 
-    _createClass(SingleValueRegistry, [{
-        key: 'add',
-        value: function add(id, value) {
-            this._registries[id] = value;
-        }
-    }, {
-        key: 'get',
-        value: function get(id) {
-            return this._registries[id];
-        }
-    }, {
-        key: 'filterKeys',
-        value: function filterKeys(handler) {
-            return Object.keys(this._registries).filter(handler);
-        }
-    }, {
-        key: 'findByValue',
-        value: function findByValue(value) {
-            var _this3 = this;
+    SingleValueRegistry.prototype.add = function add(id, value) {
+        this._registries[id] = value;
+    };
 
-            var keys = Object.keys(this._registries).filter(function (key) {
-                return _this3._registries[key] === value;
-            });
+    SingleValueRegistry.prototype.get = function get(id) {
+        return this._registries[id];
+    };
 
-            return keys;
-        }
-    }, {
-        key: 'remove',
-        value: function remove(id) {
-            var old = this._registries[id];
-            delete this._registries[id];
-            return old;
-        }
-    }, {
-        key: 'removeByValue',
-        value: function removeByValue(value) {
-            var _this4 = this;
+    SingleValueRegistry.prototype.filterKeys = function filterKeys(handler) {
+        return Object.keys(this._registries).filter(handler);
+    };
 
-            var keys = this.findByValue(value);
-            return keys.map(function (key) {
-                return _this4.remove(key);
-            });
-        }
-    }, {
-        key: 'removeAll',
-        value: function removeAll() {
-            var old = this._registries;
-            this._registries = {};
-            return old;
-        }
-    }, {
-        key: 'size',
-        value: function size() {
-            return Object.keys(this._registries).length;
-        }
-    }]);
+    SingleValueRegistry.prototype.findByValue = function findByValue(value) {
+        var _this3 = this;
+
+        var keys = Object.keys(this._registries).filter(function (key) {
+            return _this3._registries[key] === value;
+        });
+
+        return keys;
+    };
+
+    SingleValueRegistry.prototype.remove = function remove(id) {
+        var old = this._registries[id];
+        delete this._registries[id];
+        return old;
+    };
+
+    SingleValueRegistry.prototype.removeByValue = function removeByValue(value) {
+        var _this4 = this;
+
+        var keys = this.findByValue(value);
+        return keys.map(function (key) {
+            return _this4.remove(key);
+        });
+    };
+
+    SingleValueRegistry.prototype.removeAll = function removeAll() {
+        var old = this._registries;
+        this._registries = {};
+        return old;
+    };
+
+    SingleValueRegistry.prototype.size = function size() {
+        return Object.keys(this._registries).length;
+    };
 
     return SingleValueRegistry;
 }();
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
 var utilities = __webpack_require__(0);
-var xml = __webpack_require__(2);
-var VideoClicks = __webpack_require__(21);
-var Linear = __webpack_require__(18);
-var InLine = __webpack_require__(17);
-var Ad = __webpack_require__(15);
-var Wrapper = __webpack_require__(22);
+var xml = __webpack_require__(1);
+var VideoClicks = __webpack_require__(23);
+var Linear = __webpack_require__(22);
+var InLine = __webpack_require__(14);
+var Ad = __webpack_require__(13);
+var Wrapper = __webpack_require__(24);
 
 window.InLine__A = InLine;
 function VASTResponse() {
@@ -1594,108 +1643,9 @@ function appendToArray(array, items) {
 module.exports = VASTResponse;
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-// Small subset of async
-
-var utilities = __webpack_require__(0);
-
-var async = {};
-
-async.setImmediate = function (fn) {
-  setTimeout(fn, 0);
-};
-
-async.iterator = function (tasks) {
-  var makeCallback = function makeCallback(index) {
-    var fn = function fn() {
-      if (tasks.length) {
-        tasks[index].apply(null, arguments);
-      }
-
-      return fn.next();
-    };
-
-    fn.next = function () {
-      return index < tasks.length - 1 ? makeCallback(index + 1) : null;
-    };
-
-    return fn;
-  };
-
-  return makeCallback(0);
-};
-
-async.waterfall = function (tasks, callback) {
-  callback = callback || function () {};
-  if (!utilities.isArray(tasks)) {
-    var err = new Error('First argument to waterfall must be an array of functions');
-
-    return callback(err);
-  }
-  if (!tasks.length) {
-    return callback();
-  }
-  var wrapIterator = function wrapIterator(iterator) {
-    return function (err) {
-      if (err) {
-        callback.apply(undefined, arguments);
-        callback = function callback() {};
-      } else {
-        var args = Array.prototype.slice.call(arguments, 1);
-        var next = iterator.next();
-
-        if (next) {
-          args.push(wrapIterator(next));
-        } else {
-          args.push(callback);
-        }
-        async.setImmediate(function () {
-          iterator.apply(undefined, _toConsumableArray(args));
-        });
-      }
-    };
-  };
-
-  wrapIterator(async.iterator(tasks))();
-};
-
-async.when = function (condition, callback) {
-  if (!utilities.isFunction(callback)) {
-    throw new Error('async.when error: missing callback argument');
-  }
-
-  var isAllowed = utilities.isFunction(condition) ? condition : function () {
-    return Boolean(condition);
-  };
-
-  return function () {
-    var args = utilities.arrayLikeObjToArray(arguments);
-    var next = args.pop();
-
-    if (isAllowed.apply(undefined, _toConsumableArray(args))) {
-      return callback.apply(this, arguments);
-    }
-
-    args.unshift(null);
-
-    return next.apply(undefined, _toConsumableArray(args));
-  };
-};
-
-module.exports = async;
-
-/***/ }),
 /* 10 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
 
 
 module.exports = {
@@ -1708,10 +1658,9 @@ module.exports = {
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
 
-var dom = __webpack_require__(6);
+var dom = __webpack_require__(5);
 var utilities = __webpack_require__(0);
 
 var playerUtils = {};
@@ -2107,24 +2056,275 @@ module.exports = playerUtils;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+
+var utilities = __webpack_require__(0);
+
+/**
+ *
+ * IMPORTANT NOTE: This function comes from angularJs and was originally called urlResolve
+ *                 you can take a look at the original code here https://github.com/angular/angular.js/blob/master/src/ng/urlUtils.js
+ *
+ * Implementation Notes for non-IE browsers
+ * ----------------------------------------
+ * Assigning a URL to the href property of an anchor DOM node, even one attached to the DOM,
+ * results both in the normalizing and parsing of the URL.  Normalizing means that a relative
+ * URL will be resolved into an absolute URL in the context of the application document.
+ * Parsing means that the anchor node's host, hostname, protocol, port, pathname and related
+ * properties are all populated to reflect the normalized URL.  This approach has wide
+ * compatibility - Safari 1+, Mozilla 1+, Opera 7+,e etc.  See
+ * http://www.aptana.com/reference/html/api/HTMLAnchorElement.html
+ *
+ * Implementation Notes for IE
+ * ---------------------------
+ * IE >= 8 and <= 10 normalizes the URL when assigned to the anchor node similar to the other
+ * browsers.  However, the parsed components will not be set if the URL assigned did not specify
+ * them.  (e.g. if you assign a.href = "foo", then a.protocol, a.host, etc. will be empty.)  We
+ * work around that by performing the parsing in a 2nd step by taking a previously normalized
+ * URL (e.g. by assigning to a.href) and assigning it a.href again.  This correctly populates the
+ * properties such as protocol, hostname, port, etc.
+ *
+ * IE7 does not normalize the URL when assigned to an anchor node.  (Apparently, it does, if one
+ * uses the inner HTML approach to assign the URL as part of an HTML snippet -
+ * http://stackoverflow.com/a/472729)  However, setting img[src] does normalize the URL.
+ * Unfortunately, setting img[src] to something like "javascript:foo" on IE throws an exception.
+ * Since the primary usage for normalizing URLs is to sanitize such URLs, we can't use that
+ * method and IE < 8 is unsupported.
+ *
+ * References:
+ *   http://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement
+ *   http://www.aptana.com/reference/html/api/HTMLAnchorElement.html
+ *   http://url.spec.whatwg.org/#urlutils
+ *   https://github.com/angular/angular.js/pull/2902
+ *   http://james.padolsey.com/javascript/parsing-urls-with-the-dom/
+ *
+ * @kind function
+ * @param {string} url The URL to be parsed.
+ * @description Normalizes and parses a URL.
+ * @returns {object} Returns the normalized URL as a dictionary.
+ *
+ *   | member name   | Description    |
+ *   |---------------|----------------|
+ *   | href          | A normalized version of the provided URL if it was not an absolute URL |
+ *   | protocol      | The protocol including the trailing colon                              |
+ *   | host          | The host and port (if the port is non-default) of the normalizedUrl    |
+ *   | search        | The search params, minus the question mark                             |
+ *   | hash          | The hash string, minus the hash symbol
+ *   | hostname      | The hostname
+ *   | port          | The port, without ":"
+ *   | pathname      | The pathname, beginning with "/"
+ *
+ */
+
+var urlParsingNode = document.createElement('a');
+
+/**
+ * documentMode is an IE-only property
+ * http://msdn.microsoft.com/en-us/library/ie/cc196988(v=vs.85).aspx
+ */
+var msie = document.documentMode;
+
+function urlParts(url) {
+  var href = url;
+
+  if (msie) {
+    // Normalize before parse.  Refer Implementation Notes on why this is
+    // done in two steps on IE.
+    urlParsingNode.setAttribute('href', href);
+    href = urlParsingNode.href;
+  }
+
+  urlParsingNode.setAttribute('href', href);
+
+  // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+  return {
+    href: urlParsingNode.href,
+    protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+    host: urlParsingNode.host,
+    search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+    hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+    hostname: urlParsingNode.hostname,
+    port: utilities.isNotEmptyString(urlParsingNode.port) ? urlParsingNode.port : 80,
+    pathname: urlParsingNode.pathname.charAt(0) === '/' ? urlParsingNode.pathname : '/' + urlParsingNode.pathname
+  };
+}
+
+/**
+ * This function accepts a query string (search part of a url) and returns a dictionary with
+ * the different key value pairs
+ * @param {string} qs queryString
+ */
+function queryStringToObj(qs, cond) {
+  var pairs = void 0,
+      qsObj = void 0;
+
+  cond = utilities.isFunction(cond) ? cond : function () {
+    return true;
+  };
+
+  qs = qs.trim().replace(/^\?/, '');
+  pairs = qs.split('&');
+  qsObj = {};
+
+  utilities.forEach(pairs, function (pair) {
+    var keyValue = void 0,
+        key = void 0,
+        value = void 0;
+
+    if (pair !== '') {
+      keyValue = pair.split('=');
+      key = keyValue[0];
+      value = keyValue[1];
+      if (cond(key, value)) {
+        qsObj[key] = value;
+      }
+    }
+  });
+
+  return qsObj;
+}
+
+/**
+ * This function accepts an object and serializes it into a query string without the leading '?'
+ * @param obj
+ * @returns {string}
+ */
+function objToQueryString(obj) {
+  var pairs = [];
+
+  utilities.forEach(obj, function (value, key) {
+    pairs.push(key + '=' + value);
+  });
+
+  return pairs.join('&');
+}
+
+module.exports = {
+  urlParts: urlParts,
+  queryStringToObj: queryStringToObj,
+  objToQueryString: objToQueryString
+};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+
+var InLine = __webpack_require__(14);
+var Wrapper = __webpack_require__(24);
+
+function Ad(adJTree) {
+  if (!(this instanceof Ad)) {
+    return new Ad(adJTree);
+  }
+  this.initialize(adJTree);
+}
+
+Ad.prototype.initialize = function (adJTree) {
+  this.id = adJTree.attr('id');
+  this.sequence = adJTree.attr('sequence');
+
+  if (adJTree.inLine) {
+    this.inLine = new InLine(adJTree.inLine);
+  }
+
+  if (adJTree.wrapper) {
+    this.wrapper = new Wrapper(adJTree.wrapper);
+  }
+};
+
+module.exports = Ad;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var utilities = __webpack_require__(0);
+var xml = __webpack_require__(1);
+var vastUtil = __webpack_require__(3);
+var Creative = __webpack_require__(19);
+
+function InLine(inlineJTree) {
+  if (!(this instanceof InLine)) {
+    return new InLine(inlineJTree);
+  }
+
+  // Required Fields
+  this.adTitle = xml.keyValue(inlineJTree.adTitle);
+  this.adSystem = xml.keyValue(inlineJTree.adSystem);
+  this.impressions = vastUtil.parseImpressions(inlineJTree.impression);
+  this.creatives = Creative.parseCreatives(inlineJTree.creatives);
+
+  // Optional Fields
+  this.description = xml.keyValue(inlineJTree.description);
+  this.advertiser = xml.keyValue(inlineJTree.advertiser);
+  this.surveys = parseSurveys(inlineJTree.survey);
+  this.error = xml.keyValue(inlineJTree.error);
+  this.pricing = xml.keyValue(inlineJTree.pricing);
+  this.extensions = inlineJTree.extensions;
+
+  /** * Local Functions ***/
+  function parseSurveys(inlineSurveys) {
+    if (inlineSurveys) {
+      return utilities.transformArray(utilities.isArray(inlineSurveys) ? inlineSurveys : [inlineSurveys], function (survey) {
+        if (utilities.isNotEmptyString(survey.keyValue)) {
+          return {
+            uri: survey.keyValue,
+            type: survey.attr('type')
+          };
+        }
+
+        return undefined;
+      });
+    }
+
+    return [];
+  }
+}
+
+/**
+ * Returns true if the browser supports all the creatives.
+ */
+InLine.prototype.isSupported = function () {
+  var i = void 0,
+      len = void 0;
+
+  if (this.creatives.length === 0) {
+    return false;
+  }
+
+  for (i = 0, len = this.creatives.length; i < len; i += 1) {
+    if (!this.creatives[i].isSupported()) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+module.exports = InLine;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var swfobject = __webpack_require__(25);
+var swfobject = __webpack_require__(16);
 
-var JSFlashBridge = __webpack_require__(13).JSFlashBridge;
-var VPAIDAdUnit = __webpack_require__(29).VPAIDAdUnit;
+var JSFlashBridge = __webpack_require__(17).JSFlashBridge;
+var VPAIDAdUnit = __webpack_require__(37).VPAIDAdUnit;
 
-var noop = __webpack_require__(1).noop;
-var callbackTimeout = __webpack_require__(1).callbackTimeout;
-var isPositiveInt = __webpack_require__(1).isPositiveInt;
-var createElementWithID = __webpack_require__(1).createElementWithID;
-var uniqueVPAID = __webpack_require__(1).unique('vpaid');
-var createFlashTester = __webpack_require__(30).createFlashTester;
+var noop = __webpack_require__(2).noop;
+var callbackTimeout = __webpack_require__(2).callbackTimeout;
+var isPositiveInt = __webpack_require__(2).isPositiveInt;
+var createElementWithID = __webpack_require__(2).createElementWithID;
+var uniqueVPAID = __webpack_require__(2).unique('vpaid');
+var createFlashTester = __webpack_require__(39).createFlashTester;
 
 var ERROR = 'error';
 var FLASH_VERSION = '10.1.0';
@@ -2186,86 +2386,77 @@ var VPAIDFLASHClient = function () {
         }
     }
 
-    _createClass(VPAIDFLASHClient, [{
-        key: 'destroy',
-        value: function destroy() {
+    VPAIDFLASHClient.prototype.destroy = function destroy() {
+        this._destroyAdUnit();
+
+        if (this._flash) {
+            this._flash.destroy();
+            this._flash = null;
+        }
+        this.el = null;
+        this._destroyed = true;
+    };
+
+    VPAIDFLASHClient.prototype.isDestroyed = function isDestroyed() {
+        return this._destroyed;
+    };
+
+    VPAIDFLASHClient.prototype._destroyAdUnit = function _destroyAdUnit() {
+        delete this._loadLater;
+
+        if (this._adUnitLoad) {
+            this._adUnitLoad = null;
+            this._flash.removeCallback(this._adUnitLoad);
+        }
+
+        if (this._adUnit) {
+            this._adUnit._destroy();
+            this._adUnit = null;
+        }
+    };
+
+    VPAIDFLASHClient.prototype.loadAdUnit = function loadAdUnit(adURL, callback) {
+        var _this2 = this;
+
+        $throwIfDestroyed.call(this);
+
+        if (this._adUnit) {
             this._destroyAdUnit();
-
-            if (this._flash) {
-                this._flash.destroy();
-                this._flash = null;
-            }
-            this.el = null;
-            this._destroyed = true;
         }
-    }, {
-        key: 'isDestroyed',
-        value: function isDestroyed() {
-            return this._destroyed;
+
+        if (this._flash.isReady()) {
+            this._adUnitLoad = function (err, message) {
+                if (!err) {
+                    _this2._adUnit = new VPAIDAdUnit(_this2._flash);
+                }
+                _this2._adUnitLoad = null;
+                callback(err, _this2._adUnit);
+            };
+
+            this._flash.callFlashMethod('loadAdUnit', [adURL], this._adUnitLoad);
+        } else {
+            this._loadLater = { url: adURL, callback: callback };
         }
-    }, {
-        key: '_destroyAdUnit',
-        value: function _destroyAdUnit() {
-            delete this._loadLater;
+    };
 
-            if (this._adUnitLoad) {
-                this._adUnitLoad = null;
-                this._flash.removeCallback(this._adUnitLoad);
-            }
+    VPAIDFLASHClient.prototype.unloadAdUnit = function unloadAdUnit() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
 
-            if (this._adUnit) {
-                this._adUnit._destroy();
-                this._adUnit = null;
-            }
-        }
-    }, {
-        key: 'loadAdUnit',
-        value: function loadAdUnit(adURL, callback) {
-            var _this2 = this;
+        $throwIfDestroyed.call(this);
 
-            $throwIfDestroyed.call(this);
+        this._destroyAdUnit();
+        this._flash.callFlashMethod('unloadAdUnit', [], callback);
+    };
 
-            if (this._adUnit) {
-                this._destroyAdUnit();
-            }
+    VPAIDFLASHClient.prototype.getFlashID = function getFlashID() {
+        $throwIfDestroyed.call(this);
+        return this._flash.getFlashID();
+    };
 
-            if (this._flash.isReady()) {
-                this._adUnitLoad = function (err, message) {
-                    if (!err) {
-                        _this2._adUnit = new VPAIDAdUnit(_this2._flash);
-                    }
-                    _this2._adUnitLoad = null;
-                    callback(err, _this2._adUnit);
-                };
-
-                this._flash.callFlashMethod('loadAdUnit', [adURL], this._adUnitLoad);
-            } else {
-                this._loadLater = { url: adURL, callback: callback };
-            }
-        }
-    }, {
-        key: 'unloadAdUnit',
-        value: function unloadAdUnit() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-
-            $throwIfDestroyed.call(this);
-
-            this._destroyAdUnit();
-            this._flash.callFlashMethod('unloadAdUnit', [], callback);
-        }
-    }, {
-        key: 'getFlashID',
-        value: function getFlashID() {
-            $throwIfDestroyed.call(this);
-            return this._flash.getFlashID();
-        }
-    }, {
-        key: 'getFlashURL',
-        value: function getFlashURL() {
-            $throwIfDestroyed.call(this);
-            return this._flash.getFlashURL();
-        }
-    }]);
+    VPAIDFLASHClient.prototype.getFlashURL = function getFlashURL() {
+        $throwIfDestroyed.call(this);
+        return this._flash.getFlashURL();
+    };
 
     return VPAIDFLASHClient;
 }();
@@ -2306,30 +2497,36 @@ VPAIDFLASHClient.swfobject = swfobject;
 module.exports = VPAIDFLASHClient;
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 16 */
+/***/ (function(module, exports) {
+
+/*	SWFObject v2.2 <http://code.google.com/p/swfobject/> 
+	is released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
+*/
+var swfobject=function(){var D="undefined",r="object",S="Shockwave Flash",W="ShockwaveFlash.ShockwaveFlash",q="application/x-shockwave-flash",R="SWFObjectExprInst",x="onreadystatechange",O=window,j=document,t=navigator,T=false,U=[h],o=[],N=[],I=[],l,Q,E,B,J=false,a=false,n,G,m=true,M=function(){var aa=typeof j.getElementById!=D&&typeof j.getElementsByTagName!=D&&typeof j.createElement!=D,ah=t.userAgent.toLowerCase(),Y=t.platform.toLowerCase(),ae=Y?/win/.test(Y):/win/.test(ah),ac=Y?/mac/.test(Y):/mac/.test(ah),af=/webkit/.test(ah)?parseFloat(ah.replace(/^.*webkit\/(\d+(\.\d+)?).*$/,"$1")):false,X=!+"\v1",ag=[0,0,0],ab=null;if(typeof t.plugins!=D&&typeof t.plugins[S]==r){ab=t.plugins[S].description;if(ab&&!(typeof t.mimeTypes!=D&&t.mimeTypes[q]&&!t.mimeTypes[q].enabledPlugin)){T=true;X=false;ab=ab.replace(/^.*\s+(\S+\s+\S+$)/,"$1");ag[0]=parseInt(ab.replace(/^(.*)\..*$/,"$1"),10);ag[1]=parseInt(ab.replace(/^.*\.(.*)\s.*$/,"$1"),10);ag[2]=/[a-zA-Z]/.test(ab)?parseInt(ab.replace(/^.*[a-zA-Z]+(.*)$/,"$1"),10):0}}else{if(typeof O[(['Active'].concat('Object').join('X'))]!=D){try{var ad=new window[(['Active'].concat('Object').join('X'))](W);if(ad){ab=ad.GetVariable("$version");if(ab){X=true;ab=ab.split(" ")[1].split(",");ag=[parseInt(ab[0],10),parseInt(ab[1],10),parseInt(ab[2],10)]}}}catch(Z){}}}return{w3:aa,pv:ag,wk:af,ie:X,win:ae,mac:ac}}(),k=function(){if(!M.w3){return}if((typeof j.readyState!=D&&j.readyState=="complete")||(typeof j.readyState==D&&(j.getElementsByTagName("body")[0]||j.body))){f()}if(!J){if(typeof j.addEventListener!=D){j.addEventListener("DOMContentLoaded",f,false)}if(M.ie&&M.win){j.attachEvent(x,function(){if(j.readyState=="complete"){j.detachEvent(x,arguments.callee);f()}});if(O==top){(function(){if(J){return}try{j.documentElement.doScroll("left")}catch(X){setTimeout(arguments.callee,0);return}f()})()}}if(M.wk){(function(){if(J){return}if(!/loaded|complete/.test(j.readyState)){setTimeout(arguments.callee,0);return}f()})()}s(f)}}();function f(){if(J){return}try{var Z=j.getElementsByTagName("body")[0].appendChild(C("span"));Z.parentNode.removeChild(Z)}catch(aa){return}J=true;var X=U.length;for(var Y=0;Y<X;Y++){U[Y]()}}function K(X){if(J){X()}else{U[U.length]=X}}function s(Y){if(typeof O.addEventListener!=D){O.addEventListener("load",Y,false)}else{if(typeof j.addEventListener!=D){j.addEventListener("load",Y,false)}else{if(typeof O.attachEvent!=D){i(O,"onload",Y)}else{if(typeof O.onload=="function"){var X=O.onload;O.onload=function(){X();Y()}}else{O.onload=Y}}}}}function h(){if(T){V()}else{H()}}function V(){var X=j.getElementsByTagName("body")[0];var aa=C(r);aa.setAttribute("type",q);var Z=X.appendChild(aa);if(Z){var Y=0;(function(){if(typeof Z.GetVariable!=D){var ab=Z.GetVariable("$version");if(ab){ab=ab.split(" ")[1].split(",");M.pv=[parseInt(ab[0],10),parseInt(ab[1],10),parseInt(ab[2],10)]}}else{if(Y<10){Y++;setTimeout(arguments.callee,10);return}}X.removeChild(aa);Z=null;H()})()}else{H()}}function H(){var ag=o.length;if(ag>0){for(var af=0;af<ag;af++){var Y=o[af].id;var ab=o[af].callbackFn;var aa={success:false,id:Y};if(M.pv[0]>0){var ae=c(Y);if(ae){if(F(o[af].swfVersion)&&!(M.wk&&M.wk<312)){w(Y,true);if(ab){aa.success=true;aa.ref=z(Y);ab(aa)}}else{if(o[af].expressInstall&&A()){var ai={};ai.data=o[af].expressInstall;ai.width=ae.getAttribute("width")||"0";ai.height=ae.getAttribute("height")||"0";if(ae.getAttribute("class")){ai.styleclass=ae.getAttribute("class")}if(ae.getAttribute("align")){ai.align=ae.getAttribute("align")}var ah={};var X=ae.getElementsByTagName("param");var ac=X.length;for(var ad=0;ad<ac;ad++){if(X[ad].getAttribute("name").toLowerCase()!="movie"){ah[X[ad].getAttribute("name")]=X[ad].getAttribute("value")}}P(ai,ah,Y,ab)}else{p(ae);if(ab){ab(aa)}}}}}else{w(Y,true);if(ab){var Z=z(Y);if(Z&&typeof Z.SetVariable!=D){aa.success=true;aa.ref=Z}ab(aa)}}}}}function z(aa){var X=null;var Y=c(aa);if(Y&&Y.nodeName=="OBJECT"){if(typeof Y.SetVariable!=D){X=Y}else{var Z=Y.getElementsByTagName(r)[0];if(Z){X=Z}}}return X}function A(){return !a&&F("6.0.65")&&(M.win||M.mac)&&!(M.wk&&M.wk<312)}function P(aa,ab,X,Z){a=true;E=Z||null;B={success:false,id:X};var ae=c(X);if(ae){if(ae.nodeName=="OBJECT"){l=g(ae);Q=null}else{l=ae;Q=X}aa.id=R;if(typeof aa.width==D||(!/%$/.test(aa.width)&&parseInt(aa.width,10)<310)){aa.width="310"}if(typeof aa.height==D||(!/%$/.test(aa.height)&&parseInt(aa.height,10)<137)){aa.height="137"}j.title=j.title.slice(0,47)+" - Flash Player Installation";var ad=M.ie&&M.win?(['Active'].concat('').join('X')):"PlugIn",ac="MMredirectURL="+O.location.toString().replace(/&/g,"%26")+"&MMplayerType="+ad+"&MMdoctitle="+j.title;if(typeof ab.flashvars!=D){ab.flashvars+="&"+ac}else{ab.flashvars=ac}if(M.ie&&M.win&&ae.readyState!=4){var Y=C("div");X+="SWFObjectNew";Y.setAttribute("id",X);ae.parentNode.insertBefore(Y,ae);ae.style.display="none";(function(){if(ae.readyState==4){ae.parentNode.removeChild(ae)}else{setTimeout(arguments.callee,10)}})()}u(aa,ab,X)}}function p(Y){if(M.ie&&M.win&&Y.readyState!=4){var X=C("div");Y.parentNode.insertBefore(X,Y);X.parentNode.replaceChild(g(Y),X);Y.style.display="none";(function(){if(Y.readyState==4){Y.parentNode.removeChild(Y)}else{setTimeout(arguments.callee,10)}})()}else{Y.parentNode.replaceChild(g(Y),Y)}}function g(ab){var aa=C("div");if(M.win&&M.ie){aa.innerHTML=ab.innerHTML}else{var Y=ab.getElementsByTagName(r)[0];if(Y){var ad=Y.childNodes;if(ad){var X=ad.length;for(var Z=0;Z<X;Z++){if(!(ad[Z].nodeType==1&&ad[Z].nodeName=="PARAM")&&!(ad[Z].nodeType==8)){aa.appendChild(ad[Z].cloneNode(true))}}}}}return aa}function u(ai,ag,Y){var X,aa=c(Y);if(M.wk&&M.wk<312){return X}if(aa){if(typeof ai.id==D){ai.id=Y}if(M.ie&&M.win){var ah="";for(var ae in ai){if(ai[ae]!=Object.prototype[ae]){if(ae.toLowerCase()=="data"){ag.movie=ai[ae]}else{if(ae.toLowerCase()=="styleclass"){ah+=' class="'+ai[ae]+'"'}else{if(ae.toLowerCase()!="classid"){ah+=" "+ae+'="'+ai[ae]+'"'}}}}}var af="";for(var ad in ag){if(ag[ad]!=Object.prototype[ad]){af+='<param name="'+ad+'" value="'+ag[ad]+'" />'}}aa.outerHTML='<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"'+ah+">"+af+"</object>";N[N.length]=ai.id;X=c(ai.id)}else{var Z=C(r);Z.setAttribute("type",q);for(var ac in ai){if(ai[ac]!=Object.prototype[ac]){if(ac.toLowerCase()=="styleclass"){Z.setAttribute("class",ai[ac])}else{if(ac.toLowerCase()!="classid"){Z.setAttribute(ac,ai[ac])}}}}for(var ab in ag){if(ag[ab]!=Object.prototype[ab]&&ab.toLowerCase()!="movie"){e(Z,ab,ag[ab])}}aa.parentNode.replaceChild(Z,aa);X=Z}}return X}function e(Z,X,Y){var aa=C("param");aa.setAttribute("name",X);aa.setAttribute("value",Y);Z.appendChild(aa)}function y(Y){var X=c(Y);if(X&&X.nodeName=="OBJECT"){if(M.ie&&M.win){X.style.display="none";(function(){if(X.readyState==4){b(Y)}else{setTimeout(arguments.callee,10)}})()}else{X.parentNode.removeChild(X)}}}function b(Z){var Y=c(Z);if(Y){for(var X in Y){if(typeof Y[X]=="function"){Y[X]=null}}Y.parentNode.removeChild(Y)}}function c(Z){var X=null;try{X=j.getElementById(Z)}catch(Y){}return X}function C(X){return j.createElement(X)}function i(Z,X,Y){Z.attachEvent(X,Y);I[I.length]=[Z,X,Y]}function F(Z){var Y=M.pv,X=Z.split(".");X[0]=parseInt(X[0],10);X[1]=parseInt(X[1],10)||0;X[2]=parseInt(X[2],10)||0;return(Y[0]>X[0]||(Y[0]==X[0]&&Y[1]>X[1])||(Y[0]==X[0]&&Y[1]==X[1]&&Y[2]>=X[2]))?true:false}function v(ac,Y,ad,ab){if(M.ie&&M.mac){return}var aa=j.getElementsByTagName("head")[0];if(!aa){return}var X=(ad&&typeof ad=="string")?ad:"screen";if(ab){n=null;G=null}if(!n||G!=X){var Z=C("style");Z.setAttribute("type","text/css");Z.setAttribute("media",X);n=aa.appendChild(Z);if(M.ie&&M.win&&typeof j.styleSheets!=D&&j.styleSheets.length>0){n=j.styleSheets[j.styleSheets.length-1]}G=X}if(M.ie&&M.win){if(n&&typeof n.addRule==r){n.addRule(ac,Y)}}else{if(n&&typeof j.createTextNode!=D){n.appendChild(j.createTextNode(ac+" {"+Y+"}"))}}}function w(Z,X){if(!m){return}var Y=X?"visible":"hidden";if(J&&c(Z)){c(Z).style.visibility=Y}else{v("#"+Z,"visibility:"+Y)}}function L(Y){var Z=/[\\\"<>\.;]/;var X=Z.exec(Y)!=null;return X&&typeof encodeURIComponent!=D?encodeURIComponent(Y):Y}var d=function(){if(M.ie&&M.win){window.attachEvent("onunload",function(){var ac=I.length;for(var ab=0;ab<ac;ab++){I[ab][0].detachEvent(I[ab][1],I[ab][2])}var Z=N.length;for(var aa=0;aa<Z;aa++){y(N[aa])}for(var Y in M){M[Y]=null}M=null;for(var X in swfobject){swfobject[X]=null}swfobject=null})}}();return{registerObject:function(ab,X,aa,Z){if(M.w3&&ab&&X){var Y={};Y.id=ab;Y.swfVersion=X;Y.expressInstall=aa;Y.callbackFn=Z;o[o.length]=Y;w(ab,false)}else{if(Z){Z({success:false,id:ab})}}},getObjectById:function(X){if(M.w3){return z(X)}},embedSWF:function(ab,ah,ae,ag,Y,aa,Z,ad,af,ac){var X={success:false,id:ah};if(M.w3&&!(M.wk&&M.wk<312)&&ab&&ah&&ae&&ag&&Y){w(ah,false);K(function(){ae+="";ag+="";var aj={};if(af&&typeof af===r){for(var al in af){aj[al]=af[al]}}aj.data=ab;aj.width=ae;aj.height=ag;var am={};if(ad&&typeof ad===r){for(var ak in ad){am[ak]=ad[ak]}}if(Z&&typeof Z===r){for(var ai in Z){if(typeof am.flashvars!=D){am.flashvars+="&"+ai+"="+Z[ai]}else{am.flashvars=ai+"="+Z[ai]}}}if(F(Y)){var an=u(aj,am,ah);if(aj.id==ah){w(ah,true)}X.success=true;X.ref=an}else{if(aa&&A()){aj.data=aa;P(aj,am,ah,ac);return}else{w(ah,true)}}if(ac){ac(X)}})}else{if(ac){ac(X)}}},switchOffAutoHideShow:function(){m=false},ua:M,getFlashPlayerVersion:function(){return{major:M.pv[0],minor:M.pv[1],release:M.pv[2]}},hasFlashPlayerVersion:F,createSWF:function(Z,Y,X){if(M.w3){return u(Z,Y,X)}else{return undefined}},showExpressInstall:function(Z,aa,X,Y){if(M.w3&&A()){P(Z,aa,X,Y)}},removeSWF:function(X){if(M.w3){y(X)}},createCSS:function(aa,Z,Y,X){if(M.w3){v(aa,Z,Y,X)}},addDomLoadEvent:K,addLoadEvent:s,getQueryParamValue:function(aa){var Z=j.location.search||j.location.hash;if(Z){if(/\?/.test(Z)){Z=Z.split("?")[1]}if(aa==null){return L(Z)}var Y=Z.split("&");for(var X=0;X<Y.length;X++){if(Y[X].substring(0,Y[X].indexOf("="))==aa){return L(Y[X].substring((Y[X].indexOf("=")+1)))}}}return""},expressInstallCallback:function(){if(a){var X=c(R);if(X&&l){X.parentNode.replaceChild(l,X);if(Q){w(Q,true);if(M.ie&&M.win){l.style.display="block"}}if(E){E(B)}}a=false}}}}();module.exports=swfobject;
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JSFlashBridge", function() { return JSFlashBridge; });
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var unique = __webpack_require__(1).unique;
-var isPositiveInt = __webpack_require__(1).isPositiveInt;
-var stringEndsWith = __webpack_require__(1).stringEndsWith;
-var SingleValueRegistry = __webpack_require__(7).SingleValueRegistry;
-var MultipleValuesRegistry = __webpack_require__(7).MultipleValuesRegistry;
-var registry = __webpack_require__(31);
+var unique = __webpack_require__(2).unique;
+var isPositiveInt = __webpack_require__(2).isPositiveInt;
+var stringEndsWith = __webpack_require__(2).stringEndsWith;
+var SingleValueRegistry = __webpack_require__(8).SingleValueRegistry;
+var MultipleValuesRegistry = __webpack_require__(8).MultipleValuesRegistry;
+var registry = __webpack_require__(36);
 var VPAID_FLASH_HANDLER = 'vpaid_video_flash_handler';
 var ERROR = 'AdError';
 
-var JSFlashBridge = exports.JSFlashBridge = function () {
+var JSFlashBridge = function () {
     function JSFlashBridge(el, flashURL, flashID, width, height, loadHandShake) {
         _classCallCheck(this, JSFlashBridge);
 
@@ -2347,180 +2544,157 @@ var JSFlashBridge = exports.JSFlashBridge = function () {
         registry.addInstance(this._flashID, this);
     }
 
-    _createClass(JSFlashBridge, [{
-        key: 'on',
-        value: function on(eventName, callback) {
-            this._handlers.add(eventName, callback);
-        }
-    }, {
-        key: 'off',
-        value: function off(eventName, callback) {
-            return this._handlers.remove(eventName, callback);
-        }
-    }, {
-        key: 'offEvent',
-        value: function offEvent(eventName) {
-            return this._handlers.removeByKey(eventName);
-        }
-    }, {
-        key: 'offAll',
-        value: function offAll() {
-            return this._handlers.removeAll();
-        }
-    }, {
-        key: 'callFlashMethod',
-        value: function callFlashMethod(methodName) {
-            var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-            var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
+    JSFlashBridge.prototype.on = function on(eventName, callback) {
+        this._handlers.add(eventName, callback);
+    };
 
-            var callbackID = '';
-            // if no callback, some methods the return is void so they don't need callback
+    JSFlashBridge.prototype.off = function off(eventName, callback) {
+        return this._handlers.remove(eventName, callback);
+    };
+
+    JSFlashBridge.prototype.offEvent = function offEvent(eventName) {
+        return this._handlers.removeByKey(eventName);
+    };
+
+    JSFlashBridge.prototype.offAll = function offAll() {
+        return this._handlers.removeAll();
+    };
+
+    JSFlashBridge.prototype.callFlashMethod = function callFlashMethod(methodName) {
+        var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+        var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
+
+        var callbackID = '';
+        // if no callback, some methods the return is void so they don't need callback
+        if (callback) {
+            callbackID = this._uniqueMethodIdentifier() + '_' + methodName;
+            this._callbacks.add(callbackID, callback);
+        }
+
+        try {
+            //methods are created by ExternalInterface.addCallback in as3 code, if for some reason it failed
+            //this code will throw an error
+            this._el[methodName]([callbackID].concat(args));
+        } catch (e) {
             if (callback) {
-                callbackID = this._uniqueMethodIdentifier() + '_' + methodName;
-                this._callbacks.add(callbackID, callback);
-            }
+                $asyncCallback.call(this, callbackID, e);
+            } else {
 
-            try {
-                //methods are created by ExternalInterface.addCallback in as3 code, if for some reason it failed
-                //this code will throw an error
-                this._el[methodName]([callbackID].concat(args));
-            } catch (e) {
-                if (callback) {
-                    $asyncCallback.call(this, callbackID, e);
-                } else {
-
-                    //if there isn't any callback to return error use error event handler
-                    this._trigger(ERROR, e);
-                }
+                //if there isn't any callback to return error use error event handler
+                this._trigger(ERROR, e);
             }
         }
-    }, {
-        key: 'removeCallback',
-        value: function removeCallback(callback) {
-            return this._callbacks.removeByValue(callback);
-        }
-    }, {
-        key: 'removeCallbackByMethodName',
-        value: function removeCallbackByMethodName(suffix) {
-            var _this = this;
+    };
 
-            this._callbacks.filterKeys(function (key) {
-                return stringEndsWith(key, suffix);
-            }).forEach(function (key) {
-                _this._callbacks.remove(key);
-            });
-        }
-    }, {
-        key: 'removeAllCallbacks',
-        value: function removeAllCallbacks() {
-            return this._callbacks.removeAll();
-        }
-    }, {
-        key: '_trigger',
-        value: function _trigger(eventName, event) {
-            var _this2 = this;
+    JSFlashBridge.prototype.removeCallback = function removeCallback(callback) {
+        return this._callbacks.removeByValue(callback);
+    };
 
-            this._handlers.get(eventName).forEach(function (callback) {
-                //clickThru has to be sync, if not will be block by the popupblocker
-                if (eventName === 'AdClickThru') {
-                    callback(event);
-                } else {
-                    setTimeout(function () {
-                        if (_this2._handlers.get(eventName).length > 0) {
-                            callback(event);
-                        }
-                    }, 0);
-                }
-            });
-        }
-    }, {
-        key: '_callCallback',
-        value: function _callCallback(methodName, callbackID, err, result) {
+    JSFlashBridge.prototype.removeCallbackByMethodName = function removeCallbackByMethodName(suffix) {
+        var _this = this;
 
-            var callback = this._callbacks.get(callbackID);
+        this._callbacks.filterKeys(function (key) {
+            return stringEndsWith(key, suffix);
+        }).forEach(function (key) {
+            _this._callbacks.remove(key);
+        });
+    };
 
-            //not all methods callback's are mandatory
-            //but if there exist an error, fire the error event
-            if (!callback) {
-                if (err && callbackID === '') {
-                    this.trigger(ERROR, err);
-                }
-                return;
+    JSFlashBridge.prototype.removeAllCallbacks = function removeAllCallbacks() {
+        return this._callbacks.removeAll();
+    };
+
+    JSFlashBridge.prototype._trigger = function _trigger(eventName, event) {
+        var _this2 = this;
+
+        this._handlers.get(eventName).forEach(function (callback) {
+            //clickThru has to be sync, if not will be block by the popupblocker
+            if (eventName === 'AdClickThru') {
+                callback(event);
+            } else {
+                setTimeout(function () {
+                    if (_this2._handlers.get(eventName).length > 0) {
+                        callback(event);
+                    }
+                }, 0);
             }
+        });
+    };
 
-            $asyncCallback.call(this, callbackID, err, result);
-        }
-    }, {
-        key: '_handShake',
-        value: function _handShake(err, data) {
-            this._ready = true;
-            if (this._handShakeHandler) {
-                this._handShakeHandler(err, data);
-                delete this._handShakeHandler;
+    JSFlashBridge.prototype._callCallback = function _callCallback(methodName, callbackID, err, result) {
+
+        var callback = this._callbacks.get(callbackID);
+
+        //not all methods callback's are mandatory
+        //but if there exist an error, fire the error event
+        if (!callback) {
+            if (err && callbackID === '') {
+                this.trigger(ERROR, err);
             }
+            return;
         }
 
-        //methods like properties specific to this implementation of VPAID
+        $asyncCallback.call(this, callbackID, err, result);
+    };
 
-    }, {
-        key: 'getSize',
-        value: function getSize() {
-            return { width: this._width, height: this._height };
+    JSFlashBridge.prototype._handShake = function _handShake(err, data) {
+        this._ready = true;
+        if (this._handShakeHandler) {
+            this._handShakeHandler(err, data);
+            delete this._handShakeHandler;
         }
-    }, {
-        key: 'setSize',
-        value: function setSize(newWidth, newHeight) {
-            this._width = isPositiveInt(newWidth, this._width);
-            this._height = isPositiveInt(newHeight, this._height);
-            this._el.setAttribute('width', this._width);
-            this._el.setAttribute('height', this._height);
+    };
+
+    //methods like properties specific to this implementation of VPAID
+
+
+    JSFlashBridge.prototype.getSize = function getSize() {
+        return { width: this._width, height: this._height };
+    };
+
+    JSFlashBridge.prototype.setSize = function setSize(newWidth, newHeight) {
+        this._width = isPositiveInt(newWidth, this._width);
+        this._height = isPositiveInt(newHeight, this._height);
+        this._el.setAttribute('width', this._width);
+        this._el.setAttribute('height', this._height);
+    };
+
+    JSFlashBridge.prototype.getWidth = function getWidth() {
+        return this._width;
+    };
+
+    JSFlashBridge.prototype.setWidth = function setWidth(newWidth) {
+        this.setSize(newWidth, this._height);
+    };
+
+    JSFlashBridge.prototype.getHeight = function getHeight() {
+        return this._height;
+    };
+
+    JSFlashBridge.prototype.setHeight = function setHeight(newHeight) {
+        this.setSize(this._width, newHeight);
+    };
+
+    JSFlashBridge.prototype.getFlashID = function getFlashID() {
+        return this._flashID;
+    };
+
+    JSFlashBridge.prototype.getFlashURL = function getFlashURL() {
+        return this._flashURL;
+    };
+
+    JSFlashBridge.prototype.isReady = function isReady() {
+        return this._ready;
+    };
+
+    JSFlashBridge.prototype.destroy = function destroy() {
+        this.offAll();
+        this.removeAllCallbacks();
+        registry.removeInstanceByID(this._flashID);
+        if (this._el.parentElement) {
+            this._el.parentElement.removeChild(this._el);
         }
-    }, {
-        key: 'getWidth',
-        value: function getWidth() {
-            return this._width;
-        }
-    }, {
-        key: 'setWidth',
-        value: function setWidth(newWidth) {
-            this.setSize(newWidth, this._height);
-        }
-    }, {
-        key: 'getHeight',
-        value: function getHeight() {
-            return this._height;
-        }
-    }, {
-        key: 'setHeight',
-        value: function setHeight(newHeight) {
-            this.setSize(this._width, newHeight);
-        }
-    }, {
-        key: 'getFlashID',
-        value: function getFlashID() {
-            return this._flashID;
-        }
-    }, {
-        key: 'getFlashURL',
-        value: function getFlashURL() {
-            return this._flashURL;
-        }
-    }, {
-        key: 'isReady',
-        value: function isReady() {
-            return this._ready;
-        }
-    }, {
-        key: 'destroy',
-        value: function destroy() {
-            this.offAll();
-            this.removeAllCallbacks();
-            registry.removeInstanceByID(this._flashID);
-            if (this._el.parentElement) {
-                this._el.parentElement.removeChild(this._el);
-            }
-        }
-    }]);
+    };
 
     return JSFlashBridge;
 }();
@@ -2568,7 +2742,7 @@ window[VPAID_FLASH_HANDLER] = function (flashID, typeID, typeName, callbackID, e
 };
 
 /***/ }),
-/* 14 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2769,47 +2943,12 @@ module.exports = {
 };
 
 /***/ }),
-/* 15 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var InLine = __webpack_require__(17);
-var Wrapper = __webpack_require__(22);
-
-function Ad(adJTree) {
-  if (!(this instanceof Ad)) {
-    return new Ad(adJTree);
-  }
-  this.initialize(adJTree);
-}
-
-Ad.prototype.initialize = function (adJTree) {
-  this.id = adJTree.attr('id');
-  this.sequence = adJTree.attr('sequence');
-
-  if (adJTree.inLine) {
-    this.inLine = new InLine(adJTree.inLine);
-  }
-
-  if (adJTree.wrapper) {
-    this.wrapper = new Wrapper(adJTree.wrapper);
-  }
-};
-
-module.exports = Ad;
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 var utilities = __webpack_require__(0);
-var Companion = __webpack_require__(36);
-var Linear = __webpack_require__(18);
+var Companion = __webpack_require__(47);
+var Linear = __webpack_require__(22);
 
 function Creative(creativeJTree) {
   if (!(this instanceof Creative)) {
@@ -2867,90 +3006,107 @@ Creative.parseCreatives = function parseCreatives(creativesJTree) {
 module.exports = Creative;
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+var xml = __webpack_require__(1);
+var parsers = __webpack_require__(21);
 
-
-var utilities = __webpack_require__(0);
-var xml = __webpack_require__(2);
-var vastUtil = __webpack_require__(4);
-var Creative = __webpack_require__(16);
-
-function InLine(inlineJTree) {
-  if (!(this instanceof InLine)) {
-    return new InLine(inlineJTree);
+function TrackingEvent(trackingJTree, duration) {
+  if (!(this instanceof TrackingEvent)) {
+    return new TrackingEvent(trackingJTree, duration);
   }
 
-  // Required Fields
-  this.adTitle = xml.keyValue(inlineJTree.adTitle);
-  this.adSystem = xml.keyValue(inlineJTree.adSystem);
-  this.impressions = vastUtil.parseImpressions(inlineJTree.impression);
-  this.creatives = Creative.parseCreatives(inlineJTree.creatives);
+  this.name = trackingJTree.attr('event');
+  this.uri = xml.keyValue(trackingJTree);
 
-  // Optional Fields
-  this.description = xml.keyValue(inlineJTree.description);
-  this.advertiser = xml.keyValue(inlineJTree.advertiser);
-  this.surveys = parseSurveys(inlineJTree.survey);
-  this.error = xml.keyValue(inlineJTree.error);
-  this.pricing = xml.keyValue(inlineJTree.pricing);
-  this.extensions = inlineJTree.extensions;
-
-  /** * Local Functions ***/
-  function parseSurveys(inlineSurveys) {
-    if (inlineSurveys) {
-      return utilities.transformArray(utilities.isArray(inlineSurveys) ? inlineSurveys : [inlineSurveys], function (survey) {
-        if (utilities.isNotEmptyString(survey.keyValue)) {
-          return {
-            uri: survey.keyValue,
-            type: survey.attr('type')
-          };
-        }
-
-        return undefined;
-      });
-    }
-
-    return [];
+  if ('progress' === this.name) {
+    this.offset = parsers.offset(trackingJTree.attr('offset'), duration);
   }
 }
 
-/**
- * Returns true if the browser supports all the creatives.
- */
-InLine.prototype.isSupported = function () {
-  var i = void 0,
-      len = void 0;
-
-  if (this.creatives.length === 0) {
-    return false;
-  }
-
-  for (i = 0, len = this.creatives.length; i < len; i += 1) {
-    if (!this.creatives[i].isSupported()) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-module.exports = InLine;
+module.exports = TrackingEvent;
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
 
 var utilities = __webpack_require__(0);
-var xml = __webpack_require__(2);
-var parsers = __webpack_require__(23);
-var TrackingEvent = __webpack_require__(19);
-var VideoClicks = __webpack_require__(21);
-var MediaFile = __webpack_require__(37);
+
+var durationRegex = /(\d\d):(\d\d):(\d\d)(\.(\d\d\d))?/;
+
+var parsers = {
+
+  duration: function parseDuration(durationStr) {
+    var match = void 0,
+        durationInMs = void 0;
+
+    if (utilities.isString(durationStr)) {
+      match = durationStr.match(durationRegex);
+      if (match) {
+        durationInMs = parseHoursToMs(match[1]) + parseMinToMs(match[2]) + parseSecToMs(match[3]) + parseInt(match[5] || 0, 10);
+      }
+    }
+
+    return isNaN(durationInMs) ? null : durationInMs;
+
+    /** * local functions ***/
+    function parseHoursToMs(hourStr) {
+      return parseInt(hourStr, 10) * 60 * 60 * 1000;
+    }
+
+    function parseMinToMs(minStr) {
+      return parseInt(minStr, 10) * 60 * 1000;
+    }
+
+    function parseSecToMs(secStr) {
+      return parseInt(secStr, 10) * 1000;
+    }
+  },
+
+  offset: function parseOffset(offset, duration) {
+    if (isPercentage(offset)) {
+      return calculatePercentage(offset, duration);
+    }
+
+    return parsers.duration(offset);
+
+    /** * Local function ***/
+    function isPercentage(offset) {
+      var percentageRegex = /^\d+(\.\d+)?%$/g;
+
+      return percentageRegex.test(offset);
+    }
+
+    function calculatePercentage(percentStr, duration) {
+      if (duration) {
+        return calcPercent(duration, parseFloat(percentStr.replace('%', '')));
+      }
+
+      return null;
+    }
+
+    function calcPercent(quantity, percent) {
+      return quantity * percent / 100;
+    }
+  }
+
+};
+
+module.exports = parsers;
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var utilities = __webpack_require__(0);
+var xml = __webpack_require__(1);
+var parsers = __webpack_require__(21);
+var TrackingEvent = __webpack_require__(20);
+var VideoClicks = __webpack_require__(23);
+var MediaFile = __webpack_require__(48);
 
 function Linear(linearJTree) {
   if (!(this instanceof Linear)) {
@@ -3025,41 +3181,78 @@ Linear.prototype.isSupported = function () {
 module.exports = Linear;
 
 /***/ }),
-/* 19 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+var utilities = __webpack_require__(0);
+var xml = __webpack_require__(1);
 
-
-var xml = __webpack_require__(2);
-var parsers = __webpack_require__(23);
-
-function TrackingEvent(trackingJTree, duration) {
-  if (!(this instanceof TrackingEvent)) {
-    return new TrackingEvent(trackingJTree, duration);
+function VideoClicks(videoClickJTree) {
+  if (!(this instanceof VideoClicks)) {
+    return new VideoClicks(videoClickJTree);
   }
 
-  this.name = trackingJTree.attr('event');
-  this.uri = xml.keyValue(trackingJTree);
+  this.clickThrough = xml.keyValue(videoClickJTree.clickThrough);
+  this.clickTrackings = parseClickTrackings(videoClickJTree.clickTracking);
+  this.customClicks = parseClickTrackings(videoClickJTree.customClick);
 
-  if ('progress' === this.name) {
-    this.offset = parsers.offset(trackingJTree.attr('offset'), duration);
+  /** * Local functions ***/
+  function parseClickTrackings(trackingData) {
+    var clickTrackings = [];
+
+    if (trackingData) {
+      trackingData = utilities.isArray(trackingData) ? trackingData : [trackingData];
+      trackingData.forEach(function (clickTrackingData) {
+        clickTrackings.push(xml.keyValue(clickTrackingData));
+      });
+    }
+
+    return clickTrackings;
   }
 }
 
-module.exports = TrackingEvent;
+module.exports = VideoClicks;
 
 /***/ }),
-/* 20 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+var utilities = __webpack_require__(0);
+var xml = __webpack_require__(1);
+var vastUtil = __webpack_require__(3);
+var Creative = __webpack_require__(19);
 
+function Wrapper(wrapperJTree) {
+  if (!(this instanceof Wrapper)) {
+    return new Wrapper(wrapperJTree);
+  }
+
+  // Required elements
+  this.adSystem = xml.keyValue(wrapperJTree.adSystem);
+  this.impressions = vastUtil.parseImpressions(wrapperJTree.impression);
+  this.VASTAdTagURI = xml.keyValue(wrapperJTree.vASTAdTagURI);
+
+  // Optional elements
+  this.creatives = Creative.parseCreatives(wrapperJTree.creatives);
+  this.error = xml.keyValue(wrapperJTree.error);
+  this.extensions = wrapperJTree.extensions;
+
+  // Optional attrs
+  this.followAdditionalWrappers = utilities.isDefined(xml.attr(wrapperJTree, 'followAdditionalWrappers')) ? xml.attr(wrapperJTree, 'followAdditionalWrappers') : true;
+  this.allowMultipleAds = xml.attr(wrapperJTree, 'allowMultipleAds');
+  this.fallbackOnNoAd = xml.attr(wrapperJTree, 'fallbackOnNoAd');
+}
+
+module.exports = Wrapper;
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
 
 var utilities = __webpack_require__(0);
-var VASTError = __webpack_require__(3);
-var VASTResponse = __webpack_require__(8);
-var vastUtil = __webpack_require__(4);
+var VASTError = __webpack_require__(4);
+var VASTResponse = __webpack_require__(9);
+var vastUtil = __webpack_require__(3);
 
 function VASTTracker(assetURI, vastResponse) {
   if (!(this instanceof VASTTracker)) {
@@ -3261,328 +3454,686 @@ VASTTracker.prototype.trackClick = function trackClick() {
 module.exports = VASTTracker;
 
 /***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utilities = __webpack_require__(0);
-var xml = __webpack_require__(2);
-
-function VideoClicks(videoClickJTree) {
-  if (!(this instanceof VideoClicks)) {
-    return new VideoClicks(videoClickJTree);
-  }
-
-  this.clickThrough = xml.keyValue(videoClickJTree.clickThrough);
-  this.clickTrackings = parseClickTrackings(videoClickJTree.clickTracking);
-  this.customClicks = parseClickTrackings(videoClickJTree.customClick);
-
-  /** * Local functions ***/
-  function parseClickTrackings(trackingData) {
-    var clickTrackings = [];
-
-    if (trackingData) {
-      trackingData = utilities.isArray(trackingData) ? trackingData : [trackingData];
-      trackingData.forEach(function (clickTrackingData) {
-        clickTrackings.push(xml.keyValue(clickTrackingData));
-      });
-    }
-
-    return clickTrackings;
-  }
-}
-
-module.exports = VideoClicks;
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utilities = __webpack_require__(0);
-var xml = __webpack_require__(2);
-var vastUtil = __webpack_require__(4);
-var Creative = __webpack_require__(16);
-
-function Wrapper(wrapperJTree) {
-  if (!(this instanceof Wrapper)) {
-    return new Wrapper(wrapperJTree);
-  }
-
-  // Required elements
-  this.adSystem = xml.keyValue(wrapperJTree.adSystem);
-  this.impressions = vastUtil.parseImpressions(wrapperJTree.impression);
-  this.VASTAdTagURI = xml.keyValue(wrapperJTree.vASTAdTagURI);
-
-  // Optional elements
-  this.creatives = Creative.parseCreatives(wrapperJTree.creatives);
-  this.error = xml.keyValue(wrapperJTree.error);
-  this.extensions = wrapperJTree.extensions;
-
-  // Optional attrs
-  this.followAdditionalWrappers = utilities.isDefined(xml.attr(wrapperJTree, 'followAdditionalWrappers')) ? xml.attr(wrapperJTree, 'followAdditionalWrappers') : true;
-  this.allowMultipleAds = xml.attr(wrapperJTree, 'allowMultipleAds');
-  this.fallbackOnNoAd = xml.attr(wrapperJTree, 'fallbackOnNoAd');
-}
-
-module.exports = Wrapper;
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utilities = __webpack_require__(0);
-
-var durationRegex = /(\d\d):(\d\d):(\d\d)(\.(\d\d\d))?/;
-
-var parsers = {
-
-  duration: function parseDuration(durationStr) {
-    var match = void 0,
-        durationInMs = void 0;
-
-    if (utilities.isString(durationStr)) {
-      match = durationStr.match(durationRegex);
-      if (match) {
-        durationInMs = parseHoursToMs(match[1]) + parseMinToMs(match[2]) + parseSecToMs(match[3]) + parseInt(match[5] || 0, 10);
-      }
-    }
-
-    return isNaN(durationInMs) ? null : durationInMs;
-
-    /** * local functions ***/
-    function parseHoursToMs(hourStr) {
-      return parseInt(hourStr, 10) * 60 * 60 * 1000;
-    }
-
-    function parseMinToMs(minStr) {
-      return parseInt(minStr, 10) * 60 * 1000;
-    }
-
-    function parseSecToMs(secStr) {
-      return parseInt(secStr, 10) * 1000;
-    }
-  },
-
-  offset: function parseOffset(offset, duration) {
-    if (isPercentage(offset)) {
-      return calculatePercentage(offset, duration);
-    }
-
-    return parsers.duration(offset);
-
-    /** * Local function ***/
-    function isPercentage(offset) {
-      var percentageRegex = /^\d+(\.\d+)?%$/g;
-
-      return percentageRegex.test(offset);
-    }
-
-    function calculatePercentage(percentStr, duration) {
-      if (duration) {
-        return calcPercent(duration, parseFloat(percentStr.replace('%', '')));
-      }
-
-      return null;
-    }
-
-    function calcPercent(quantity, percent) {
-      return quantity * percent / 100;
-    }
-  }
-
-};
-
-module.exports = parsers;
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utilities = __webpack_require__(0);
-
-/**
- *
- * IMPORTANT NOTE: This function comes from angularJs and was originally called urlResolve
- *                 you can take a look at the original code here https://github.com/angular/angular.js/blob/master/src/ng/urlUtils.js
- *
- * Implementation Notes for non-IE browsers
- * ----------------------------------------
- * Assigning a URL to the href property of an anchor DOM node, even one attached to the DOM,
- * results both in the normalizing and parsing of the URL.  Normalizing means that a relative
- * URL will be resolved into an absolute URL in the context of the application document.
- * Parsing means that the anchor node's host, hostname, protocol, port, pathname and related
- * properties are all populated to reflect the normalized URL.  This approach has wide
- * compatibility - Safari 1+, Mozilla 1+, Opera 7+,e etc.  See
- * http://www.aptana.com/reference/html/api/HTMLAnchorElement.html
- *
- * Implementation Notes for IE
- * ---------------------------
- * IE >= 8 and <= 10 normalizes the URL when assigned to the anchor node similar to the other
- * browsers.  However, the parsed components will not be set if the URL assigned did not specify
- * them.  (e.g. if you assign a.href = "foo", then a.protocol, a.host, etc. will be empty.)  We
- * work around that by performing the parsing in a 2nd step by taking a previously normalized
- * URL (e.g. by assigning to a.href) and assigning it a.href again.  This correctly populates the
- * properties such as protocol, hostname, port, etc.
- *
- * IE7 does not normalize the URL when assigned to an anchor node.  (Apparently, it does, if one
- * uses the inner HTML approach to assign the URL as part of an HTML snippet -
- * http://stackoverflow.com/a/472729)  However, setting img[src] does normalize the URL.
- * Unfortunately, setting img[src] to something like "javascript:foo" on IE throws an exception.
- * Since the primary usage for normalizing URLs is to sanitize such URLs, we can't use that
- * method and IE < 8 is unsupported.
- *
- * References:
- *   http://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement
- *   http://www.aptana.com/reference/html/api/HTMLAnchorElement.html
- *   http://url.spec.whatwg.org/#urlutils
- *   https://github.com/angular/angular.js/pull/2902
- *   http://james.padolsey.com/javascript/parsing-urls-with-the-dom/
- *
- * @kind function
- * @param {string} url The URL to be parsed.
- * @description Normalizes and parses a URL.
- * @returns {object} Returns the normalized URL as a dictionary.
- *
- *   | member name   | Description    |
- *   |---------------|----------------|
- *   | href          | A normalized version of the provided URL if it was not an absolute URL |
- *   | protocol      | The protocol including the trailing colon                              |
- *   | host          | The host and port (if the port is non-default) of the normalizedUrl    |
- *   | search        | The search params, minus the question mark                             |
- *   | hash          | The hash string, minus the hash symbol
- *   | hostname      | The hostname
- *   | port          | The port, without ":"
- *   | pathname      | The pathname, beginning with "/"
- *
- */
-
-var urlParsingNode = document.createElement('a');
-
-/**
- * documentMode is an IE-only property
- * http://msdn.microsoft.com/en-us/library/ie/cc196988(v=vs.85).aspx
- */
-var msie = document.documentMode;
-
-function urlParts(url) {
-  var href = url;
-
-  if (msie) {
-    // Normalize before parse.  Refer Implementation Notes on why this is
-    // done in two steps on IE.
-    urlParsingNode.setAttribute('href', href);
-    href = urlParsingNode.href;
-  }
-
-  urlParsingNode.setAttribute('href', href);
-
-  // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
-  return {
-    href: urlParsingNode.href,
-    protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
-    host: urlParsingNode.host,
-    search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
-    hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
-    hostname: urlParsingNode.hostname,
-    port: utilities.isNotEmptyString(urlParsingNode.port) ? urlParsingNode.port : 80,
-    pathname: urlParsingNode.pathname.charAt(0) === '/' ? urlParsingNode.pathname : '/' + urlParsingNode.pathname
-  };
-}
-
-/**
- * This function accepts a query string (search part of a url) and returns a dictionary with
- * the different key value pairs
- * @param {string} qs queryString
- */
-function queryStringToObj(qs, cond) {
-  var pairs = void 0,
-      qsObj = void 0;
-
-  cond = utilities.isFunction(cond) ? cond : function () {
-    return true;
-  };
-
-  qs = qs.trim().replace(/^\?/, '');
-  pairs = qs.split('&');
-  qsObj = {};
-
-  utilities.forEach(pairs, function (pair) {
-    var keyValue = void 0,
-        key = void 0,
-        value = void 0;
-
-    if (pair !== '') {
-      keyValue = pair.split('=');
-      key = keyValue[0];
-      value = keyValue[1];
-      if (cond(key, value)) {
-        qsObj[key] = value;
-      }
-    }
-  });
-
-  return qsObj;
-}
-
-/**
- * This function accepts an object and serializes it into a query string without the leading '?'
- * @param obj
- * @returns {string}
- */
-function objToQueryString(obj) {
-  var pairs = [];
-
-  utilities.forEach(obj, function (value, key) {
-    pairs.push(key + '=' + value);
-  });
-
-  return pairs.join('&');
-}
-
-module.exports = {
-  urlParts: urlParts,
-  queryStringToObj: queryStringToObj,
-  objToQueryString: objToQueryString
-};
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports) {
-
-/*	SWFObject v2.2 <http://code.google.com/p/swfobject/> 
-	is released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
-*/
-var swfobject=function(){var D="undefined",r="object",S="Shockwave Flash",W="ShockwaveFlash.ShockwaveFlash",q="application/x-shockwave-flash",R="SWFObjectExprInst",x="onreadystatechange",O=window,j=document,t=navigator,T=false,U=[h],o=[],N=[],I=[],l,Q,E,B,J=false,a=false,n,G,m=true,M=function(){var aa=typeof j.getElementById!=D&&typeof j.getElementsByTagName!=D&&typeof j.createElement!=D,ah=t.userAgent.toLowerCase(),Y=t.platform.toLowerCase(),ae=Y?/win/.test(Y):/win/.test(ah),ac=Y?/mac/.test(Y):/mac/.test(ah),af=/webkit/.test(ah)?parseFloat(ah.replace(/^.*webkit\/(\d+(\.\d+)?).*$/,"$1")):false,X=!+"\v1",ag=[0,0,0],ab=null;if(typeof t.plugins!=D&&typeof t.plugins[S]==r){ab=t.plugins[S].description;if(ab&&!(typeof t.mimeTypes!=D&&t.mimeTypes[q]&&!t.mimeTypes[q].enabledPlugin)){T=true;X=false;ab=ab.replace(/^.*\s+(\S+\s+\S+$)/,"$1");ag[0]=parseInt(ab.replace(/^(.*)\..*$/,"$1"),10);ag[1]=parseInt(ab.replace(/^.*\.(.*)\s.*$/,"$1"),10);ag[2]=/[a-zA-Z]/.test(ab)?parseInt(ab.replace(/^.*[a-zA-Z]+(.*)$/,"$1"),10):0}}else{if(typeof O[(['Active'].concat('Object').join('X'))]!=D){try{var ad=new window[(['Active'].concat('Object').join('X'))](W);if(ad){ab=ad.GetVariable("$version");if(ab){X=true;ab=ab.split(" ")[1].split(",");ag=[parseInt(ab[0],10),parseInt(ab[1],10),parseInt(ab[2],10)]}}}catch(Z){}}}return{w3:aa,pv:ag,wk:af,ie:X,win:ae,mac:ac}}(),k=function(){if(!M.w3){return}if((typeof j.readyState!=D&&j.readyState=="complete")||(typeof j.readyState==D&&(j.getElementsByTagName("body")[0]||j.body))){f()}if(!J){if(typeof j.addEventListener!=D){j.addEventListener("DOMContentLoaded",f,false)}if(M.ie&&M.win){j.attachEvent(x,function(){if(j.readyState=="complete"){j.detachEvent(x,arguments.callee);f()}});if(O==top){(function(){if(J){return}try{j.documentElement.doScroll("left")}catch(X){setTimeout(arguments.callee,0);return}f()})()}}if(M.wk){(function(){if(J){return}if(!/loaded|complete/.test(j.readyState)){setTimeout(arguments.callee,0);return}f()})()}s(f)}}();function f(){if(J){return}try{var Z=j.getElementsByTagName("body")[0].appendChild(C("span"));Z.parentNode.removeChild(Z)}catch(aa){return}J=true;var X=U.length;for(var Y=0;Y<X;Y++){U[Y]()}}function K(X){if(J){X()}else{U[U.length]=X}}function s(Y){if(typeof O.addEventListener!=D){O.addEventListener("load",Y,false)}else{if(typeof j.addEventListener!=D){j.addEventListener("load",Y,false)}else{if(typeof O.attachEvent!=D){i(O,"onload",Y)}else{if(typeof O.onload=="function"){var X=O.onload;O.onload=function(){X();Y()}}else{O.onload=Y}}}}}function h(){if(T){V()}else{H()}}function V(){var X=j.getElementsByTagName("body")[0];var aa=C(r);aa.setAttribute("type",q);var Z=X.appendChild(aa);if(Z){var Y=0;(function(){if(typeof Z.GetVariable!=D){var ab=Z.GetVariable("$version");if(ab){ab=ab.split(" ")[1].split(",");M.pv=[parseInt(ab[0],10),parseInt(ab[1],10),parseInt(ab[2],10)]}}else{if(Y<10){Y++;setTimeout(arguments.callee,10);return}}X.removeChild(aa);Z=null;H()})()}else{H()}}function H(){var ag=o.length;if(ag>0){for(var af=0;af<ag;af++){var Y=o[af].id;var ab=o[af].callbackFn;var aa={success:false,id:Y};if(M.pv[0]>0){var ae=c(Y);if(ae){if(F(o[af].swfVersion)&&!(M.wk&&M.wk<312)){w(Y,true);if(ab){aa.success=true;aa.ref=z(Y);ab(aa)}}else{if(o[af].expressInstall&&A()){var ai={};ai.data=o[af].expressInstall;ai.width=ae.getAttribute("width")||"0";ai.height=ae.getAttribute("height")||"0";if(ae.getAttribute("class")){ai.styleclass=ae.getAttribute("class")}if(ae.getAttribute("align")){ai.align=ae.getAttribute("align")}var ah={};var X=ae.getElementsByTagName("param");var ac=X.length;for(var ad=0;ad<ac;ad++){if(X[ad].getAttribute("name").toLowerCase()!="movie"){ah[X[ad].getAttribute("name")]=X[ad].getAttribute("value")}}P(ai,ah,Y,ab)}else{p(ae);if(ab){ab(aa)}}}}}else{w(Y,true);if(ab){var Z=z(Y);if(Z&&typeof Z.SetVariable!=D){aa.success=true;aa.ref=Z}ab(aa)}}}}}function z(aa){var X=null;var Y=c(aa);if(Y&&Y.nodeName=="OBJECT"){if(typeof Y.SetVariable!=D){X=Y}else{var Z=Y.getElementsByTagName(r)[0];if(Z){X=Z}}}return X}function A(){return !a&&F("6.0.65")&&(M.win||M.mac)&&!(M.wk&&M.wk<312)}function P(aa,ab,X,Z){a=true;E=Z||null;B={success:false,id:X};var ae=c(X);if(ae){if(ae.nodeName=="OBJECT"){l=g(ae);Q=null}else{l=ae;Q=X}aa.id=R;if(typeof aa.width==D||(!/%$/.test(aa.width)&&parseInt(aa.width,10)<310)){aa.width="310"}if(typeof aa.height==D||(!/%$/.test(aa.height)&&parseInt(aa.height,10)<137)){aa.height="137"}j.title=j.title.slice(0,47)+" - Flash Player Installation";var ad=M.ie&&M.win?(['Active'].concat('').join('X')):"PlugIn",ac="MMredirectURL="+O.location.toString().replace(/&/g,"%26")+"&MMplayerType="+ad+"&MMdoctitle="+j.title;if(typeof ab.flashvars!=D){ab.flashvars+="&"+ac}else{ab.flashvars=ac}if(M.ie&&M.win&&ae.readyState!=4){var Y=C("div");X+="SWFObjectNew";Y.setAttribute("id",X);ae.parentNode.insertBefore(Y,ae);ae.style.display="none";(function(){if(ae.readyState==4){ae.parentNode.removeChild(ae)}else{setTimeout(arguments.callee,10)}})()}u(aa,ab,X)}}function p(Y){if(M.ie&&M.win&&Y.readyState!=4){var X=C("div");Y.parentNode.insertBefore(X,Y);X.parentNode.replaceChild(g(Y),X);Y.style.display="none";(function(){if(Y.readyState==4){Y.parentNode.removeChild(Y)}else{setTimeout(arguments.callee,10)}})()}else{Y.parentNode.replaceChild(g(Y),Y)}}function g(ab){var aa=C("div");if(M.win&&M.ie){aa.innerHTML=ab.innerHTML}else{var Y=ab.getElementsByTagName(r)[0];if(Y){var ad=Y.childNodes;if(ad){var X=ad.length;for(var Z=0;Z<X;Z++){if(!(ad[Z].nodeType==1&&ad[Z].nodeName=="PARAM")&&!(ad[Z].nodeType==8)){aa.appendChild(ad[Z].cloneNode(true))}}}}}return aa}function u(ai,ag,Y){var X,aa=c(Y);if(M.wk&&M.wk<312){return X}if(aa){if(typeof ai.id==D){ai.id=Y}if(M.ie&&M.win){var ah="";for(var ae in ai){if(ai[ae]!=Object.prototype[ae]){if(ae.toLowerCase()=="data"){ag.movie=ai[ae]}else{if(ae.toLowerCase()=="styleclass"){ah+=' class="'+ai[ae]+'"'}else{if(ae.toLowerCase()!="classid"){ah+=" "+ae+'="'+ai[ae]+'"'}}}}}var af="";for(var ad in ag){if(ag[ad]!=Object.prototype[ad]){af+='<param name="'+ad+'" value="'+ag[ad]+'" />'}}aa.outerHTML='<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"'+ah+">"+af+"</object>";N[N.length]=ai.id;X=c(ai.id)}else{var Z=C(r);Z.setAttribute("type",q);for(var ac in ai){if(ai[ac]!=Object.prototype[ac]){if(ac.toLowerCase()=="styleclass"){Z.setAttribute("class",ai[ac])}else{if(ac.toLowerCase()!="classid"){Z.setAttribute(ac,ai[ac])}}}}for(var ab in ag){if(ag[ab]!=Object.prototype[ab]&&ab.toLowerCase()!="movie"){e(Z,ab,ag[ab])}}aa.parentNode.replaceChild(Z,aa);X=Z}}return X}function e(Z,X,Y){var aa=C("param");aa.setAttribute("name",X);aa.setAttribute("value",Y);Z.appendChild(aa)}function y(Y){var X=c(Y);if(X&&X.nodeName=="OBJECT"){if(M.ie&&M.win){X.style.display="none";(function(){if(X.readyState==4){b(Y)}else{setTimeout(arguments.callee,10)}})()}else{X.parentNode.removeChild(X)}}}function b(Z){var Y=c(Z);if(Y){for(var X in Y){if(typeof Y[X]=="function"){Y[X]=null}}Y.parentNode.removeChild(Y)}}function c(Z){var X=null;try{X=j.getElementById(Z)}catch(Y){}return X}function C(X){return j.createElement(X)}function i(Z,X,Y){Z.attachEvent(X,Y);I[I.length]=[Z,X,Y]}function F(Z){var Y=M.pv,X=Z.split(".");X[0]=parseInt(X[0],10);X[1]=parseInt(X[1],10)||0;X[2]=parseInt(X[2],10)||0;return(Y[0]>X[0]||(Y[0]==X[0]&&Y[1]>X[1])||(Y[0]==X[0]&&Y[1]==X[1]&&Y[2]>=X[2]))?true:false}function v(ac,Y,ad,ab){if(M.ie&&M.mac){return}var aa=j.getElementsByTagName("head")[0];if(!aa){return}var X=(ad&&typeof ad=="string")?ad:"screen";if(ab){n=null;G=null}if(!n||G!=X){var Z=C("style");Z.setAttribute("type","text/css");Z.setAttribute("media",X);n=aa.appendChild(Z);if(M.ie&&M.win&&typeof j.styleSheets!=D&&j.styleSheets.length>0){n=j.styleSheets[j.styleSheets.length-1]}G=X}if(M.ie&&M.win){if(n&&typeof n.addRule==r){n.addRule(ac,Y)}}else{if(n&&typeof j.createTextNode!=D){n.appendChild(j.createTextNode(ac+" {"+Y+"}"))}}}function w(Z,X){if(!m){return}var Y=X?"visible":"hidden";if(J&&c(Z)){c(Z).style.visibility=Y}else{v("#"+Z,"visibility:"+Y)}}function L(Y){var Z=/[\\\"<>\.;]/;var X=Z.exec(Y)!=null;return X&&typeof encodeURIComponent!=D?encodeURIComponent(Y):Y}var d=function(){if(M.ie&&M.win){window.attachEvent("onunload",function(){var ac=I.length;for(var ab=0;ab<ac;ab++){I[ab][0].detachEvent(I[ab][1],I[ab][2])}var Z=N.length;for(var aa=0;aa<Z;aa++){y(N[aa])}for(var Y in M){M[Y]=null}M=null;for(var X in swfobject){swfobject[X]=null}swfobject=null})}}();return{registerObject:function(ab,X,aa,Z){if(M.w3&&ab&&X){var Y={};Y.id=ab;Y.swfVersion=X;Y.expressInstall=aa;Y.callbackFn=Z;o[o.length]=Y;w(ab,false)}else{if(Z){Z({success:false,id:ab})}}},getObjectById:function(X){if(M.w3){return z(X)}},embedSWF:function(ab,ah,ae,ag,Y,aa,Z,ad,af,ac){var X={success:false,id:ah};if(M.w3&&!(M.wk&&M.wk<312)&&ab&&ah&&ae&&ag&&Y){w(ah,false);K(function(){ae+="";ag+="";var aj={};if(af&&typeof af===r){for(var al in af){aj[al]=af[al]}}aj.data=ab;aj.width=ae;aj.height=ag;var am={};if(ad&&typeof ad===r){for(var ak in ad){am[ak]=ad[ak]}}if(Z&&typeof Z===r){for(var ai in Z){if(typeof am.flashvars!=D){am.flashvars+="&"+ai+"="+Z[ai]}else{am.flashvars=ai+"="+Z[ai]}}}if(F(Y)){var an=u(aj,am,ah);if(aj.id==ah){w(ah,true)}X.success=true;X.ref=an}else{if(aa&&A()){aj.data=aa;P(aj,am,ah,ac);return}else{w(ah,true)}}if(ac){ac(X)}})}else{if(ac){ac(X)}}},switchOffAutoHideShow:function(){m=false},ua:M,getFlashPlayerVersion:function(){return{major:M.pv[0],minor:M.pv[1],release:M.pv[2]}},hasFlashPlayerVersion:F,createSWF:function(Z,Y,X){if(M.w3){return u(Z,Y,X)}else{return undefined}},showExpressInstall:function(Z,aa,X,Y){if(M.w3&&A()){P(Z,aa,X,Y)}},removeSWF:function(X){if(M.w3){y(X)}},createCSS:function(aa,Z,Y,X){if(M.w3){v(aa,Z,Y,X)}},addDomLoadEvent:K,addLoadEvent:s,getQueryParamValue:function(aa){var Z=j.location.search||j.location.hash;if(Z){if(/\?/.test(Z)){Z=Z.split("?")[1]}if(aa==null){return L(Z)}var Y=Z.split("&");for(var X=0;X<Y.length;X++){if(Y[X].substring(0,Y[X].indexOf("="))==aa){return L(Y[X].substring((Y[X].indexOf("=")+1)))}}}return""},expressInstallCallback:function(){if(a){var X=c(R);if(X&&l){X.parentNode.replaceChild(l,X);if(Q){w(Q,true);if(M.ie&&M.win){l.style.display="block"}}if(E){E(B)}}a=false}}}}();module.exports=swfobject;
-
-
-/***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
 
-var VASTClient = __webpack_require__(38);
-var VASTError = __webpack_require__(3);
-var vastUtil = __webpack_require__(4);
-var VASTIntegrator = __webpack_require__(39);
-var VPAIDIntegrator = __webpack_require__(43);
-var async = __webpack_require__(9);
-var dom = __webpack_require__(6);
+var dom = __webpack_require__(5);
+
+var element = document.createElement('div');
+
+element.className = 'vjs-ads-label vjs-control vjs-label-hidden';
+element.innerHTML = 'Advertisement';
+
+var AdsLabelFactory = function AdsLabelFactory(baseComponent) {
+  return {
+    /** @constructor */
+    init: function init(player, options) {
+      options.el = element;
+      baseComponent.call(this, player, options);
+
+      // We asynchronously reposition the ads label element
+      setTimeout(function () {
+        var currentTimeComp = player.controlBar && (player.controlBar.getChild('timerControls') || player.controlBar.getChild('currentTimeDisplay'));
+
+        if (currentTimeComp) {
+          player.controlBar.el().insertBefore(element, currentTimeComp.el());
+        }
+        dom.removeClass(element, 'vjs-label-hidden');
+      }, 0);
+    },
+
+    el: function getElement() {
+      return element;
+    }
+  };
+};
+
+module.exports = AdsLabelFactory;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+
+
+/**
+ * The component that shows a black screen until the ads plugin has decided if it can or it can not play the ad.
+ *
+ * Note: In case you wonder why instead of this black poster we don't just show the spinner loader.
+ *       IOS devices do not work well with animations and the browser chrashes from time to time That is why we chose to
+ *       have a secondary black poster.
+ *
+ *       It also makes it much more easier for the users of the plugin since it does not change the default behaviour of the
+ *       spinner and the player works the same way with and without the plugin.
+ *
+ * @param {vjs.Player|Object} player
+ * @param {Object=} options
+ * @constructor
+ */
+var element = document.createElement('div');
+
+var BlackPosterFactory = function BlackPosterFactory(baseComponent) {
+  return {
+    /** @constructor */
+    init: function init(player, options) {
+      options.el = element;
+      element.className = 'vjs-black-poster';
+      baseComponent.call(this, player, options);
+
+      var posterImg = player.getChild('posterImage');
+
+      // We need to do it asynchronously to be sure that the black poster el is on the dom.
+      setTimeout(function () {
+        if (posterImg && player && player.el()) {
+          player.el().insertBefore(element, posterImg.el());
+        }
+      }, 0);
+    },
+    el: function getElement() {
+      return element;
+    }
+  };
+};
+
+module.exports = BlackPosterFactory;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(29);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(31)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/autoprefixer-loader/index.js??ref--2-2!../../node_modules/resolve-url-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./videojs.vast.vpaid.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/autoprefixer-loader/index.js??ref--2-2!../../node_modules/resolve-url-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./videojs.vast.vpaid.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(30)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".vjs-label-hidden {\n  display: none !important;\n}\n\n.vjs-default-skin div.vjs-ads-label {\n  font-size: 13px;\n  line-height: 30px;\n  font-weight: normal;\n  text-align: center;\n  color: white;\n  display: none;\n  width: auto;\n  padding-left: 10px;\n}\n\n.vjs-ad-playing .vjs-control.vjs-ads-label {\n  display: block;\n}\n\n.vjs-black-poster {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  margin: 0;\n  padding: 0;\n  background-repeat: no-repeat;\n  background-position: 50% 50%;\n  background-size: contain;\n  cursor: pointer;\n  background-color: #000;\n}\n\n.vjs-has-started .vjs-black-poster.vjs-hidden {\n  display: none;\n}\n\n.vjs-using-native-controls .vjs-black-poster {\n  display: none;\n}\n\ndiv.VPAID-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\ndiv.vjs-vpaid-ad div.vjs-progress-control,\ndiv.vjs-vpaid-ad div.vjs-time-controls,\ndiv.vjs-vpaid-ad div.vjs-time-divider {\n  display: none;\n}\n\ndiv.vjs-vpaid-ad.vjs-vpaid-flash-ad div.VPAID-container {\n  background-color: #000;\n}\n\ndiv.vjs-vpaid-ad .vjs-tech {\n  z-index: 0;\n}\n\n/**\n * videojs.ads.css\n */\n\n/* Ad playback */\n\n.vjs-ad-playing .vjs-progress-control {\n  pointer-events: none;\n}\n\n.vjs-ad-playing .vjs-play-control.vjs-paused,\n.vjs-ad-playing .vjs-volume-level,\n.vjs-ad-playing .vjs-play-progress {\n  background-color: #ffe400 !important;\n}\n\ndiv.vast-skip-button {\n  display: block;\n  position: absolute;\n  bottom: 20%;\n  right: 0;\n  background-color: #000;\n  color: white;\n  font-size: 15px;\n  font-weight: bold;\n  width: auto;\n  padding: 8px;\n  z-index: 2;\n  border: 1px solid white;\n  border-right: none;\n}\n\n.vast-skip-button.enabled {\n  cursor: pointer;\n  color: #fff;\n}\n\n.vast-skip-button.enabled:hover {\n  cursor: pointer;\n  background: #333;\n}\n\n.vast-blocker {\n  display: block;\n  position: absolute;\n  margin: 0;\n  padding: 0;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n\n.vast-skip-button.enabled::after {\n  content: \">>\";\n  position: relative;\n  top: 1px;\n  margin-left: 8px;\n}\n\n/* Ad loading */\n\n.vjs-ad-playing.vjs-vast-ad-loading .vjs-loading-spinner {\n  display: block;\n  z-index: 10;\n  /* only animate when showing because it can be processor heavy */\n  -webkit-animation: spin 1.5s infinite linear;\n  animation: spin 1.5s infinite linear;\n}\n\n.vjs-vast-ad-loading div.vjs-big-play-button {\n  display: none !important;\n}\n\n.vjs-ad-playing .vjs-slider-handle::before {\n  display: none;\n}\n\n.vjs-ad-playing .vjs-live-controls {\n  display: none;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(selector) {
+		if (typeof memo[selector] === "undefined") {
+			memo[selector] = fn.call(this, selector);
+		}
+
+		return memo[selector]
+	};
+})(function (target) {
+	return document.querySelector(target)
+});
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(32);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton) options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+	if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	options.attrs.type = "text/css";
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	options.attrs.type = "text/css";
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = options.transform(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var VASTClient = __webpack_require__(34);
+var VASTError = __webpack_require__(4);
+var vastUtil = __webpack_require__(3);
+var VASTIntegrator = __webpack_require__(49);
+var VPAIDIntegrator = __webpack_require__(50);
+var async = __webpack_require__(7);
+var dom = __webpack_require__(5);
 var playerUtils = __webpack_require__(11);
 var utilities = __webpack_require__(0);
-var logger = __webpack_require__(5);
+var logger = __webpack_require__(6);
 
 module.exports = function VASTPlugin(options) {
   var snapshot = void 0;
@@ -3926,1410 +4477,18 @@ module.exports = function VASTPlugin(options) {
 };
 
 /***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(47);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(50)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/autoprefixer-loader/index.js??ref--2-2!../../node_modules/resolve-url-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./videojs.vast.vpaid.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js??ref--2-1!../../node_modules/autoprefixer-loader/index.js??ref--2-2!../../node_modules/resolve-url-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./videojs.vast.vpaid.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//simple representation of the API
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var IVPAIDAdUnit = exports.IVPAIDAdUnit = function () {
-    function IVPAIDAdUnit() {
-        _classCallCheck(this, IVPAIDAdUnit);
-    }
-
-    _createClass(IVPAIDAdUnit, [{
-        key: 'handshakeVersion',
-
-
-        //all methods below
-        //are async methods
-        value: function handshakeVersion() {
-            var playerVPAIDVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2.0';
-            var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
-        }
-
-        //creativeData is an object to be consistent with VPAIDHTML
-
-    }, {
-        key: 'initAd',
-        value: function initAd(width, height, viewMode, desiredBitrate) {
-            var creativeData = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : { AdParameters: '' };
-            var environmentVars = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : { flashVars: '' };
-            var callback = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : undefined;
-        }
-    }, {
-        key: 'resizeAd',
-        value: function resizeAd(width, height, viewMode) {
-            var callback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
-        }
-    }, {
-        key: 'startAd',
-        value: function startAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-        }
-    }, {
-        key: 'stopAd',
-        value: function stopAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-        }
-    }, {
-        key: 'pauseAd',
-        value: function pauseAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-        }
-    }, {
-        key: 'resumeAd',
-        value: function resumeAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-        }
-    }, {
-        key: 'expandAd',
-        value: function expandAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-        }
-    }, {
-        key: 'collapseAd',
-        value: function collapseAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-        }
-    }, {
-        key: 'skipAd',
-        value: function skipAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-        }
-
-        //properties that will be treat as async methods
-
-    }, {
-        key: 'getAdLinear',
-        value: function getAdLinear(callback) {}
-    }, {
-        key: 'getAdWidth',
-        value: function getAdWidth(callback) {}
-    }, {
-        key: 'getAdHeight',
-        value: function getAdHeight(callback) {}
-    }, {
-        key: 'getAdExpanded',
-        value: function getAdExpanded(callback) {}
-    }, {
-        key: 'getAdSkippableState',
-        value: function getAdSkippableState(callback) {}
-    }, {
-        key: 'getAdRemainingTime',
-        value: function getAdRemainingTime(callback) {}
-    }, {
-        key: 'getAdDuration',
-        value: function getAdDuration(callback) {}
-    }, {
-        key: 'setAdVolume',
-        value: function setAdVolume(soundVolume) {
-            var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
-        }
-    }, {
-        key: 'getAdVolume',
-        value: function getAdVolume(callback) {}
-    }, {
-        key: 'getAdCompanions',
-        value: function getAdCompanions(callback) {}
-    }, {
-        key: 'getAdIcons',
-        value: function getAdIcons(callback) {}
-    }]);
-
-    return IVPAIDAdUnit;
-}();
-
-Object.defineProperty(IVPAIDAdUnit, 'EVENTS', {
-    writable: false,
-    configurable: false,
-    value: ['AdLoaded', 'AdStarted', 'AdStopped', 'AdSkipped', 'AdSkippableStateChange', // VPAID 2.0 new event
-    'AdSizeChange', // VPAID 2.0 new event
-    'AdLinearChange', 'AdDurationChange', // VPAID 2.0 new event
-    'AdExpandedChange', 'AdRemainingTimeChange', // [Deprecated in 2.0] but will be still fired for backwards compatibility
-    'AdVolumeChange', 'AdImpression', 'AdVideoStart', 'AdVideoFirstQuartile', 'AdVideoMidpoint', 'AdVideoThirdQuartile', 'AdVideoComplete', 'AdClickThru', 'AdInteraction', // VPAID 2.0 new event
-    'AdUserAcceptInvitation', 'AdUserMinimize', 'AdUserClose', 'AdPaused', 'AdPlaying', 'AdLog', 'AdError']
-});
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var IVPAIDAdUnit = __webpack_require__(28).IVPAIDAdUnit;
-var ALL_VPAID_METHODS = Object.getOwnPropertyNames(IVPAIDAdUnit.prototype).filter(function (property) {
-    return ['constructor'].indexOf(property) === -1;
-});
-
-var VPAIDAdUnit = exports.VPAIDAdUnit = function (_IVPAIDAdUnit) {
-    _inherits(VPAIDAdUnit, _IVPAIDAdUnit);
-
-    function VPAIDAdUnit(flash) {
-        _classCallCheck(this, VPAIDAdUnit);
-
-        var _this = _possibleConstructorReturn(this, (VPAIDAdUnit.__proto__ || Object.getPrototypeOf(VPAIDAdUnit)).call(this));
-
-        _this._destroyed = false;
-        _this._flash = flash;
-        return _this;
-    }
-
-    _createClass(VPAIDAdUnit, [{
-        key: '_destroy',
-        value: function _destroy() {
-            var _this2 = this;
-
-            this._destroyed = true;
-            ALL_VPAID_METHODS.forEach(function (methodName) {
-                _this2._flash.removeCallbackByMethodName(methodName);
-            });
-            IVPAIDAdUnit.EVENTS.forEach(function (event) {
-                _this2._flash.offEvent(event);
-            });
-
-            this._flash = null;
-        }
-    }, {
-        key: 'isDestroyed',
-        value: function isDestroyed() {
-            return this._destroyed;
-        }
-    }, {
-        key: 'on',
-        value: function on(eventName, callback) {
-            this._flash.on(eventName, callback);
-        }
-    }, {
-        key: 'off',
-        value: function off(eventName, callback) {
-            this._flash.off(eventName, callback);
-        }
-
-        //VPAID interface
-
-    }, {
-        key: 'handshakeVersion',
-        value: function handshakeVersion() {
-            var playerVPAIDVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2.0';
-            var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
-
-            this._flash.callFlashMethod('handshakeVersion', [playerVPAIDVersion], callback);
-        }
-    }, {
-        key: 'initAd',
-        value: function initAd(width, height, viewMode, desiredBitrate) {
-            var creativeData = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : { AdParameters: '' };
-            var environmentVars = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : { flashVars: '' };
-            var callback = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : undefined;
-
-            //resize element that has the flash object
-            this._flash.setSize(width, height);
-            creativeData = creativeData || { AdParameters: '' };
-            environmentVars = environmentVars || { flashVars: '' };
-
-            this._flash.callFlashMethod('initAd', [this._flash.getWidth(), this._flash.getHeight(), viewMode, desiredBitrate, creativeData.AdParameters || '', environmentVars.flashVars || ''], callback);
-        }
-    }, {
-        key: 'resizeAd',
-        value: function resizeAd(width, height, viewMode) {
-            var callback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
-
-            //resize element that has the flash object
-            this._flash.setSize(width, height);
-
-            //resize ad inside the flash
-            this._flash.callFlashMethod('resizeAd', [this._flash.getWidth(), this._flash.getHeight(), viewMode], callback);
-        }
-    }, {
-        key: 'startAd',
-        value: function startAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-
-            this._flash.callFlashMethod('startAd', [], callback);
-        }
-    }, {
-        key: 'stopAd',
-        value: function stopAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-
-            this._flash.callFlashMethod('stopAd', [], callback);
-        }
-    }, {
-        key: 'pauseAd',
-        value: function pauseAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-
-            this._flash.callFlashMethod('pauseAd', [], callback);
-        }
-    }, {
-        key: 'resumeAd',
-        value: function resumeAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-
-            this._flash.callFlashMethod('resumeAd', [], callback);
-        }
-    }, {
-        key: 'expandAd',
-        value: function expandAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-
-            this._flash.callFlashMethod('expandAd', [], callback);
-        }
-    }, {
-        key: 'collapseAd',
-        value: function collapseAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-
-            this._flash.callFlashMethod('collapseAd', [], callback);
-        }
-    }, {
-        key: 'skipAd',
-        value: function skipAd() {
-            var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-
-            this._flash.callFlashMethod('skipAd', [], callback);
-        }
-
-        //properties that will be treat as async methods
-
-    }, {
-        key: 'getAdLinear',
-        value: function getAdLinear(callback) {
-            this._flash.callFlashMethod('getAdLinear', [], callback);
-        }
-    }, {
-        key: 'getAdWidth',
-        value: function getAdWidth(callback) {
-            this._flash.callFlashMethod('getAdWidth', [], callback);
-        }
-    }, {
-        key: 'getAdHeight',
-        value: function getAdHeight(callback) {
-            this._flash.callFlashMethod('getAdHeight', [], callback);
-        }
-    }, {
-        key: 'getAdExpanded',
-        value: function getAdExpanded(callback) {
-            this._flash.callFlashMethod('getAdExpanded', [], callback);
-        }
-    }, {
-        key: 'getAdSkippableState',
-        value: function getAdSkippableState(callback) {
-            this._flash.callFlashMethod('getAdSkippableState', [], callback);
-        }
-    }, {
-        key: 'getAdRemainingTime',
-        value: function getAdRemainingTime(callback) {
-            this._flash.callFlashMethod('getAdRemainingTime', [], callback);
-        }
-    }, {
-        key: 'getAdDuration',
-        value: function getAdDuration(callback) {
-            this._flash.callFlashMethod('getAdDuration', [], callback);
-        }
-    }, {
-        key: 'setAdVolume',
-        value: function setAdVolume(volume) {
-            var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
-
-            this._flash.callFlashMethod('setAdVolume', [volume], callback);
-        }
-    }, {
-        key: 'getAdVolume',
-        value: function getAdVolume(callback) {
-            this._flash.callFlashMethod('getAdVolume', [], callback);
-        }
-    }, {
-        key: 'getAdCompanions',
-        value: function getAdCompanions(callback) {
-            this._flash.callFlashMethod('getAdCompanions', [], callback);
-        }
-    }, {
-        key: 'getAdIcons',
-        value: function getAdIcons(callback) {
-            this._flash.callFlashMethod('getAdIcons', [], callback);
-        }
-    }]);
-
-    return VPAIDAdUnit;
-}(IVPAIDAdUnit);
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var swfobject = __webpack_require__(25);
-
-var FLASH_TEST = 'vpaid_video_flash_tester';
-var FLASH_TEST_EL = 'vpaid_video_flash_tester_el';
-var JSFlashBridge = __webpack_require__(13).JSFlashBridge;
-var utils = __webpack_require__(1);
-var MultipleValuesRegistry = __webpack_require__(7).MultipleValuesRegistry;
-
-var FlashTester = function () {
-    function FlashTester(parent) {
-        var _this = this;
-
-        var swfConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { data: 'VPAIDFlash.swf', width: 800, height: 400 };
-
-        _classCallCheck(this, FlashTester);
-
-        this.parentEl = utils.createElementWithID(parent, FLASH_TEST_EL); // some browsers create global variables using the element id http://stackoverflow.com/questions/3434278/do-dom-tree-elements-with-ids-become-global-variables
-        utils.hideFlashEl(this.parentEl);
-        var params = {};
-        params.movie = swfConfig.data;
-        params.FlashVars = 'flashid=' + FLASH_TEST_EL + '&handler=' + JSFlashBridge.VPAID_FLASH_HANDLER;
-        params.allowScriptAccess = 'always';
-
-        this.el = swfobject.createSWF(swfConfig, params, FLASH_TEST_EL);
-        this._handlers = new MultipleValuesRegistry();
-        this._isSupported = false;
-        if (this.el) {
-            utils.hideFlashEl(this.el);
-            this._flash = new JSFlashBridge(this.el, swfConfig.data, FLASH_TEST_EL, swfConfig.width, swfConfig.height, function () {
-                var support = true;
-                _this._isSupported = support;
-                _this._handlers.get('change').forEach(function (callback) {
-                    setTimeout(function () {
-                        callback('change', support);
-                    }, 0);
-                });
-            });
-        }
-    }
-
-    _createClass(FlashTester, [{
-        key: 'isSupported',
-        value: function isSupported() {
-            return this._isSupported;
-        }
-    }, {
-        key: 'on',
-        value: function on(eventName, callback) {
-            this._handlers.add(eventName, callback);
-        }
-    }]);
-
-    return FlashTester;
-}();
-
-var createFlashTester = exports.createFlashTester = function createFlashTester(el, swfConfig) {
-    if (!window[FLASH_TEST]) {
-        window[FLASH_TEST] = new FlashTester(el, swfConfig);
-    }
-    return window[FLASH_TEST];
-};
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var SingleValueRegistry = __webpack_require__(7).SingleValueRegistry;
-var instances = new SingleValueRegistry();
-
-var JSFlashBridgeRegistry = {};
-Object.defineProperty(JSFlashBridgeRegistry, 'addInstance', {
-    writable: false,
-    configurable: false,
-    value: function value(id, instance) {
-        instances.add(id, instance);
-    }
-});
-
-Object.defineProperty(JSFlashBridgeRegistry, 'getInstanceByID', {
-    writable: false,
-    configurable: false,
-    value: function value(id) {
-        return instances.get(id);
-    }
-});
-
-Object.defineProperty(JSFlashBridgeRegistry, 'removeInstanceByID', {
-    writable: false,
-    configurable: false,
-    value: function value(id) {
-        return instances.remove(id);
-    }
-});
-
-module.exports = JSFlashBridgeRegistry;
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var METHODS = ['handshakeVersion', 'initAd', 'startAd', 'stopAd', 'skipAd', // VPAID 2.0 new method
-'resizeAd', 'pauseAd', 'resumeAd', 'expandAd', 'collapseAd', 'subscribe', 'unsubscribe'];
-
-var EVENTS = ['AdLoaded', 'AdStarted', 'AdStopped', 'AdSkipped', 'AdSkippableStateChange', // VPAID 2.0 new event
-'AdSizeChange', // VPAID 2.0 new event
-'AdLinearChange', 'AdDurationChange', // VPAID 2.0 new event
-'AdExpandedChange', 'AdRemainingTimeChange', // [Deprecated in 2.0] but will be still fired for backwards compatibility
-'AdVolumeChange', 'AdImpression', 'AdVideoStart', 'AdVideoFirstQuartile', 'AdVideoMidpoint', 'AdVideoThirdQuartile', 'AdVideoComplete', 'AdClickThru', 'AdInteraction', // VPAID 2.0 new event
-'AdUserAcceptInvitation', 'AdUserMinimize', 'AdUserClose', 'AdPaused', 'AdPlaying', 'AdLog', 'AdError'];
-
-var GETTERS = ['getAdLinear', 'getAdWidth', // VPAID 2.0 new getter
-'getAdHeight', // VPAID 2.0 new getter
-'getAdExpanded', 'getAdSkippableState', // VPAID 2.0 new getter
-'getAdRemainingTime', 'getAdDuration', // VPAID 2.0 new getter
-'getAdVolume', 'getAdCompanions', // VPAID 2.0 new getter
-'getAdIcons' // VPAID 2.0 new getter
-];
-
-var SETTERS = ['setAdVolume'];
-
-/**
- * This callback is displayed as global member. The callback use nodejs error-first callback style
- * @callback NodeStyleCallback
- * @param {string|null}
- * @param {undefined|object}
- */
-
-/**
- * IVPAIDAdUnit
- *
- * @class
- *
- * @param {object} creative
- * @param {HTMLElement} el
- * @param {HTMLVideoElement} video
- */
-function IVPAIDAdUnit(creative, el, video) {}
-
-/**
- * handshakeVersion
- *
- * @param {string} VPAIDVersion
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.handshakeVersion = function (VPAIDVersion, callback) {};
-
-/**
- * initAd
- *
- * @param {number} width
- * @param {number} height
- * @param {string} viewMode can be 'normal', 'thumbnail' or 'fullscreen'
- * @param {number} desiredBitrate indicates the desired bitrate in kbps
- * @param {object} [creativeData] used for additional initialization data
- * @param {object} [environmentVars] used for passing implementation-specific of js version
- * @param {NodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.initAd = function (width, height, viewMode, desiredBitrate, creativeData, environmentVars, callback) {};
-
-/**
- * startAd
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.startAd = function (callback) {};
-
-/**
- * stopAd
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.stopAd = function (callback) {};
-
-/**
- * skipAd
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.skipAd = function (callback) {};
-
-/**
- * resizeAd
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.resizeAd = function (width, height, viewMode, callback) {};
-
-/**
- * pauseAd
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.pauseAd = function (callback) {};
-
-/**
- * resumeAd
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.resumeAd = function (callback) {};
-
-/**
- * expandAd
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.expandAd = function (callback) {};
-
-/**
- * collapseAd
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.collapseAd = function (callback) {};
-
-/**
- * subscribe
- *
- * @param {string} event
- * @param {nodeStyleCallback} handler
- * @param {object} context
- */
-IVPAIDAdUnit.prototype.subscribe = function (event, handler, context) {};
-
-/**
- * startAd
- *
- * @param {string} event
- * @param {function} handler
- */
-IVPAIDAdUnit.prototype.unsubscribe = function (event, handler) {};
-
-/**
- * getAdLinear
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdLinear = function (callback) {};
-
-/**
- * getAdWidth
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdWidth = function (callback) {};
-
-/**
- * getAdHeight
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdHeight = function (callback) {};
-
-/**
- * getAdExpanded
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdExpanded = function (callback) {};
-
-/**
- * getAdSkippableState
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdSkippableState = function (callback) {};
-
-/**
- * getAdRemainingTime
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdRemainingTime = function (callback) {};
-
-/**
- * getAdDuration
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdDuration = function (callback) {};
-
-/**
- * getAdVolume
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdVolume = function (callback) {};
-
-/**
- * getAdCompanions
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdCompanions = function (callback) {};
-
-/**
- * getAdIcons
- *
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.getAdIcons = function (callback) {};
-
-/**
- * setAdVolume
- *
- * @param {number} volume
- * @param {nodeStyleCallback} callback
- */
-IVPAIDAdUnit.prototype.setAdVolume = function (volume, callback) {};
-
-addStaticToInterface(IVPAIDAdUnit, 'METHODS', METHODS);
-addStaticToInterface(IVPAIDAdUnit, 'GETTERS', GETTERS);
-addStaticToInterface(IVPAIDAdUnit, 'SETTERS', SETTERS);
-addStaticToInterface(IVPAIDAdUnit, 'EVENTS', EVENTS);
-
-var VPAID1_METHODS = METHODS.filter(function (method) {
-  return ['skipAd'].indexOf(method) === -1;
-});
-
-addStaticToInterface(IVPAIDAdUnit, 'checkVPAIDInterface', function checkVPAIDInterface(creative) {
-  var result = VPAID1_METHODS.every(function (key) {
-    return typeof creative[key] === 'function';
-  });
-  return result;
-});
-
-module.exports = IVPAIDAdUnit;
-
-function addStaticToInterface(Interface, name, value) {
-  Object.defineProperty(Interface, name, {
-    writable: false,
-    configurable: false,
-    value: value
-  });
-}
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var IVPAIDAdUnit = __webpack_require__(32);
-var Subscriber = __webpack_require__(35);
-var checkVPAIDInterface = IVPAIDAdUnit.checkVPAIDInterface;
-var utils = __webpack_require__(14);
-var METHODS = IVPAIDAdUnit.METHODS;
-var ERROR = 'AdError';
-var AD_CLICK = 'AdClickThru';
-var FILTERED_EVENTS = IVPAIDAdUnit.EVENTS.filter(function (event) {
-    return event != AD_CLICK;
-});
-
-/**
- * This callback is displayed as global member. The callback use nodejs error-first callback style
- * @callback NodeStyleCallback
- * @param {string|null}
- * @param {undefined|object}
- */
-
-/**
- * VPAIDAdUnit
- * @class
- *
- * @param VPAIDCreative
- * @param {HTMLElement} [el] this will be used in initAd environmentVars.slot if defined
- * @param {HTMLVideoElement} [video] this will be used in initAd environmentVars.videoSlot if defined
- */
-function VPAIDAdUnit(VPAIDCreative, el, video, iframe) {
-    this._isValid = checkVPAIDInterface(VPAIDCreative);
-    if (this._isValid) {
-        this._creative = VPAIDCreative;
-        this._el = el;
-        this._videoEl = video;
-        this._iframe = iframe;
-        this._subscribers = new Subscriber();
-        utils.setFullSizeStyle(el);
-        $addEventsSubscribers.call(this);
-    }
-}
-
-VPAIDAdUnit.prototype = Object.create(IVPAIDAdUnit.prototype);
-
-/**
- * isValidVPAIDAd will return if the VPAIDCreative passed in constructor is valid or not
- *
- * @return {boolean}
- */
-VPAIDAdUnit.prototype.isValidVPAIDAd = function isValidVPAIDAd() {
-    return this._isValid;
-};
-
-IVPAIDAdUnit.METHODS.forEach(function (method) {
-    //NOTE: this methods arguments order are implemented differently from the spec
-    var ignores = ['subscribe', 'unsubscribe', 'initAd'];
-
-    if (ignores.indexOf(method) !== -1) return;
-
-    VPAIDAdUnit.prototype[method] = function () {
-        var ariaty = IVPAIDAdUnit.prototype[method].length;
-        // TODO avoid leaking arguments
-        // https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
-        var args = Array.prototype.slice.call(arguments);
-        var callback = ariaty === args.length ? args.pop() : undefined;
-
-        setTimeout(function () {
-            var result,
-                error = null;
-            try {
-                result = this._creative[method].apply(this._creative, args);
-            } catch (e) {
-                error = e;
-            }
-
-            callOrTriggerEvent(callback, this._subscribers, error, result);
-        }.bind(this), 0);
-    };
-});
-
-/**
- * initAd concreate implementation
- *
- * @param {number} width
- * @param {number} height
- * @param {string} viewMode can be 'normal', 'thumbnail' or 'fullscreen'
- * @param {number} desiredBitrate indicates the desired bitrate in kbps
- * @param {object} [creativeData] used for additional initialization data
- * @param {object} [environmentVars] used for passing implementation-specific of js version, if el & video was used in constructor slot & videoSlot will be added to the object
- * @param {NodeStyleCallback} callback
- */
-VPAIDAdUnit.prototype.initAd = function initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars, callback) {
-    creativeData = creativeData || {};
-    environmentVars = utils.extend({
-        slot: this._el,
-        videoSlot: this._videoEl
-    }, environmentVars || {});
-
-    setTimeout(function () {
-        var error;
-        try {
-            this._creative.initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars);
-        } catch (e) {
-            error = e;
-        }
-
-        callOrTriggerEvent(callback, this._subscribers, error);
-    }.bind(this), 0);
-};
-
-/**
- * subscribe
- *
- * @param {string} event
- * @param {nodeStyleCallback} handler
- * @param {object} context
- */
-VPAIDAdUnit.prototype.subscribe = function subscribe(event, handler, context) {
-    this._subscribers.subscribe(handler, event, context);
-};
-
-/**
- * unsubscribe
- *
- * @param {string} event
- * @param {nodeStyleCallback} handler
- */
-VPAIDAdUnit.prototype.unsubscribe = function unsubscribe(event, handler) {
-    this._subscribers.unsubscribe(handler, event);
-};
-
-//alias
-VPAIDAdUnit.prototype.on = VPAIDAdUnit.prototype.subscribe;
-VPAIDAdUnit.prototype.off = VPAIDAdUnit.prototype.unsubscribe;
-
-IVPAIDAdUnit.GETTERS.forEach(function (getter) {
-    VPAIDAdUnit.prototype[getter] = function (callback) {
-        setTimeout(function () {
-
-            var result,
-                error = null;
-            try {
-                result = this._creative[getter]();
-            } catch (e) {
-                error = e;
-            }
-
-            callOrTriggerEvent(callback, this._subscribers, error, result);
-        }.bind(this), 0);
-    };
-});
-
-/**
- * setAdVolume
- *
- * @param volume
- * @param {nodeStyleCallback} callback
- */
-VPAIDAdUnit.prototype.setAdVolume = function setAdVolume(volume, callback) {
-    setTimeout(function () {
-
-        var result,
-            error = null;
-        try {
-            this._creative.setAdVolume(volume);
-            result = this._creative.getAdVolume();
-        } catch (e) {
-            error = e;
-        }
-
-        if (!error) {
-            error = utils.validate(result === volume, 'failed to apply volume: ' + volume);
-        }
-        callOrTriggerEvent(callback, this._subscribers, error, result);
-    }.bind(this), 0);
-};
-
-VPAIDAdUnit.prototype._destroy = function destroy() {
-    this.stopAd();
-    this._subscribers.unsubscribeAll();
-};
-
-function $addEventsSubscribers() {
-    // some ads implement
-    // so they only handle one subscriber
-    // to handle this we create our one
-    FILTERED_EVENTS.forEach(function (event) {
-        this._creative.subscribe($trigger.bind(this, event), event);
-    }.bind(this));
-
-    // map the click event to be an object instead of depending of the order of the arguments
-    // and to be consistent with the flash
-    this._creative.subscribe($clickThruHook.bind(this), AD_CLICK);
-
-    // because we are adding the element inside the iframe
-    // the user is not able to click in the video
-    if (this._videoEl) {
-        var documentElement = this._iframe.contentDocument.documentElement;
-        var videoEl = this._videoEl;
-        documentElement.addEventListener('click', function (e) {
-            if (e.target === documentElement) {
-                videoEl.click();
-            }
-        });
-    }
-}
-
-function $clickThruHook(url, id, playerHandles) {
-    this._subscribers.triggerSync(AD_CLICK, { url: url, id: id, playerHandles: playerHandles });
-}
-
-function $trigger(event) {
-    // TODO avoid leaking arguments
-    // https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
-    this._subscribers.trigger(event, Array.prototype.slice(arguments, 1));
-}
-
-function callOrTriggerEvent(callback, subscribers, error, result) {
-    if (callback) {
-        callback(error, result);
-    } else if (error) {
-        subscribers.trigger(ERROR, error);
-    }
-}
-
-module.exports = VPAIDAdUnit;
-
-/***/ }),
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-var utils = __webpack_require__(14);
-var unique = utils.unique('vpaidIframe');
-var VPAIDAdUnit = __webpack_require__(33);
-
-var defaultTemplate = '<!DOCTYPE html>' + '<html lang="en">' + '<head><meta charset="UTF-8"></head>' + '<body style="margin:0;padding:0"><div class="ad-element"></div>' + '<script type="text/javascript" src="{{iframeURL_JS}}"></script>' + '<script type="text/javascript">' + 'window.parent.postMessage(\'{"event": "ready", "id": "{{iframeID}}"}\', \'{{origin}}\');' + '</script>' + '</body>' + '</html>';
-
-var AD_STOPPED = 'AdStopped';
-
-/**
- * This callback is displayed as global member. The callback use nodejs error-first callback style
- * @callback NodeStyleCallback
- * @param {string|null}
- * @param {undefined|object}
- */
-
-/**
- * VPAIDHTML5Client
- * @class
- *
- * @param {HTMLElement} el that will contain the iframe to load adUnit and a el to add to adUnit slot
- * @param {HTMLVideoElement} video default video element to be used by adUnit
- * @param {object} [templateConfig] template: html template to be used instead of the default, extraOptions: to be used when rendering the template
- * @param {object} [vpaidOptions] timeout: when loading adUnit
- */
-function VPAIDHTML5Client(el, video, templateConfig, vpaidOptions) {
-    templateConfig = templateConfig || {};
-
-    this._id = unique();
-    this._destroyed = false;
-
-    this._frameContainer = utils.createElementInEl(el, 'div');
-    this._videoEl = video;
-    this._vpaidOptions = vpaidOptions || { timeout: 10000 };
-
-    this._templateConfig = {
-        template: templateConfig.template || defaultTemplate,
-        extraOptions: templateConfig.extraOptions || {}
-    };
-}
-
-/**
- * destroy
- *
- */
-VPAIDHTML5Client.prototype.destroy = function destroy() {
-    if (this._destroyed) {
-        return;
-    }
-    this._destroyed = true;
-    $unloadPreviousAdUnit.call(this);
-};
-
-/**
- * isDestroyed
- *
- * @return {boolean}
- */
-VPAIDHTML5Client.prototype.isDestroyed = function isDestroyed() {
-    return this._destroyed;
-};
-
-/**
- * loadAdUnit
- *
- * @param {string} adURL url of the js of the adUnit
- * @param {nodeStyleCallback} callback
- */
-VPAIDHTML5Client.prototype.loadAdUnit = function loadAdUnit(adURL, callback) {
-    $throwIfDestroyed.call(this);
-    $unloadPreviousAdUnit.call(this);
-    var that = this;
-
-    var frame = utils.createIframeWithContent(this._frameContainer, this._templateConfig.template, utils.extend({
-        iframeURL_JS: adURL,
-        iframeID: this.getID(),
-        origin: getOrigin()
-    }, this._templateConfig.extraOptions));
-
-    this._frame = frame;
-
-    this._onLoad = utils.callbackTimeout(this._vpaidOptions.timeout, onLoad.bind(this), onTimeout.bind(this));
-
-    window.addEventListener('message', this._onLoad);
-
-    function onLoad(e) {
-        /*jshint validthis: false */
-        //don't clear timeout
-        if (e.origin !== getOrigin()) return;
-        var result = JSON.parse(e.data);
-
-        //don't clear timeout
-        if (result.id !== that.getID()) return;
-
-        var adUnit, error, createAd;
-        if (!that._frame.contentWindow) {
-
-            error = 'the iframe is not anymore in the DOM tree';
-        } else {
-            createAd = that._frame.contentWindow.getVPAIDAd;
-            error = utils.validate(typeof createAd === 'function', 'the ad didn\'t return a function to create an ad');
-        }
-
-        if (!error) {
-            var adEl = that._frame.contentWindow.document.querySelector('.ad-element');
-            adUnit = new VPAIDAdUnit(createAd(), adEl, that._videoEl, that._frame);
-            adUnit.subscribe(AD_STOPPED, $adDestroyed.bind(that));
-            error = utils.validate(adUnit.isValidVPAIDAd(), 'the add is not fully complaint with VPAID specification');
-        }
-
-        that._adUnit = adUnit;
-        $destroyLoadListener.call(that);
-        callback(error, error ? null : adUnit);
-
-        //clear timeout
-        return true;
-    }
-
-    function onTimeout() {
-        callback('timeout', null);
-    }
-};
-
-/**
- * unloadAdUnit
- *
- */
-VPAIDHTML5Client.prototype.unloadAdUnit = function unloadAdUnit() {
-    $unloadPreviousAdUnit.call(this);
-};
-
-/**
- * getID will return the unique id
- *
- * @return {string}
- */
-VPAIDHTML5Client.prototype.getID = function () {
-    return this._id;
-};
-
-/**
- * $removeEl
- *
- * @param {string} key
- */
-function $removeEl(key) {
-    var el = this[key];
-    if (el) {
-        el.remove();
-        delete this[key];
-    }
-}
-
-function $adDestroyed() {
-    $removeAdElements.call(this);
-    delete this._adUnit;
-}
-
-function $unloadPreviousAdUnit() {
-    $removeAdElements.call(this);
-    $destroyAdUnit.call(this);
-}
-
-function $removeAdElements() {
-    $removeEl.call(this, '_frame');
-    $destroyLoadListener.call(this);
-}
-
-/**
- * $destroyLoadListener
- *
- */
-function $destroyLoadListener() {
-    if (this._onLoad) {
-        window.removeEventListener('message', this._onLoad);
-        utils.clearCallbackTimeout(this._onLoad);
-        delete this._onLoad;
-    }
-}
-
-function $destroyAdUnit() {
-    if (this._adUnit) {
-        this._adUnit.stopAd();
-        delete this._adUnit;
-    }
-}
-
-/**
- * $throwIfDestroyed
- *
- */
-function $throwIfDestroyed() {
-    if (this._destroyed) {
-        throw new Error('VPAIDHTML5Client already destroyed!');
-    }
-}
-
-function getOrigin() {
-    if (window.location.origin) {
-        return window.location.origin;
-    } else {
-        return window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
-    }
-}
-
-module.exports = VPAIDHTML5Client;
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function Subscriber() {
-    this._subscribers = {};
-}
-
-Subscriber.prototype.subscribe = function subscribe(handler, eventName, context) {
-    if (!this.isHandlerAttached(handler, eventName)) {
-        this.get(eventName).push({ handler: handler, context: context, eventName: eventName });
-    }
-};
-
-Subscriber.prototype.unsubscribe = function unsubscribe(handler, eventName) {
-    this._subscribers[eventName] = this.get(eventName).filter(function (subscriber) {
-        return handler !== subscriber.handler;
-    });
-};
-
-Subscriber.prototype.unsubscribeAll = function unsubscribeAll() {
-    this._subscribers = {};
-};
-
-Subscriber.prototype.trigger = function (eventName, data) {
-    var that = this;
-    var subscribers = this.get(eventName).concat(this.get('*'));
-
-    subscribers.forEach(function (subscriber) {
-        setTimeout(function () {
-            if (that.isHandlerAttached(subscriber.handler, subscriber.eventName)) {
-                subscriber.handler.call(subscriber.context, data);
-            }
-        }, 0);
-    });
-};
-
-Subscriber.prototype.triggerSync = function (eventName, data) {
-    var subscribers = this.get(eventName).concat(this.get('*'));
-
-    subscribers.forEach(function (subscriber) {
-        subscriber.handler.call(subscriber.context, data);
-    });
-};
-
-Subscriber.prototype.get = function get(eventName) {
-    if (!this._subscribers[eventName]) {
-        this._subscribers[eventName] = [];
-    }
-    return this._subscribers[eventName];
-};
-
-Subscriber.prototype.isHandlerAttached = function isHandlerAttached(handler, eventName) {
-    return this.get(eventName).some(function (subscriber) {
-        return handler === subscriber.handler;
-    });
-};
-
-module.exports = Subscriber;
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
+var async = __webpack_require__(7);
+var http = __webpack_require__(35).http;
 var utilities = __webpack_require__(0);
-var xml = __webpack_require__(2);
-var logger = __webpack_require__(5);
-var TrackingEvent = __webpack_require__(19);
-
-function Companion(companionJTree) {
-  if (!(this instanceof Companion)) {
-    return new Companion(companionJTree);
-  }
-
-  logger.info('<Companion> found companion ad');
-  logger.debug('<Companion>  companionJTree:', companionJTree);
-
-  // Required Elements
-  this.creativeType = xml.attr(companionJTree.staticResource, 'creativeType');
-  this.staticResource = xml.keyValue(companionJTree.staticResource);
-
-  logger.info('<Companion>  creativeType: ' + this.creativeType);
-  logger.info('<Companion>  staticResource: ' + this.staticResource);
-
-  // Weird bug when the JXON tree is built it doesn't handle casing properly in this situation...
-  var htmlResource = null;
-
-  if (xml.keyValue(companionJTree.HTMLResource)) {
-    htmlResource = xml.keyValue(companionJTree.HTMLResource);
-  } else if (xml.keyValue(companionJTree.hTMLResource)) {
-    htmlResource = xml.keyValue(companionJTree.hTMLResource);
-  }
-
-  if (htmlResource !== null) {
-    logger.info('<Companion> found html resource', htmlResource);
-  }
-
-  this.htmlResource = htmlResource;
-
-  var iframeResource = null;
-
-  if (xml.keyValue(companionJTree.IFrameResource)) {
-    iframeResource = xml.keyValue(companionJTree.IFrameResource);
-  } else if (xml.keyValue(companionJTree.iFrameresource)) {
-    iframeResource = xml.keyValue(companionJTree.iFrameresource);
-  }
-
-  if (iframeResource !== null) {
-    logger.info('<Companion> found iframe resource', iframeResource);
-  }
-
-  this.iframeResource = iframeResource;
-
-  // Optional fields
-  this.id = xml.attr(companionJTree, 'id');
-  this.width = xml.attr(companionJTree, 'width');
-  this.height = xml.attr(companionJTree, 'height');
-  this.expandedWidth = xml.attr(companionJTree, 'expandedWidth');
-  this.expandedHeight = xml.attr(companionJTree, 'expandedHeight');
-  this.scalable = xml.attr(companionJTree, 'scalable');
-  this.maintainAspectRatio = xml.attr(companionJTree, 'maintainAspectRatio');
-  this.minSuggestedDuration = xml.attr(companionJTree, 'minSuggestedDuration');
-  this.apiFramework = xml.attr(companionJTree, 'apiFramework');
-  this.companionClickThrough = xml.keyValue(companionJTree.companionClickThrough);
-  this.trackingEvents = parseTrackingEvents(companionJTree.trackingEvents && companionJTree.trackingEvents.tracking);
-
-  logger.info('<Companion>  companionClickThrough: ' + this.companionClickThrough);
-
-  /** * Local functions ***/
-  function parseTrackingEvents(trackingEvents) {
-    var trackings = [];
-
-    if (utilities.isDefined(trackingEvents)) {
-      trackingEvents = utilities.isArray(trackingEvents) ? trackingEvents : [trackingEvents];
-      trackingEvents.forEach(function (trackingData) {
-        trackings.push(new TrackingEvent(trackingData));
-      });
-    }
-
-    return trackings;
-  }
-}
-
-module.exports = Companion;
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var xml = __webpack_require__(2);
-var urlUtils = __webpack_require__(24);
-var vastUtil = __webpack_require__(4);
-
-var attributesList = [
-// Required attributes
-'delivery', 'type', 'width', 'height',
-
-// Optional attributes
-'codec', 'id', 'bitrate', 'minBitrate', 'maxBitrate', 'scalable', 'maintainAspectRatio', 'apiFramework'];
-
-var pageProtocol = window.location && urlUtils.urlParts(window.location.href).protocol;
-
-function MediaFile(mediaFileJTree) {
-  if (!(this instanceof MediaFile)) {
-    return new MediaFile(mediaFileJTree);
-  }
-
-  // Required attributes
-  this.src = xml.keyValue(mediaFileJTree);
-
-  for (var x = 0; x < attributesList.length; x++) {
-    var attribute = attributesList[x];
-
-    this[attribute] = mediaFileJTree.attr(attribute);
-  }
-}
-
-MediaFile.prototype.isSupported = function () {
-  if (vastUtil.isVPAID(this)) {
-    return Boolean(vastUtil.findSupportedVPAIDTech(this.type));
-  }
-
-  if (this.type === 'video/x-flv') {
-    return vastUtil.isFlashSupported();
-  }
-
-  if (pageProtocol === 'https') {
-    return urlUtils.urlParts(this.src).protocol === pageProtocol;
-  }
-
-  return true;
-};
-
-module.exports = MediaFile;
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var async = __webpack_require__(9);
-var http = __webpack_require__(46).http;
-var utilities = __webpack_require__(0);
-var xml = __webpack_require__(2);
-var logger = __webpack_require__(5);
-var Ad = __webpack_require__(15);
-var VASTError = __webpack_require__(3);
-var VASTResponse = __webpack_require__(8);
-var vastUtil = __webpack_require__(4);
+var xml = __webpack_require__(1);
+var logger = __webpack_require__(6);
+var Ad = __webpack_require__(13);
+var VASTError = __webpack_require__(4);
+var VASTResponse = __webpack_require__(9);
+var vastUtil = __webpack_require__(3);
 
 function VASTClient(options) {
   if (!(this instanceof VASTClient)) {
@@ -5616,21 +4775,1641 @@ VASTClient.prototype._trackError = function (error, adChain) {
 module.exports = VASTClient;
 
 /***/ }),
-/* 39 */
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+
+var urlUtils = __webpack_require__(12);
+var utilities = __webpack_require__(0);
+
+function HttpRequestError(message) {
+  this.message = 'HttpRequest Error: ' + (message || '');
+}
+HttpRequestError.prototype = new Error();
+HttpRequestError.prototype.name = 'HttpRequest Error';
+
+function HttpRequest(createXhr) {
+  if (!utilities.isFunction(createXhr)) {
+    throw new HttpRequestError('Missing XMLHttpRequest factory method');
+  }
+
+  this.createXhr = createXhr;
+}
+
+HttpRequest.prototype.run = function (method, url, callback, options) {
+  sanityCheck(url, callback, options);
+  var timeout = void 0,
+      timeoutId = void 0;
+  var xhr = this.createXhr();
+
+  options = options || {};
+  timeout = utilities.isNumber(options.timeout) ? options.timeout : 0;
+
+  xhr.open(method, urlUtils.urlParts(url).href, true);
+
+  if (options.headers) {
+    setHeaders(xhr, options.headers);
+  }
+
+  if (options.withCredentials) {
+    xhr.withCredentials = true;
+  }
+
+  xhr.onload = function () {
+    var statusText = void 0,
+        response = void 0,
+        status = void 0;
+
+    /**
+     * The only way to do a secure request on IE8 and IE9 is with the XDomainRequest object. Unfortunately, microsoft is
+     * so nice that decided that the status property and the 'getAllResponseHeaders' method where not needed so we have to
+     * fake them. If the request gets done with an XDomainRequest instance, we will assume that there are no headers and
+     * the status will always be 200. If you don't like it, DO NOT USE ANCIENT BROWSERS!!!
+     *
+     * For mor info go to: https://msdn.microsoft.com/en-us/library/cc288060(v=vs.85).aspx
+     */
+    if (!xhr.getAllResponseHeaders) {
+      xhr.getAllResponseHeaders = function () {
+        return null;
+      };
+    }
+
+    if (!xhr.status) {
+      xhr.status = 200;
+    }
+
+    if (utilities.isDefined(timeoutId)) {
+      clearTimeout(timeoutId);
+      timeoutId = undefined;
+    }
+
+    statusText = xhr.statusText || '';
+
+    // responseText is the old-school way of retrieving response (supported by IE8 & 9)
+    // response/responseType properties were introduced in XHR Level2 spec (supported by IE10)
+    response = 'response' in xhr ? xhr.response : xhr.responseText;
+
+    // normalize IE9 bug (http://bugs.jquery.com/ticket/1450)
+    status = xhr.status === 1223 ? 204 : xhr.status;
+
+    callback(status, response, xhr.getAllResponseHeaders(), statusText);
+  };
+
+  xhr.onerror = requestError;
+  xhr.onabort = requestError;
+
+  xhr.send();
+
+  if (timeout > 0) {
+    timeoutId = setTimeout(function () {
+      if (xhr) {
+        xhr.abort();
+      }
+    }, timeout);
+  }
+
+  function sanityCheck(url, callback, options) {
+    if (!utilities.isString(url) || utilities.isEmptyString(url)) {
+      throw new HttpRequestError('Invalid url \'' + url + '\'');
+    }
+
+    if (!utilities.isFunction(callback)) {
+      throw new HttpRequestError('Invalid handler \'' + callback + '\' for the http request');
+    }
+
+    if (utilities.isDefined(options) && !utilities.isObject(options)) {
+      throw new HttpRequestError('Invalid options map \'' + options + '\'');
+    }
+  }
+
+  function setHeaders(xhr, headers) {
+    utilities.forEach(headers, function (value, key) {
+      if (utilities.isDefined(value)) {
+        xhr.setRequestHeader(key, value);
+      }
+    });
+  }
+
+  function requestError() {
+    callback(-1, null, null, '');
+  }
+};
+
+HttpRequest.prototype.get = function (url, callback, options) {
+  this.run('GET', url, processResponse, options);
+
+  function processResponse(status, response, headersString, statusText) {
+    if (isSuccess(status)) {
+      callback(null, response, status, headersString, statusText);
+    } else {
+      callback(new HttpRequestError(statusText), response, status, headersString, statusText);
+    }
+  }
+
+  function isSuccess(status) {
+    return 200 <= status && status < 300;
+  }
+};
+
+function createXhr() {
+  var xhr = new XMLHttpRequest();
+
+  if (!('withCredentials' in xhr)) {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+  }
+
+  return xhr;
+}
+
+var http = new HttpRequest(createXhr);
+
+module.exports = {
+  http: http,
+  HttpRequest: HttpRequest,
+  HttpRequestError: HttpRequestError,
+  createXhr: createXhr
+};
+
+/***/ }),
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var async = __webpack_require__(9);
-var dom = __webpack_require__(6);
+var SingleValueRegistry = __webpack_require__(8).SingleValueRegistry;
+var instances = new SingleValueRegistry();
+
+var JSFlashBridgeRegistry = {};
+Object.defineProperty(JSFlashBridgeRegistry, 'addInstance', {
+    writable: false,
+    configurable: false,
+    value: function value(id, instance) {
+        instances.add(id, instance);
+    }
+});
+
+Object.defineProperty(JSFlashBridgeRegistry, 'getInstanceByID', {
+    writable: false,
+    configurable: false,
+    value: function value(id) {
+        return instances.get(id);
+    }
+});
+
+Object.defineProperty(JSFlashBridgeRegistry, 'removeInstanceByID', {
+    writable: false,
+    configurable: false,
+    value: function value(id) {
+        return instances.remove(id);
+    }
+});
+
+module.exports = JSFlashBridgeRegistry;
+
+/***/ }),
+/* 37 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VPAIDAdUnit", function() { return VPAIDAdUnit; });
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IVPAIDAdUnit = __webpack_require__(38).IVPAIDAdUnit;
+var ALL_VPAID_METHODS = Object.getOwnPropertyNames(IVPAIDAdUnit.prototype).filter(function (property) {
+    return ['constructor'].indexOf(property) === -1;
+});
+
+var VPAIDAdUnit = function (_IVPAIDAdUnit) {
+    _inherits(VPAIDAdUnit, _IVPAIDAdUnit);
+
+    function VPAIDAdUnit(flash) {
+        _classCallCheck(this, VPAIDAdUnit);
+
+        var _this = _possibleConstructorReturn(this, _IVPAIDAdUnit.call(this));
+
+        _this._destroyed = false;
+        _this._flash = flash;
+        return _this;
+    }
+
+    VPAIDAdUnit.prototype._destroy = function _destroy() {
+        var _this2 = this;
+
+        this._destroyed = true;
+        ALL_VPAID_METHODS.forEach(function (methodName) {
+            _this2._flash.removeCallbackByMethodName(methodName);
+        });
+        IVPAIDAdUnit.EVENTS.forEach(function (event) {
+            _this2._flash.offEvent(event);
+        });
+
+        this._flash = null;
+    };
+
+    VPAIDAdUnit.prototype.isDestroyed = function isDestroyed() {
+        return this._destroyed;
+    };
+
+    VPAIDAdUnit.prototype.on = function on(eventName, callback) {
+        this._flash.on(eventName, callback);
+    };
+
+    VPAIDAdUnit.prototype.off = function off(eventName, callback) {
+        this._flash.off(eventName, callback);
+    };
+
+    //VPAID interface
+
+
+    VPAIDAdUnit.prototype.handshakeVersion = function handshakeVersion() {
+        var playerVPAIDVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2.0';
+        var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
+
+        this._flash.callFlashMethod('handshakeVersion', [playerVPAIDVersion], callback);
+    };
+
+    VPAIDAdUnit.prototype.initAd = function initAd(width, height, viewMode, desiredBitrate) {
+        var creativeData = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : { AdParameters: '' };
+        var environmentVars = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : { flashVars: '' };
+        var callback = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : undefined;
+
+        //resize element that has the flash object
+        this._flash.setSize(width, height);
+        creativeData = creativeData || { AdParameters: '' };
+        environmentVars = environmentVars || { flashVars: '' };
+
+        this._flash.callFlashMethod('initAd', [this._flash.getWidth(), this._flash.getHeight(), viewMode, desiredBitrate, creativeData.AdParameters || '', environmentVars.flashVars || ''], callback);
+    };
+
+    VPAIDAdUnit.prototype.resizeAd = function resizeAd(width, height, viewMode) {
+        var callback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
+
+        //resize element that has the flash object
+        this._flash.setSize(width, height);
+
+        //resize ad inside the flash
+        this._flash.callFlashMethod('resizeAd', [this._flash.getWidth(), this._flash.getHeight(), viewMode], callback);
+    };
+
+    VPAIDAdUnit.prototype.startAd = function startAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+        this._flash.callFlashMethod('startAd', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.stopAd = function stopAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+        this._flash.callFlashMethod('stopAd', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.pauseAd = function pauseAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+        this._flash.callFlashMethod('pauseAd', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.resumeAd = function resumeAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+        this._flash.callFlashMethod('resumeAd', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.expandAd = function expandAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+        this._flash.callFlashMethod('expandAd', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.collapseAd = function collapseAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+        this._flash.callFlashMethod('collapseAd', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.skipAd = function skipAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+        this._flash.callFlashMethod('skipAd', [], callback);
+    };
+
+    //properties that will be treat as async methods
+
+
+    VPAIDAdUnit.prototype.getAdLinear = function getAdLinear(callback) {
+        this._flash.callFlashMethod('getAdLinear', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.getAdWidth = function getAdWidth(callback) {
+        this._flash.callFlashMethod('getAdWidth', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.getAdHeight = function getAdHeight(callback) {
+        this._flash.callFlashMethod('getAdHeight', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.getAdExpanded = function getAdExpanded(callback) {
+        this._flash.callFlashMethod('getAdExpanded', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.getAdSkippableState = function getAdSkippableState(callback) {
+        this._flash.callFlashMethod('getAdSkippableState', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.getAdRemainingTime = function getAdRemainingTime(callback) {
+        this._flash.callFlashMethod('getAdRemainingTime', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.getAdDuration = function getAdDuration(callback) {
+        this._flash.callFlashMethod('getAdDuration', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.setAdVolume = function setAdVolume(volume) {
+        var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
+
+        this._flash.callFlashMethod('setAdVolume', [volume], callback);
+    };
+
+    VPAIDAdUnit.prototype.getAdVolume = function getAdVolume(callback) {
+        this._flash.callFlashMethod('getAdVolume', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.getAdCompanions = function getAdCompanions(callback) {
+        this._flash.callFlashMethod('getAdCompanions', [], callback);
+    };
+
+    VPAIDAdUnit.prototype.getAdIcons = function getAdIcons(callback) {
+        this._flash.callFlashMethod('getAdIcons', [], callback);
+    };
+
+    return VPAIDAdUnit;
+}(IVPAIDAdUnit);
+
+/***/ }),
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IVPAIDAdUnit", function() { return IVPAIDAdUnit; });
+
+
+//simple representation of the API
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var IVPAIDAdUnit = function () {
+    function IVPAIDAdUnit() {
+        _classCallCheck(this, IVPAIDAdUnit);
+    }
+
+    //all methods below
+    //are async methods
+    IVPAIDAdUnit.prototype.handshakeVersion = function handshakeVersion() {
+        var playerVPAIDVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2.0';
+        var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
+    };
+
+    //creativeData is an object to be consistent with VPAIDHTML
+
+
+    IVPAIDAdUnit.prototype.initAd = function initAd(width, height, viewMode, desiredBitrate) {
+        var creativeData = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : { AdParameters: '' };
+        var environmentVars = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : { flashVars: '' };
+        var callback = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : undefined;
+    };
+
+    IVPAIDAdUnit.prototype.resizeAd = function resizeAd(width, height, viewMode) {
+        var callback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
+    };
+
+    IVPAIDAdUnit.prototype.startAd = function startAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+    };
+
+    IVPAIDAdUnit.prototype.stopAd = function stopAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+    };
+
+    IVPAIDAdUnit.prototype.pauseAd = function pauseAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+    };
+
+    IVPAIDAdUnit.prototype.resumeAd = function resumeAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+    };
+
+    IVPAIDAdUnit.prototype.expandAd = function expandAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+    };
+
+    IVPAIDAdUnit.prototype.collapseAd = function collapseAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+    };
+
+    IVPAIDAdUnit.prototype.skipAd = function skipAd() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+    };
+
+    //properties that will be treat as async methods
+
+
+    IVPAIDAdUnit.prototype.getAdLinear = function getAdLinear(callback) {};
+
+    IVPAIDAdUnit.prototype.getAdWidth = function getAdWidth(callback) {};
+
+    IVPAIDAdUnit.prototype.getAdHeight = function getAdHeight(callback) {};
+
+    IVPAIDAdUnit.prototype.getAdExpanded = function getAdExpanded(callback) {};
+
+    IVPAIDAdUnit.prototype.getAdSkippableState = function getAdSkippableState(callback) {};
+
+    IVPAIDAdUnit.prototype.getAdRemainingTime = function getAdRemainingTime(callback) {};
+
+    IVPAIDAdUnit.prototype.getAdDuration = function getAdDuration(callback) {};
+
+    IVPAIDAdUnit.prototype.setAdVolume = function setAdVolume(soundVolume) {
+        var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
+    };
+
+    IVPAIDAdUnit.prototype.getAdVolume = function getAdVolume(callback) {};
+
+    IVPAIDAdUnit.prototype.getAdCompanions = function getAdCompanions(callback) {};
+
+    IVPAIDAdUnit.prototype.getAdIcons = function getAdIcons(callback) {};
+
+    return IVPAIDAdUnit;
+}();
+
+Object.defineProperty(IVPAIDAdUnit, 'EVENTS', {
+    writable: false,
+    configurable: false,
+    value: ['AdLoaded', 'AdStarted', 'AdStopped', 'AdSkipped', 'AdSkippableStateChange', // VPAID 2.0 new event
+    'AdSizeChange', // VPAID 2.0 new event
+    'AdLinearChange', 'AdDurationChange', // VPAID 2.0 new event
+    'AdExpandedChange', 'AdRemainingTimeChange', // [Deprecated in 2.0] but will be still fired for backwards compatibility
+    'AdVolumeChange', 'AdImpression', 'AdVideoStart', 'AdVideoFirstQuartile', 'AdVideoMidpoint', 'AdVideoThirdQuartile', 'AdVideoComplete', 'AdClickThru', 'AdInteraction', // VPAID 2.0 new event
+    'AdUserAcceptInvitation', 'AdUserMinimize', 'AdUserClose', 'AdPaused', 'AdPlaying', 'AdLog', 'AdError']
+});
+
+/***/ }),
+/* 39 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFlashTester", function() { return createFlashTester; });
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var swfobject = __webpack_require__(16);
+
+var FLASH_TEST = 'vpaid_video_flash_tester';
+var FLASH_TEST_EL = 'vpaid_video_flash_tester_el';
+var JSFlashBridge = __webpack_require__(17).JSFlashBridge;
+var utils = __webpack_require__(2);
+var MultipleValuesRegistry = __webpack_require__(8).MultipleValuesRegistry;
+
+var FlashTester = function () {
+    function FlashTester(parent) {
+        var _this = this;
+
+        var swfConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { data: 'VPAIDFlash.swf', width: 800, height: 400 };
+
+        _classCallCheck(this, FlashTester);
+
+        this.parentEl = utils.createElementWithID(parent, FLASH_TEST_EL); // some browsers create global variables using the element id http://stackoverflow.com/questions/3434278/do-dom-tree-elements-with-ids-become-global-variables
+        utils.hideFlashEl(this.parentEl);
+        var params = {};
+        params.movie = swfConfig.data;
+        params.FlashVars = 'flashid=' + FLASH_TEST_EL + '&handler=' + JSFlashBridge.VPAID_FLASH_HANDLER;
+        params.allowScriptAccess = 'always';
+
+        this.el = swfobject.createSWF(swfConfig, params, FLASH_TEST_EL);
+        this._handlers = new MultipleValuesRegistry();
+        this._isSupported = false;
+        if (this.el) {
+            utils.hideFlashEl(this.el);
+            this._flash = new JSFlashBridge(this.el, swfConfig.data, FLASH_TEST_EL, swfConfig.width, swfConfig.height, function () {
+                var support = true;
+                _this._isSupported = support;
+                _this._handlers.get('change').forEach(function (callback) {
+                    setTimeout(function () {
+                        callback('change', support);
+                    }, 0);
+                });
+            });
+        }
+    }
+
+    FlashTester.prototype.isSupported = function isSupported() {
+        return this._isSupported;
+    };
+
+    FlashTester.prototype.on = function on(eventName, callback) {
+        this._handlers.add(eventName, callback);
+    };
+
+    return FlashTester;
+}();
+
+var createFlashTester = function createFlashTester(el, swfConfig) {
+    if (!window[FLASH_TEST]) {
+        window[FLASH_TEST] = new FlashTester(el, swfConfig);
+    }
+    return window[FLASH_TEST];
+};
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var VPAIDHTML5Client = __webpack_require__(41);
+var MimeTypes = __webpack_require__(10);
+var VASTError = __webpack_require__(4);
+var utilities = __webpack_require__(0);
+var dom = __webpack_require__(5);
+var logger = __webpack_require__(6);
+
+function VPAIDHTML5Tech(mediaFile) {
+  if (!(this instanceof VPAIDHTML5Tech)) {
+    return new VPAIDHTML5Tech(mediaFile);
+  }
+
+  sanityCheck(mediaFile);
+
+  this.name = 'vpaid-html5';
+  this.containerEl = null;
+  this.videoEl = null;
+  this.vpaidHTMLClient = null;
+
+  this.mediaFile = mediaFile;
+
+  function sanityCheck(mediaFile) {
+    if (!mediaFile || !utilities.isString(mediaFile.src)) {
+      throw new VASTError(VPAIDHTML5Tech.INVALID_MEDIA_FILE);
+    }
+  }
+}
+
+VPAIDHTML5Tech.VPAIDHTML5Client = VPAIDHTML5Client;
+
+VPAIDHTML5Tech.supports = function (type) {
+  return !utilities.isOldIE() && MimeTypes.html5.indexOf(type) > -1;
+};
+
+VPAIDHTML5Tech.prototype.loadAdUnit = function loadAdUnit(containerEl, videoEl, callback) {
+  sanityCheck(containerEl, videoEl, callback);
+
+  this.containerEl = containerEl;
+  this.videoEl = videoEl;
+  this.vpaidHTMLClient = new VPAIDHTML5Tech.VPAIDHTML5Client(containerEl, videoEl, {});
+  this.vpaidHTMLClient.loadAdUnit(this.mediaFile.src, callback);
+
+  function sanityCheck(container, video, cb) {
+    if (!dom.isDomElement(container)) {
+      throw new VASTError(VPAIDHTML5Tech.INVALID_DOM_CONTAINER_EL);
+    }
+
+    if (!dom.isDomElement(video) || video.tagName.toLowerCase() !== 'video') {
+      throw new VASTError(VPAIDHTML5Tech.INVALID_DOM_CONTAINER_EL);
+    }
+
+    if (!utilities.isFunction(cb)) {
+      throw new VASTError(VPAIDHTML5Tech.MISSING_CALLBACK);
+    }
+  }
+};
+
+VPAIDHTML5Tech.prototype.unloadAdUnit = function unloadAdUnit() {
+  if (this.vpaidHTMLClient) {
+    try {
+      this.vpaidHTMLClient.destroy();
+    } catch (e) {
+      logger.error('VAST ERROR: trying to unload the VPAID adunit');
+    }
+
+    this.vpaidHTMLClient = null;
+  }
+
+  if (this.containerEl) {
+    dom.remove(this.containerEl);
+    this.containerEl = null;
+  }
+};
+
+var PREFIX = 'on VPAIDHTML5Tech';
+
+VPAIDHTML5Tech.INVALID_MEDIA_FILE = PREFIX + ', invalid MediaFile';
+VPAIDHTML5Tech.INVALID_DOM_CONTAINER_EL = PREFIX + ', invalid container HtmlElement';
+VPAIDHTML5Tech.INVALID_DOM_VIDEO_EL = PREFIX + ', invalid HTMLVideoElement';
+VPAIDHTML5Tech.MISSING_CALLBACK = PREFIX + ', missing valid callback';
+
+module.exports = VPAIDHTML5Tech;
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(18);
+var unique = utils.unique('vpaidIframe');
+var VPAIDAdUnit = __webpack_require__(42);
+
+var defaultTemplate = '<!DOCTYPE html>' + '<html lang="en">' + '<head><meta charset="UTF-8"></head>' + '<body style="margin:0;padding:0"><div class="ad-element"></div>' + '<script type="text/javascript" src="{{iframeURL_JS}}"></script>' + '<script type="text/javascript">' + 'window.parent.postMessage(\'{"event": "ready", "id": "{{iframeID}}"}\', \'{{origin}}\');' + '</script>' + '</body>' + '</html>';
+
+var AD_STOPPED = 'AdStopped';
+
+/**
+ * This callback is displayed as global member. The callback use nodejs error-first callback style
+ * @callback NodeStyleCallback
+ * @param {string|null}
+ * @param {undefined|object}
+ */
+
+/**
+ * VPAIDHTML5Client
+ * @class
+ *
+ * @param {HTMLElement} el that will contain the iframe to load adUnit and a el to add to adUnit slot
+ * @param {HTMLVideoElement} video default video element to be used by adUnit
+ * @param {object} [templateConfig] template: html template to be used instead of the default, extraOptions: to be used when rendering the template
+ * @param {object} [vpaidOptions] timeout: when loading adUnit
+ */
+function VPAIDHTML5Client(el, video, templateConfig, vpaidOptions) {
+    templateConfig = templateConfig || {};
+
+    this._id = unique();
+    this._destroyed = false;
+
+    this._frameContainer = utils.createElementInEl(el, 'div');
+    this._videoEl = video;
+    this._vpaidOptions = vpaidOptions || { timeout: 10000 };
+
+    this._templateConfig = {
+        template: templateConfig.template || defaultTemplate,
+        extraOptions: templateConfig.extraOptions || {}
+    };
+}
+
+/**
+ * destroy
+ *
+ */
+VPAIDHTML5Client.prototype.destroy = function destroy() {
+    if (this._destroyed) {
+        return;
+    }
+    this._destroyed = true;
+    $unloadPreviousAdUnit.call(this);
+};
+
+/**
+ * isDestroyed
+ *
+ * @return {boolean}
+ */
+VPAIDHTML5Client.prototype.isDestroyed = function isDestroyed() {
+    return this._destroyed;
+};
+
+/**
+ * loadAdUnit
+ *
+ * @param {string} adURL url of the js of the adUnit
+ * @param {nodeStyleCallback} callback
+ */
+VPAIDHTML5Client.prototype.loadAdUnit = function loadAdUnit(adURL, callback) {
+    $throwIfDestroyed.call(this);
+    $unloadPreviousAdUnit.call(this);
+    var that = this;
+
+    var frame = utils.createIframeWithContent(this._frameContainer, this._templateConfig.template, utils.extend({
+        iframeURL_JS: adURL,
+        iframeID: this.getID(),
+        origin: getOrigin()
+    }, this._templateConfig.extraOptions));
+
+    this._frame = frame;
+
+    this._onLoad = utils.callbackTimeout(this._vpaidOptions.timeout, onLoad.bind(this), onTimeout.bind(this));
+
+    window.addEventListener('message', this._onLoad);
+
+    function onLoad(e) {
+        /*jshint validthis: false */
+        //don't clear timeout
+        if (e.origin !== getOrigin()) return;
+        var result = JSON.parse(e.data);
+
+        //don't clear timeout
+        if (result.id !== that.getID()) return;
+
+        var adUnit, error, createAd;
+        if (!that._frame.contentWindow) {
+
+            error = 'the iframe is not anymore in the DOM tree';
+        } else {
+            createAd = that._frame.contentWindow.getVPAIDAd;
+            error = utils.validate(typeof createAd === 'function', 'the ad didn\'t return a function to create an ad');
+        }
+
+        if (!error) {
+            var adEl = that._frame.contentWindow.document.querySelector('.ad-element');
+            adUnit = new VPAIDAdUnit(createAd(), adEl, that._videoEl, that._frame);
+            adUnit.subscribe(AD_STOPPED, $adDestroyed.bind(that));
+            error = utils.validate(adUnit.isValidVPAIDAd(), 'the add is not fully complaint with VPAID specification');
+        }
+
+        that._adUnit = adUnit;
+        $destroyLoadListener.call(that);
+        callback(error, error ? null : adUnit);
+
+        //clear timeout
+        return true;
+    }
+
+    function onTimeout() {
+        callback('timeout', null);
+    }
+};
+
+/**
+ * unloadAdUnit
+ *
+ */
+VPAIDHTML5Client.prototype.unloadAdUnit = function unloadAdUnit() {
+    $unloadPreviousAdUnit.call(this);
+};
+
+/**
+ * getID will return the unique id
+ *
+ * @return {string}
+ */
+VPAIDHTML5Client.prototype.getID = function () {
+    return this._id;
+};
+
+/**
+ * $removeEl
+ *
+ * @param {string} key
+ */
+function $removeEl(key) {
+    var el = this[key];
+    if (el) {
+        el.remove();
+        delete this[key];
+    }
+}
+
+function $adDestroyed() {
+    $removeAdElements.call(this);
+    delete this._adUnit;
+}
+
+function $unloadPreviousAdUnit() {
+    $removeAdElements.call(this);
+    $destroyAdUnit.call(this);
+}
+
+function $removeAdElements() {
+    $removeEl.call(this, '_frame');
+    $destroyLoadListener.call(this);
+}
+
+/**
+ * $destroyLoadListener
+ *
+ */
+function $destroyLoadListener() {
+    if (this._onLoad) {
+        window.removeEventListener('message', this._onLoad);
+        utils.clearCallbackTimeout(this._onLoad);
+        delete this._onLoad;
+    }
+}
+
+function $destroyAdUnit() {
+    if (this._adUnit) {
+        this._adUnit.stopAd();
+        delete this._adUnit;
+    }
+}
+
+/**
+ * $throwIfDestroyed
+ *
+ */
+function $throwIfDestroyed() {
+    if (this._destroyed) {
+        throw new Error('VPAIDHTML5Client already destroyed!');
+    }
+}
+
+function getOrigin() {
+    if (window.location.origin) {
+        return window.location.origin;
+    } else {
+        return window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+    }
+}
+
+module.exports = VPAIDHTML5Client;
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var IVPAIDAdUnit = __webpack_require__(43);
+var Subscriber = __webpack_require__(44);
+var checkVPAIDInterface = IVPAIDAdUnit.checkVPAIDInterface;
+var utils = __webpack_require__(18);
+var METHODS = IVPAIDAdUnit.METHODS;
+var ERROR = 'AdError';
+var AD_CLICK = 'AdClickThru';
+var FILTERED_EVENTS = IVPAIDAdUnit.EVENTS.filter(function (event) {
+    return event != AD_CLICK;
+});
+
+/**
+ * This callback is displayed as global member. The callback use nodejs error-first callback style
+ * @callback NodeStyleCallback
+ * @param {string|null}
+ * @param {undefined|object}
+ */
+
+/**
+ * VPAIDAdUnit
+ * @class
+ *
+ * @param VPAIDCreative
+ * @param {HTMLElement} [el] this will be used in initAd environmentVars.slot if defined
+ * @param {HTMLVideoElement} [video] this will be used in initAd environmentVars.videoSlot if defined
+ */
+function VPAIDAdUnit(VPAIDCreative, el, video, iframe) {
+    this._isValid = checkVPAIDInterface(VPAIDCreative);
+    if (this._isValid) {
+        this._creative = VPAIDCreative;
+        this._el = el;
+        this._videoEl = video;
+        this._iframe = iframe;
+        this._subscribers = new Subscriber();
+        utils.setFullSizeStyle(el);
+        $addEventsSubscribers.call(this);
+    }
+}
+
+VPAIDAdUnit.prototype = Object.create(IVPAIDAdUnit.prototype);
+
+/**
+ * isValidVPAIDAd will return if the VPAIDCreative passed in constructor is valid or not
+ *
+ * @return {boolean}
+ */
+VPAIDAdUnit.prototype.isValidVPAIDAd = function isValidVPAIDAd() {
+    return this._isValid;
+};
+
+IVPAIDAdUnit.METHODS.forEach(function (method) {
+    //NOTE: this methods arguments order are implemented differently from the spec
+    var ignores = ['subscribe', 'unsubscribe', 'initAd'];
+
+    if (ignores.indexOf(method) !== -1) return;
+
+    VPAIDAdUnit.prototype[method] = function () {
+        var ariaty = IVPAIDAdUnit.prototype[method].length;
+        // TODO avoid leaking arguments
+        // https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
+        var args = Array.prototype.slice.call(arguments);
+        var callback = ariaty === args.length ? args.pop() : undefined;
+
+        setTimeout(function () {
+            var result,
+                error = null;
+            try {
+                result = this._creative[method].apply(this._creative, args);
+            } catch (e) {
+                error = e;
+            }
+
+            callOrTriggerEvent(callback, this._subscribers, error, result);
+        }.bind(this), 0);
+    };
+});
+
+/**
+ * initAd concreate implementation
+ *
+ * @param {number} width
+ * @param {number} height
+ * @param {string} viewMode can be 'normal', 'thumbnail' or 'fullscreen'
+ * @param {number} desiredBitrate indicates the desired bitrate in kbps
+ * @param {object} [creativeData] used for additional initialization data
+ * @param {object} [environmentVars] used for passing implementation-specific of js version, if el & video was used in constructor slot & videoSlot will be added to the object
+ * @param {NodeStyleCallback} callback
+ */
+VPAIDAdUnit.prototype.initAd = function initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars, callback) {
+    creativeData = creativeData || {};
+    environmentVars = utils.extend({
+        slot: this._el,
+        videoSlot: this._videoEl
+    }, environmentVars || {});
+
+    setTimeout(function () {
+        var error;
+        try {
+            this._creative.initAd(width, height, viewMode, desiredBitrate, creativeData, environmentVars);
+        } catch (e) {
+            error = e;
+        }
+
+        callOrTriggerEvent(callback, this._subscribers, error);
+    }.bind(this), 0);
+};
+
+/**
+ * subscribe
+ *
+ * @param {string} event
+ * @param {nodeStyleCallback} handler
+ * @param {object} context
+ */
+VPAIDAdUnit.prototype.subscribe = function subscribe(event, handler, context) {
+    this._subscribers.subscribe(handler, event, context);
+};
+
+/**
+ * unsubscribe
+ *
+ * @param {string} event
+ * @param {nodeStyleCallback} handler
+ */
+VPAIDAdUnit.prototype.unsubscribe = function unsubscribe(event, handler) {
+    this._subscribers.unsubscribe(handler, event);
+};
+
+//alias
+VPAIDAdUnit.prototype.on = VPAIDAdUnit.prototype.subscribe;
+VPAIDAdUnit.prototype.off = VPAIDAdUnit.prototype.unsubscribe;
+
+IVPAIDAdUnit.GETTERS.forEach(function (getter) {
+    VPAIDAdUnit.prototype[getter] = function (callback) {
+        setTimeout(function () {
+
+            var result,
+                error = null;
+            try {
+                result = this._creative[getter]();
+            } catch (e) {
+                error = e;
+            }
+
+            callOrTriggerEvent(callback, this._subscribers, error, result);
+        }.bind(this), 0);
+    };
+});
+
+/**
+ * setAdVolume
+ *
+ * @param volume
+ * @param {nodeStyleCallback} callback
+ */
+VPAIDAdUnit.prototype.setAdVolume = function setAdVolume(volume, callback) {
+    setTimeout(function () {
+
+        var result,
+            error = null;
+        try {
+            this._creative.setAdVolume(volume);
+            result = this._creative.getAdVolume();
+        } catch (e) {
+            error = e;
+        }
+
+        if (!error) {
+            error = utils.validate(result === volume, 'failed to apply volume: ' + volume);
+        }
+        callOrTriggerEvent(callback, this._subscribers, error, result);
+    }.bind(this), 0);
+};
+
+VPAIDAdUnit.prototype._destroy = function destroy() {
+    this.stopAd();
+    this._subscribers.unsubscribeAll();
+};
+
+function $addEventsSubscribers() {
+    // some ads implement
+    // so they only handle one subscriber
+    // to handle this we create our one
+    FILTERED_EVENTS.forEach(function (event) {
+        this._creative.subscribe($trigger.bind(this, event), event);
+    }.bind(this));
+
+    // map the click event to be an object instead of depending of the order of the arguments
+    // and to be consistent with the flash
+    this._creative.subscribe($clickThruHook.bind(this), AD_CLICK);
+
+    // because we are adding the element inside the iframe
+    // the user is not able to click in the video
+    if (this._videoEl) {
+        var documentElement = this._iframe.contentDocument.documentElement;
+        var videoEl = this._videoEl;
+        documentElement.addEventListener('click', function (e) {
+            if (e.target === documentElement) {
+                videoEl.click();
+            }
+        });
+    }
+}
+
+function $clickThruHook(url, id, playerHandles) {
+    this._subscribers.triggerSync(AD_CLICK, { url: url, id: id, playerHandles: playerHandles });
+}
+
+function $trigger(event) {
+    // TODO avoid leaking arguments
+    // https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
+    this._subscribers.trigger(event, Array.prototype.slice(arguments, 1));
+}
+
+function callOrTriggerEvent(callback, subscribers, error, result) {
+    if (callback) {
+        callback(error, result);
+    } else if (error) {
+        subscribers.trigger(ERROR, error);
+    }
+}
+
+module.exports = VPAIDAdUnit;
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var METHODS = ['handshakeVersion', 'initAd', 'startAd', 'stopAd', 'skipAd', // VPAID 2.0 new method
+'resizeAd', 'pauseAd', 'resumeAd', 'expandAd', 'collapseAd', 'subscribe', 'unsubscribe'];
+
+var EVENTS = ['AdLoaded', 'AdStarted', 'AdStopped', 'AdSkipped', 'AdSkippableStateChange', // VPAID 2.0 new event
+'AdSizeChange', // VPAID 2.0 new event
+'AdLinearChange', 'AdDurationChange', // VPAID 2.0 new event
+'AdExpandedChange', 'AdRemainingTimeChange', // [Deprecated in 2.0] but will be still fired for backwards compatibility
+'AdVolumeChange', 'AdImpression', 'AdVideoStart', 'AdVideoFirstQuartile', 'AdVideoMidpoint', 'AdVideoThirdQuartile', 'AdVideoComplete', 'AdClickThru', 'AdInteraction', // VPAID 2.0 new event
+'AdUserAcceptInvitation', 'AdUserMinimize', 'AdUserClose', 'AdPaused', 'AdPlaying', 'AdLog', 'AdError'];
+
+var GETTERS = ['getAdLinear', 'getAdWidth', // VPAID 2.0 new getter
+'getAdHeight', // VPAID 2.0 new getter
+'getAdExpanded', 'getAdSkippableState', // VPAID 2.0 new getter
+'getAdRemainingTime', 'getAdDuration', // VPAID 2.0 new getter
+'getAdVolume', 'getAdCompanions', // VPAID 2.0 new getter
+'getAdIcons' // VPAID 2.0 new getter
+];
+
+var SETTERS = ['setAdVolume'];
+
+/**
+ * This callback is displayed as global member. The callback use nodejs error-first callback style
+ * @callback NodeStyleCallback
+ * @param {string|null}
+ * @param {undefined|object}
+ */
+
+/**
+ * IVPAIDAdUnit
+ *
+ * @class
+ *
+ * @param {object} creative
+ * @param {HTMLElement} el
+ * @param {HTMLVideoElement} video
+ */
+function IVPAIDAdUnit(creative, el, video) {}
+
+/**
+ * handshakeVersion
+ *
+ * @param {string} VPAIDVersion
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.handshakeVersion = function (VPAIDVersion, callback) {};
+
+/**
+ * initAd
+ *
+ * @param {number} width
+ * @param {number} height
+ * @param {string} viewMode can be 'normal', 'thumbnail' or 'fullscreen'
+ * @param {number} desiredBitrate indicates the desired bitrate in kbps
+ * @param {object} [creativeData] used for additional initialization data
+ * @param {object} [environmentVars] used for passing implementation-specific of js version
+ * @param {NodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.initAd = function (width, height, viewMode, desiredBitrate, creativeData, environmentVars, callback) {};
+
+/**
+ * startAd
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.startAd = function (callback) {};
+
+/**
+ * stopAd
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.stopAd = function (callback) {};
+
+/**
+ * skipAd
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.skipAd = function (callback) {};
+
+/**
+ * resizeAd
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.resizeAd = function (width, height, viewMode, callback) {};
+
+/**
+ * pauseAd
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.pauseAd = function (callback) {};
+
+/**
+ * resumeAd
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.resumeAd = function (callback) {};
+
+/**
+ * expandAd
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.expandAd = function (callback) {};
+
+/**
+ * collapseAd
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.collapseAd = function (callback) {};
+
+/**
+ * subscribe
+ *
+ * @param {string} event
+ * @param {nodeStyleCallback} handler
+ * @param {object} context
+ */
+IVPAIDAdUnit.prototype.subscribe = function (event, handler, context) {};
+
+/**
+ * startAd
+ *
+ * @param {string} event
+ * @param {function} handler
+ */
+IVPAIDAdUnit.prototype.unsubscribe = function (event, handler) {};
+
+/**
+ * getAdLinear
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdLinear = function (callback) {};
+
+/**
+ * getAdWidth
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdWidth = function (callback) {};
+
+/**
+ * getAdHeight
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdHeight = function (callback) {};
+
+/**
+ * getAdExpanded
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdExpanded = function (callback) {};
+
+/**
+ * getAdSkippableState
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdSkippableState = function (callback) {};
+
+/**
+ * getAdRemainingTime
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdRemainingTime = function (callback) {};
+
+/**
+ * getAdDuration
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdDuration = function (callback) {};
+
+/**
+ * getAdVolume
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdVolume = function (callback) {};
+
+/**
+ * getAdCompanions
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdCompanions = function (callback) {};
+
+/**
+ * getAdIcons
+ *
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.getAdIcons = function (callback) {};
+
+/**
+ * setAdVolume
+ *
+ * @param {number} volume
+ * @param {nodeStyleCallback} callback
+ */
+IVPAIDAdUnit.prototype.setAdVolume = function (volume, callback) {};
+
+addStaticToInterface(IVPAIDAdUnit, 'METHODS', METHODS);
+addStaticToInterface(IVPAIDAdUnit, 'GETTERS', GETTERS);
+addStaticToInterface(IVPAIDAdUnit, 'SETTERS', SETTERS);
+addStaticToInterface(IVPAIDAdUnit, 'EVENTS', EVENTS);
+
+var VPAID1_METHODS = METHODS.filter(function (method) {
+  return ['skipAd'].indexOf(method) === -1;
+});
+
+addStaticToInterface(IVPAIDAdUnit, 'checkVPAIDInterface', function checkVPAIDInterface(creative) {
+  var result = VPAID1_METHODS.every(function (key) {
+    return typeof creative[key] === 'function';
+  });
+  return result;
+});
+
+module.exports = IVPAIDAdUnit;
+
+function addStaticToInterface(Interface, name, value) {
+  Object.defineProperty(Interface, name, {
+    writable: false,
+    configurable: false,
+    value: value
+  });
+}
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function Subscriber() {
+    this._subscribers = {};
+}
+
+Subscriber.prototype.subscribe = function subscribe(handler, eventName, context) {
+    if (!this.isHandlerAttached(handler, eventName)) {
+        this.get(eventName).push({ handler: handler, context: context, eventName: eventName });
+    }
+};
+
+Subscriber.prototype.unsubscribe = function unsubscribe(handler, eventName) {
+    this._subscribers[eventName] = this.get(eventName).filter(function (subscriber) {
+        return handler !== subscriber.handler;
+    });
+};
+
+Subscriber.prototype.unsubscribeAll = function unsubscribeAll() {
+    this._subscribers = {};
+};
+
+Subscriber.prototype.trigger = function (eventName, data) {
+    var that = this;
+    var subscribers = this.get(eventName).concat(this.get('*'));
+
+    subscribers.forEach(function (subscriber) {
+        setTimeout(function () {
+            if (that.isHandlerAttached(subscriber.handler, subscriber.eventName)) {
+                subscriber.handler.call(subscriber.context, data);
+            }
+        }, 0);
+    });
+};
+
+Subscriber.prototype.triggerSync = function (eventName, data) {
+    var subscribers = this.get(eventName).concat(this.get('*'));
+
+    subscribers.forEach(function (subscriber) {
+        subscriber.handler.call(subscriber.context, data);
+    });
+};
+
+Subscriber.prototype.get = function get(eventName) {
+    if (!this._subscribers[eventName]) {
+        this._subscribers[eventName] = [];
+    }
+    return this._subscribers[eventName];
+};
+
+Subscriber.prototype.isHandlerAttached = function isHandlerAttached(handler, eventName) {
+    return this.get(eventName).some(function (subscriber) {
+        return handler === subscriber.handler;
+    });
+};
+
+module.exports = Subscriber;
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(46);
+var VPAIDFLASHClient = __webpack_require__(15);
+var MimeTypes = __webpack_require__(10);
+var VASTError = __webpack_require__(4);
+var utilities = __webpack_require__(0);
+var dom = __webpack_require__(5);
+var logger = __webpack_require__(6);
+
+function VPAIDFlashTech(mediaFile, settings) {
+  if (!(this instanceof VPAIDFlashTech)) {
+    return new VPAIDFlashTech(mediaFile);
+  }
+  sanityCheck(mediaFile);
+  this.name = 'vpaid-flash';
+  this.mediaFile = mediaFile;
+  this.containerEl = null;
+  this.vpaidFlashClient = null;
+  this.settings = settings;
+
+  /** * local functions ***/
+  function sanityCheck(mediaFile) {
+    if (!mediaFile || !utilities.isString(mediaFile.src)) {
+      throw new VASTError('on VPAIDFlashTech, invalid MediaFile');
+    }
+  }
+}
+
+VPAIDFlashTech.VPAIDFLASHClient = VPAIDFLASHClient;
+
+VPAIDFlashTech.supports = function (type) {
+  return MimeTypes.flash.indexOf(type) > -1 && VPAIDFlashTech.VPAIDFLASHClient.isSupported();
+};
+
+VPAIDFlashTech.prototype.loadAdUnit = function loadFlashCreative(containerEl, objectEl, callback) {
+  var that = this;
+  var flashClientOpts = this.settings && this.settings.vpaidFlashLoaderPath ? { data: this.settings.vpaidFlashLoaderPath } : undefined;
+
+  sanityCheck(containerEl, callback);
+
+  this.containerEl = containerEl;
+
+  logger.debug('<VPAIDFlashTech.loadAdUnit> loading VPAIDFLASHClient with opts:', flashClientOpts);
+
+  this.vpaidFlashClient = new VPAIDFlashTech.VPAIDFLASHClient(containerEl, function (error) {
+    if (error) {
+      return callback(error);
+    }
+
+    logger.info('<VPAIDFlashTech.loadAdUnit> calling VPAIDFLASHClient.loadAdUnit(); that.mediaFile:', that.mediaFile);
+    that.vpaidFlashClient.loadAdUnit(that.mediaFile.src, callback);
+  }, flashClientOpts);
+
+  /** * Local Functions ***/
+  function sanityCheck(container, cb) {
+    if (!dom.isDomElement(container)) {
+      throw new VASTError('on VPAIDFlashTech.loadAdUnit, invalid dom container element');
+    }
+
+    if (!utilities.isFunction(cb)) {
+      throw new VASTError('on VPAIDFlashTech.loadAdUnit, missing valid callback');
+    }
+  }
+};
+
+VPAIDFlashTech.prototype.unloadAdUnit = function () {
+  if (this.vpaidFlashClient) {
+    try {
+      this.vpaidFlashClient.destroy();
+    } catch (e) {
+      logger.error('VAST ERROR: trying to unload the VPAID adunit');
+    }
+    this.vpaidFlashClient = null;
+  }
+
+  if (this.containerEl) {
+    dom.remove(this.containerEl);
+    this.containerEl = null;
+  }
+};
+
+module.exports = VPAIDFlashTech;
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "VPAIDFlash.swf";
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var utilities = __webpack_require__(0);
+var xml = __webpack_require__(1);
+var logger = __webpack_require__(6);
+var TrackingEvent = __webpack_require__(20);
+
+function Companion(companionJTree) {
+  if (!(this instanceof Companion)) {
+    return new Companion(companionJTree);
+  }
+
+  logger.info('<Companion> found companion ad');
+  logger.debug('<Companion>  companionJTree:', companionJTree);
+
+  // Required Elements
+  this.creativeType = xml.attr(companionJTree.staticResource, 'creativeType');
+  this.staticResource = xml.keyValue(companionJTree.staticResource);
+
+  logger.info('<Companion>  creativeType: ' + this.creativeType);
+  logger.info('<Companion>  staticResource: ' + this.staticResource);
+
+  // Weird bug when the JXON tree is built it doesn't handle casing properly in this situation...
+  var htmlResource = null;
+
+  if (xml.keyValue(companionJTree.HTMLResource)) {
+    htmlResource = xml.keyValue(companionJTree.HTMLResource);
+  } else if (xml.keyValue(companionJTree.hTMLResource)) {
+    htmlResource = xml.keyValue(companionJTree.hTMLResource);
+  }
+
+  if (htmlResource !== null) {
+    logger.info('<Companion> found html resource', htmlResource);
+  }
+
+  this.htmlResource = htmlResource;
+
+  var iframeResource = null;
+
+  if (xml.keyValue(companionJTree.IFrameResource)) {
+    iframeResource = xml.keyValue(companionJTree.IFrameResource);
+  } else if (xml.keyValue(companionJTree.iFrameresource)) {
+    iframeResource = xml.keyValue(companionJTree.iFrameresource);
+  }
+
+  if (iframeResource !== null) {
+    logger.info('<Companion> found iframe resource', iframeResource);
+  }
+
+  this.iframeResource = iframeResource;
+
+  // Optional fields
+  this.id = xml.attr(companionJTree, 'id');
+  this.width = xml.attr(companionJTree, 'width');
+  this.height = xml.attr(companionJTree, 'height');
+  this.expandedWidth = xml.attr(companionJTree, 'expandedWidth');
+  this.expandedHeight = xml.attr(companionJTree, 'expandedHeight');
+  this.scalable = xml.attr(companionJTree, 'scalable');
+  this.maintainAspectRatio = xml.attr(companionJTree, 'maintainAspectRatio');
+  this.minSuggestedDuration = xml.attr(companionJTree, 'minSuggestedDuration');
+  this.apiFramework = xml.attr(companionJTree, 'apiFramework');
+  this.companionClickThrough = xml.keyValue(companionJTree.companionClickThrough);
+  this.trackingEvents = parseTrackingEvents(companionJTree.trackingEvents && companionJTree.trackingEvents.tracking);
+
+  logger.info('<Companion>  companionClickThrough: ' + this.companionClickThrough);
+
+  /** * Local functions ***/
+  function parseTrackingEvents(trackingEvents) {
+    var trackings = [];
+
+    if (utilities.isDefined(trackingEvents)) {
+      trackingEvents = utilities.isArray(trackingEvents) ? trackingEvents : [trackingEvents];
+      trackingEvents.forEach(function (trackingData) {
+        trackings.push(new TrackingEvent(trackingData));
+      });
+    }
+
+    return trackings;
+  }
+}
+
+module.exports = Companion;
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+
+var xml = __webpack_require__(1);
+var urlUtils = __webpack_require__(12);
+var vastUtil = __webpack_require__(3);
+
+var attributesList = [
+// Required attributes
+'delivery', 'type', 'width', 'height',
+
+// Optional attributes
+'codec', 'id', 'bitrate', 'minBitrate', 'maxBitrate', 'scalable', 'maintainAspectRatio', 'apiFramework'];
+
+var pageProtocol = window.location && urlUtils.urlParts(window.location.href).protocol;
+
+function MediaFile(mediaFileJTree) {
+  if (!(this instanceof MediaFile)) {
+    return new MediaFile(mediaFileJTree);
+  }
+
+  // Required attributes
+  this.src = xml.keyValue(mediaFileJTree);
+
+  for (var x = 0; x < attributesList.length; x++) {
+    var attribute = attributesList[x];
+
+    this[attribute] = mediaFileJTree.attr(attribute);
+  }
+}
+
+MediaFile.prototype.isSupported = function () {
+  if (vastUtil.isVPAID(this)) {
+    return Boolean(vastUtil.findSupportedVPAIDTech(this.type));
+  }
+
+  if (this.type === 'video/x-flv') {
+    return vastUtil.isFlashSupported();
+  }
+
+  if (pageProtocol === 'https') {
+    return urlUtils.urlParts(this.src).protocol === pageProtocol;
+  }
+
+  return true;
+};
+
+module.exports = MediaFile;
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var async = __webpack_require__(7);
+var dom = __webpack_require__(5);
 var playerUtils = __webpack_require__(11);
 var utilities = __webpack_require__(0);
-var logger = __webpack_require__(5);
-var VASTResponse = __webpack_require__(8);
-var VASTError = __webpack_require__(3);
-var VASTTracker = __webpack_require__(20);
-var vastUtil = __webpack_require__(4);
+var logger = __webpack_require__(6);
+var VASTResponse = __webpack_require__(9);
+var VASTError = __webpack_require__(4);
+var VASTTracker = __webpack_require__(25);
+var vastUtil = __webpack_require__(3);
 
 function VASTIntegrator(player) {
   if (!(this instanceof VASTIntegrator)) {
@@ -5847,6 +6626,7 @@ VASTIntegrator.prototype._addSkipButton = function addSkipButton(source, tracker
 
     if (timeLeft > 0) {
       skipButton.innerHTML = 'Skip in ' + utilities.toFixedDigits(timeLeft, 2) + '...';
+      dom.removeClass(skipButton, 'enabled');
       // eslint-disable-next-line
     } else if (!dom.hasClass(skipButton, 'enabled')) {
       dom.addClass(skipButton, 'enabled');
@@ -5982,421 +6762,20 @@ VASTIntegrator.prototype._trackError = function trackError(error, response) {
 module.exports = VASTIntegrator;
 
 /***/ }),
-/* 40 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var VASTError = __webpack_require__(3);
-var utilities = __webpack_require__(0);
-
-function VPAIDAdUnitWrapper(vpaidAdUnit, opts) {
-  if (!(this instanceof VPAIDAdUnitWrapper)) {
-    return new VPAIDAdUnitWrapper(vpaidAdUnit, opts);
-  }
-  sanityCheck(vpaidAdUnit, opts);
-
-  this.options = utilities.extend({}, opts);
-
-  this._adUnit = vpaidAdUnit;
-
-  /** * Local Functions ***/
-  function sanityCheck(adUnit, opts) {
-    if (!adUnit || !VPAIDAdUnitWrapper.checkVPAIDInterface(adUnit)) {
-      throw new VASTError('on VPAIDAdUnitWrapper, the passed VPAID adUnit does not fully implement the VPAID interface');
-    }
-
-    if (!utilities.isObject(opts)) {
-      throw new VASTError('on VPAIDAdUnitWrapper, expected options hash  but got \'' + opts + '\'');
-    }
-
-    if (!('responseTimeout' in opts) || !utilities.isNumber(opts.responseTimeout)) {
-      throw new VASTError('on VPAIDAdUnitWrapper, expected responseTimeout in options');
-    }
-  }
-}
-
-VPAIDAdUnitWrapper.checkVPAIDInterface = function checkVPAIDInterface(VPAIDAdUnit) {
-  // NOTE: skipAd is not part of the method list because it only appears in VPAID 2.0 and we support VPAID 1.0
-  var VPAIDInterfaceMethods = ['handshakeVersion', 'initAd', 'startAd', 'stopAd', 'resizeAd', 'pauseAd', 'expandAd', 'collapseAd'];
-
-  for (var i = 0, len = VPAIDInterfaceMethods.length; i < len; i++) {
-    if (!VPAIDAdUnit || !utilities.isFunction(VPAIDAdUnit[VPAIDInterfaceMethods[i]])) {
-      return false;
-    }
-  }
-
-  return canSubscribeToEvents(VPAIDAdUnit) && canUnsubscribeFromEvents(VPAIDAdUnit);
-
-  /** * Local Functions ***/
-
-  function canSubscribeToEvents(adUnit) {
-    return utilities.isFunction(adUnit.subscribe) || utilities.isFunction(adUnit.addEventListener) || utilities.isFunction(adUnit.on);
-  }
-
-  function canUnsubscribeFromEvents(adUnit) {
-    return utilities.isFunction(adUnit.unsubscribe) || utilities.isFunction(adUnit.removeEventListener) || utilities.isFunction(adUnit.off);
-  }
-};
-
-VPAIDAdUnitWrapper.prototype.adUnitAsyncCall = function () {
-  var _adUnit;
-
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  var method = args.shift();
-  var cb = args.pop();
-  var timeoutId = void 0;
-
-  sanityCheck(method, cb, this._adUnit);
-  args.push(wrapCallback());
-
-  (_adUnit = this._adUnit)[method].apply(_adUnit, args);
-  timeoutId = setTimeout(function () {
-    timeoutId = null;
-    cb(new VASTError('on VPAIDAdUnitWrapper, timeout while waiting for a response on call \'' + method + '\''));
-    cb = utilities.noop;
-  }, this.options.responseTimeout);
-
-  /** * Local functions ***/
-  function sanityCheck(method, cb, adUnit) {
-    if (!utilities.isString(method) || !utilities.isFunction(adUnit[method])) {
-      throw new VASTError('on VPAIDAdUnitWrapper.adUnitAsyncCall, invalid method name');
-    }
-
-    if (!utilities.isFunction(cb)) {
-      throw new VASTError('on VPAIDAdUnitWrapper.adUnitAsyncCall, missing callback');
-    }
-  }
-
-  function wrapCallback() {
-    return function () {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-      cb.apply(this, arguments);
-    };
-  }
-};
-
-VPAIDAdUnitWrapper.prototype.on = function (evtName, handler) {
-  var addEventListener = this._adUnit.addEventListener || this._adUnit.subscribe || this._adUnit.on;
-
-  addEventListener.call(this._adUnit, evtName, handler);
-};
-
-VPAIDAdUnitWrapper.prototype.off = function (evtName, handler) {
-  var removeEventListener = this._adUnit.removeEventListener || this._adUnit.unsubscribe || this._adUnit.off;
-
-  removeEventListener.call(this._adUnit, evtName, handler);
-};
-
-VPAIDAdUnitWrapper.prototype.waitForEvent = function (evtName, cb, context) {
-  var timeoutId = void 0;
-
-  sanityCheck(evtName, cb);
-  context = context || null;
-
-  this.on(evtName, responseListener);
-
-  timeoutId = setTimeout(function () {
-    cb(new VASTError('on VPAIDAdUnitWrapper.waitForEvent, timeout while waiting for event \'' + evtName + '\''));
-    timeoutId = null;
-    cb = utilities.noop;
-  }, this.options.responseTimeout);
-
-  /** * Local functions ***/
-  function sanityCheck(evtName, cb) {
-    if (!utilities.isString(evtName)) {
-      throw new VASTError('on VPAIDAdUnitWrapper.waitForEvent, missing evt name');
-    }
-
-    if (!utilities.isFunction(cb)) {
-      throw new VASTError('on VPAIDAdUnitWrapper.waitForEvent, missing callback');
-    }
-  }
-
-  function responseListener() {
-    var args = utilities.arrayLikeObjToArray(arguments);
-
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-      timeoutId = null;
-    }
-
-    args.unshift(null);
-    cb.apply(context, args);
-  }
-};
-
-// VPAID METHODS
-VPAIDAdUnitWrapper.prototype.handshakeVersion = function (version, cb) {
-  this.adUnitAsyncCall('handshakeVersion', version, cb);
-};
-
-/* jshint maxparams:6 */
-VPAIDAdUnitWrapper.prototype.initAd = function (width, height, viewMode, desiredBitrate, adUnitData, cb) {
-  this.waitForEvent('AdLoaded', cb);
-  this._adUnit.initAd(width, height, viewMode, desiredBitrate, adUnitData);
-};
-
-VPAIDAdUnitWrapper.prototype.resizeAd = function (width, height, viewMode, cb) {
-  // NOTE: AdSizeChange event is only supported on VPAID 2.0 so for the moment we are not going to use it
-  // and will assume that everything is fine after the async call
-  this.adUnitAsyncCall('resizeAd', width, height, viewMode, cb);
-};
-
-VPAIDAdUnitWrapper.prototype.startAd = function (cb) {
-  this.waitForEvent('AdStarted', cb);
-  this._adUnit.startAd();
-};
-
-VPAIDAdUnitWrapper.prototype.stopAd = function (cb) {
-  this.waitForEvent('AdStopped', cb);
-  this._adUnit.stopAd();
-};
-
-VPAIDAdUnitWrapper.prototype.pauseAd = function (cb) {
-  this.waitForEvent('AdPaused', cb);
-  this._adUnit.pauseAd();
-};
-
-VPAIDAdUnitWrapper.prototype.resumeAd = function (cb) {
-  this.waitForEvent('AdPlaying', cb);
-  this._adUnit.resumeAd();
-};
-
-VPAIDAdUnitWrapper.prototype.expandAd = function (cb) {
-  this.waitForEvent('AdExpandedChange', cb);
-  this._adUnit.expandAd();
-};
-
-VPAIDAdUnitWrapper.prototype.collapseAd = function (cb) {
-  this.waitForEvent('AdExpandedChange', cb);
-  this._adUnit.collapseAd();
-};
-
-VPAIDAdUnitWrapper.prototype.skipAd = function (cb) {
-  this.waitForEvent('AdSkipped', cb);
-  this._adUnit.skipAd();
-};
-
-// VPAID property getters
-['adLinear', 'adWidth', 'adHeight', 'adExpanded', 'adSkippableState', 'adRemainingTime', 'adDuration', 'adVolume', 'adCompanions', 'adIcons'].forEach(function (property) {
-  var getterName = 'get' + utilities.capitalize(property);
-
-  VPAIDAdUnitWrapper.prototype[getterName] = function (cb) {
-    this.adUnitAsyncCall(getterName, cb);
-  };
-});
-
-// VPAID property setters
-VPAIDAdUnitWrapper.prototype.setAdVolume = function (volume, cb) {
-  this.adUnitAsyncCall('setAdVolume', volume, cb);
-};
-
-module.exports = VPAIDAdUnitWrapper;
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(49);
-var VPAIDFLASHClient = __webpack_require__(12);
-var MimeTypes = __webpack_require__(10);
-var VASTError = __webpack_require__(3);
-var utilities = __webpack_require__(0);
-var dom = __webpack_require__(6);
-var logger = __webpack_require__(5);
-
-function VPAIDFlashTech(mediaFile, settings) {
-  if (!(this instanceof VPAIDFlashTech)) {
-    return new VPAIDFlashTech(mediaFile);
-  }
-  sanityCheck(mediaFile);
-  this.name = 'vpaid-flash';
-  this.mediaFile = mediaFile;
-  this.containerEl = null;
-  this.vpaidFlashClient = null;
-  this.settings = settings;
-
-  /** * local functions ***/
-  function sanityCheck(mediaFile) {
-    if (!mediaFile || !utilities.isString(mediaFile.src)) {
-      throw new VASTError('on VPAIDFlashTech, invalid MediaFile');
-    }
-  }
-}
-
-VPAIDFlashTech.VPAIDFLASHClient = VPAIDFLASHClient;
-
-VPAIDFlashTech.supports = function (type) {
-  return MimeTypes.flash.indexOf(type) > -1 && VPAIDFlashTech.VPAIDFLASHClient.isSupported();
-};
-
-VPAIDFlashTech.prototype.loadAdUnit = function loadFlashCreative(containerEl, objectEl, callback) {
-  var that = this;
-  var flashClientOpts = this.settings && this.settings.vpaidFlashLoaderPath ? { data: this.settings.vpaidFlashLoaderPath } : undefined;
-
-  sanityCheck(containerEl, callback);
-
-  this.containerEl = containerEl;
-
-  logger.debug('<VPAIDFlashTech.loadAdUnit> loading VPAIDFLASHClient with opts:', flashClientOpts);
-
-  this.vpaidFlashClient = new VPAIDFlashTech.VPAIDFLASHClient(containerEl, function (error) {
-    if (error) {
-      return callback(error);
-    }
-
-    logger.info('<VPAIDFlashTech.loadAdUnit> calling VPAIDFLASHClient.loadAdUnit(); that.mediaFile:', that.mediaFile);
-    that.vpaidFlashClient.loadAdUnit(that.mediaFile.src, callback);
-  }, flashClientOpts);
-
-  /** * Local Functions ***/
-  function sanityCheck(container, cb) {
-    if (!dom.isDomElement(container)) {
-      throw new VASTError('on VPAIDFlashTech.loadAdUnit, invalid dom container element');
-    }
-
-    if (!utilities.isFunction(cb)) {
-      throw new VASTError('on VPAIDFlashTech.loadAdUnit, missing valid callback');
-    }
-  }
-};
-
-VPAIDFlashTech.prototype.unloadAdUnit = function () {
-  if (this.vpaidFlashClient) {
-    try {
-      this.vpaidFlashClient.destroy();
-    } catch (e) {
-      logger.error('VAST ERROR: trying to unload the VPAID adunit');
-    }
-    this.vpaidFlashClient = null;
-  }
-
-  if (this.containerEl) {
-    dom.remove(this.containerEl);
-    this.containerEl = null;
-  }
-};
-
-module.exports = VPAIDFlashTech;
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var VPAIDHTML5Client = __webpack_require__(34);
-var MimeTypes = __webpack_require__(10);
-var VASTError = __webpack_require__(3);
-var utilities = __webpack_require__(0);
-var dom = __webpack_require__(6);
-var logger = __webpack_require__(5);
-
-function VPAIDHTML5Tech(mediaFile) {
-  if (!(this instanceof VPAIDHTML5Tech)) {
-    return new VPAIDHTML5Tech(mediaFile);
-  }
-
-  sanityCheck(mediaFile);
-
-  this.name = 'vpaid-html5';
-  this.containerEl = null;
-  this.videoEl = null;
-  this.vpaidHTMLClient = null;
-
-  this.mediaFile = mediaFile;
-
-  function sanityCheck(mediaFile) {
-    if (!mediaFile || !utilities.isString(mediaFile.src)) {
-      throw new VASTError(VPAIDHTML5Tech.INVALID_MEDIA_FILE);
-    }
-  }
-}
-
-VPAIDHTML5Tech.VPAIDHTML5Client = VPAIDHTML5Client;
-
-VPAIDHTML5Tech.supports = function (type) {
-  return !utilities.isOldIE() && MimeTypes.html5.indexOf(type) > -1;
-};
-
-VPAIDHTML5Tech.prototype.loadAdUnit = function loadAdUnit(containerEl, videoEl, callback) {
-  sanityCheck(containerEl, videoEl, callback);
-
-  this.containerEl = containerEl;
-  this.videoEl = videoEl;
-  this.vpaidHTMLClient = new VPAIDHTML5Tech.VPAIDHTML5Client(containerEl, videoEl, {});
-  this.vpaidHTMLClient.loadAdUnit(this.mediaFile.src, callback);
-
-  function sanityCheck(container, video, cb) {
-    if (!dom.isDomElement(container)) {
-      throw new VASTError(VPAIDHTML5Tech.INVALID_DOM_CONTAINER_EL);
-    }
-
-    if (!dom.isDomElement(video) || video.tagName.toLowerCase() !== 'video') {
-      throw new VASTError(VPAIDHTML5Tech.INVALID_DOM_CONTAINER_EL);
-    }
-
-    if (!utilities.isFunction(cb)) {
-      throw new VASTError(VPAIDHTML5Tech.MISSING_CALLBACK);
-    }
-  }
-};
-
-VPAIDHTML5Tech.prototype.unloadAdUnit = function unloadAdUnit() {
-  if (this.vpaidHTMLClient) {
-    try {
-      this.vpaidHTMLClient.destroy();
-    } catch (e) {
-      logger.error('VAST ERROR: trying to unload the VPAID adunit');
-    }
-
-    this.vpaidHTMLClient = null;
-  }
-
-  if (this.containerEl) {
-    dom.remove(this.containerEl);
-    this.containerEl = null;
-  }
-};
-
-var PREFIX = 'on VPAIDHTML5Tech';
-
-VPAIDHTML5Tech.INVALID_MEDIA_FILE = PREFIX + ', invalid MediaFile';
-VPAIDHTML5Tech.INVALID_DOM_CONTAINER_EL = PREFIX + ', invalid container HtmlElement';
-VPAIDHTML5Tech.INVALID_DOM_VIDEO_EL = PREFIX + ', invalid HTMLVideoElement';
-VPAIDHTML5Tech.MISSING_CALLBACK = PREFIX + ', missing valid callback';
-
-module.exports = VPAIDHTML5Tech;
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 var MimeTypes = __webpack_require__(10);
-var VASTError = __webpack_require__(3);
-var VASTResponse = __webpack_require__(8);
-var VASTTracker = __webpack_require__(20);
-var vastUtil = __webpack_require__(4);
-var async = __webpack_require__(9);
-var dom = __webpack_require__(6);
+var VASTError = __webpack_require__(4);
+var VASTResponse = __webpack_require__(9);
+var VASTTracker = __webpack_require__(25);
+var vastUtil = __webpack_require__(3);
+var async = __webpack_require__(7);
+var dom = __webpack_require__(5);
 var playerUtils = __webpack_require__(11);
 var utilities = __webpack_require__(0);
-var logger = __webpack_require__(5);
-var VPAIDAdUnitWrapper = __webpack_require__(40);
+var logger = __webpack_require__(6);
+var VPAIDAdUnitWrapper = __webpack_require__(51);
 
 function VPAIDIntegrator(player, settings) {
   if (!(this instanceof VPAIDIntegrator)) {
@@ -6955,850 +7334,258 @@ function logError(error) {
 module.exports = VPAIDIntegrator;
 
 /***/ }),
-/* 44 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-var dom = __webpack_require__(6);
-
-var element = document.createElement('div');
-
-element.className = 'vjs-ads-label vjs-control vjs-label-hidden';
-element.innerHTML = 'Advertisement';
-
-var AdsLabelFactory = function AdsLabelFactory(baseComponent) {
-  return {
-    /** @constructor */
-    init: function init(player, options) {
-      options.el = element;
-      baseComponent.call(this, player, options);
-
-      // We asynchronously reposition the ads label element
-      setTimeout(function () {
-        var currentTimeComp = player.controlBar && (player.controlBar.getChild('timerControls') || player.controlBar.getChild('currentTimeDisplay'));
-
-        if (currentTimeComp) {
-          player.controlBar.el().insertBefore(element, currentTimeComp.el());
-        }
-        dom.removeClass(element, 'vjs-label-hidden');
-      }, 0);
-    },
-
-    el: function getElement() {
-      return element;
-    }
-  };
-};
-
-module.exports = AdsLabelFactory;
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * The component that shows a black screen until the ads plugin has decided if it can or it can not play the ad.
- *
- * Note: In case you wonder why instead of this black poster we don't just show the spinner loader.
- *       IOS devices do not work well with animations and the browser chrashes from time to time That is why we chose to
- *       have a secondary black poster.
- *
- *       It also makes it much more easier for the users of the plugin since it does not change the default behaviour of the
- *       spinner and the player works the same way with and without the plugin.
- *
- * @param {vjs.Player|Object} player
- * @param {Object=} options
- * @constructor
- */
-var element = document.createElement('div');
-
-var BlackPosterFactory = function BlackPosterFactory(baseComponent) {
-  return {
-    /** @constructor */
-    init: function init(player, options) {
-      options.el = element;
-      element.className = 'vjs-black-poster';
-      baseComponent.call(this, player, options);
-
-      var posterImg = player.getChild('posterImage');
-
-      // We need to do it asynchronously to be sure that the black poster el is on the dom.
-      setTimeout(function () {
-        if (posterImg && player && player.el()) {
-          player.el().insertBefore(element, posterImg.el());
-        }
-      }, 0);
-    },
-    el: function getElement() {
-      return element;
-    }
-  };
-};
-
-module.exports = BlackPosterFactory;
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var urlUtils = __webpack_require__(24);
+var VASTError = __webpack_require__(4);
 var utilities = __webpack_require__(0);
 
-function HttpRequestError(message) {
-  this.message = 'HttpRequest Error: ' + (message || '');
-}
-HttpRequestError.prototype = new Error();
-HttpRequestError.prototype.name = 'HttpRequest Error';
-
-function HttpRequest(createXhr) {
-  if (!utilities.isFunction(createXhr)) {
-    throw new HttpRequestError('Missing XMLHttpRequest factory method');
+function VPAIDAdUnitWrapper(vpaidAdUnit, opts) {
+  if (!(this instanceof VPAIDAdUnitWrapper)) {
+    return new VPAIDAdUnitWrapper(vpaidAdUnit, opts);
   }
+  sanityCheck(vpaidAdUnit, opts);
 
-  this.createXhr = createXhr;
-}
+  this.options = utilities.extend({}, opts);
 
-HttpRequest.prototype.run = function (method, url, callback, options) {
-  sanityCheck(url, callback, options);
-  var timeout = void 0,
-      timeoutId = void 0;
-  var xhr = this.createXhr();
+  this._adUnit = vpaidAdUnit;
 
-  options = options || {};
-  timeout = utilities.isNumber(options.timeout) ? options.timeout : 0;
-
-  xhr.open(method, urlUtils.urlParts(url).href, true);
-
-  if (options.headers) {
-    setHeaders(xhr, options.headers);
-  }
-
-  if (options.withCredentials) {
-    xhr.withCredentials = true;
-  }
-
-  xhr.onload = function () {
-    var statusText = void 0,
-        response = void 0,
-        status = void 0;
-
-    /**
-     * The only way to do a secure request on IE8 and IE9 is with the XDomainRequest object. Unfortunately, microsoft is
-     * so nice that decided that the status property and the 'getAllResponseHeaders' method where not needed so we have to
-     * fake them. If the request gets done with an XDomainRequest instance, we will assume that there are no headers and
-     * the status will always be 200. If you don't like it, DO NOT USE ANCIENT BROWSERS!!!
-     *
-     * For mor info go to: https://msdn.microsoft.com/en-us/library/cc288060(v=vs.85).aspx
-     */
-    if (!xhr.getAllResponseHeaders) {
-      xhr.getAllResponseHeaders = function () {
-        return null;
-      };
+  /** * Local Functions ***/
+  function sanityCheck(adUnit, opts) {
+    if (!adUnit || !VPAIDAdUnitWrapper.checkVPAIDInterface(adUnit)) {
+      throw new VASTError('on VPAIDAdUnitWrapper, the passed VPAID adUnit does not fully implement the VPAID interface');
     }
 
-    if (!xhr.status) {
-      xhr.status = 200;
+    if (!utilities.isObject(opts)) {
+      throw new VASTError('on VPAIDAdUnitWrapper, expected options hash  but got \'' + opts + '\'');
     }
 
-    if (utilities.isDefined(timeoutId)) {
+    if (!('responseTimeout' in opts) || !utilities.isNumber(opts.responseTimeout)) {
+      throw new VASTError('on VPAIDAdUnitWrapper, expected responseTimeout in options');
+    }
+  }
+}
+
+VPAIDAdUnitWrapper.checkVPAIDInterface = function checkVPAIDInterface(VPAIDAdUnit) {
+  // NOTE: skipAd is not part of the method list because it only appears in VPAID 2.0 and we support VPAID 1.0
+  var VPAIDInterfaceMethods = ['handshakeVersion', 'initAd', 'startAd', 'stopAd', 'resizeAd', 'pauseAd', 'expandAd', 'collapseAd'];
+
+  for (var i = 0, len = VPAIDInterfaceMethods.length; i < len; i++) {
+    if (!VPAIDAdUnit || !utilities.isFunction(VPAIDAdUnit[VPAIDInterfaceMethods[i]])) {
+      return false;
+    }
+  }
+
+  return canSubscribeToEvents(VPAIDAdUnit) && canUnsubscribeFromEvents(VPAIDAdUnit);
+
+  /** * Local Functions ***/
+
+  function canSubscribeToEvents(adUnit) {
+    return utilities.isFunction(adUnit.subscribe) || utilities.isFunction(adUnit.addEventListener) || utilities.isFunction(adUnit.on);
+  }
+
+  function canUnsubscribeFromEvents(adUnit) {
+    return utilities.isFunction(adUnit.unsubscribe) || utilities.isFunction(adUnit.removeEventListener) || utilities.isFunction(adUnit.off);
+  }
+};
+
+VPAIDAdUnitWrapper.prototype.adUnitAsyncCall = function () {
+  var _adUnit;
+
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  var method = args.shift();
+  var cb = args.pop();
+  var timeoutId = void 0;
+
+  sanityCheck(method, cb, this._adUnit);
+  args.push(wrapCallback());
+
+  (_adUnit = this._adUnit)[method].apply(_adUnit, args);
+  timeoutId = setTimeout(function () {
+    timeoutId = null;
+    cb(new VASTError('on VPAIDAdUnitWrapper, timeout while waiting for a response on call \'' + method + '\''));
+    cb = utilities.noop;
+  }, this.options.responseTimeout);
+
+  /** * Local functions ***/
+  function sanityCheck(method, cb, adUnit) {
+    if (!utilities.isString(method) || !utilities.isFunction(adUnit[method])) {
+      throw new VASTError('on VPAIDAdUnitWrapper.adUnitAsyncCall, invalid method name');
+    }
+
+    if (!utilities.isFunction(cb)) {
+      throw new VASTError('on VPAIDAdUnitWrapper.adUnitAsyncCall, missing callback');
+    }
+  }
+
+  function wrapCallback() {
+    return function () {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      cb.apply(this, arguments);
+    };
+  }
+};
+
+VPAIDAdUnitWrapper.prototype.on = function (evtName, handler) {
+  var addEventListener = this._adUnit.addEventListener || this._adUnit.subscribe || this._adUnit.on;
+
+  addEventListener.call(this._adUnit, evtName, handler);
+};
+
+VPAIDAdUnitWrapper.prototype.off = function (evtName, handler) {
+  var removeEventListener = this._adUnit.removeEventListener || this._adUnit.unsubscribe || this._adUnit.off;
+
+  removeEventListener.call(this._adUnit, evtName, handler);
+};
+
+VPAIDAdUnitWrapper.prototype.waitForEvent = function (evtName, cb, context) {
+  var timeoutId = void 0;
+
+  sanityCheck(evtName, cb);
+  context = context || null;
+
+  this.on(evtName, responseListener);
+
+  timeoutId = setTimeout(function () {
+    cb(new VASTError('on VPAIDAdUnitWrapper.waitForEvent, timeout while waiting for event \'' + evtName + '\''));
+    timeoutId = null;
+    cb = utilities.noop;
+  }, this.options.responseTimeout);
+
+  /** * Local functions ***/
+  function sanityCheck(evtName, cb) {
+    if (!utilities.isString(evtName)) {
+      throw new VASTError('on VPAIDAdUnitWrapper.waitForEvent, missing evt name');
+    }
+
+    if (!utilities.isFunction(cb)) {
+      throw new VASTError('on VPAIDAdUnitWrapper.waitForEvent, missing callback');
+    }
+  }
+
+  function responseListener() {
+    var args = utilities.arrayLikeObjToArray(arguments);
+
+    if (timeoutId) {
       clearTimeout(timeoutId);
-      timeoutId = undefined;
+      timeoutId = null;
     }
 
-    statusText = xhr.statusText || '';
+    args.unshift(null);
+    cb.apply(context, args);
+  }
+};
 
-    // responseText is the old-school way of retrieving response (supported by IE8 & 9)
-    // response/responseType properties were introduced in XHR Level2 spec (supported by IE10)
-    response = 'response' in xhr ? xhr.response : xhr.responseText;
+// VPAID METHODS
+VPAIDAdUnitWrapper.prototype.handshakeVersion = function (version, cb) {
+  this.adUnitAsyncCall('handshakeVersion', version, cb);
+};
 
-    // normalize IE9 bug (http://bugs.jquery.com/ticket/1450)
-    status = xhr.status === 1223 ? 204 : xhr.status;
+/* jshint maxparams:6 */
+VPAIDAdUnitWrapper.prototype.initAd = function (width, height, viewMode, desiredBitrate, adUnitData, cb) {
+  this.waitForEvent('AdLoaded', cb);
+  this._adUnit.initAd(width, height, viewMode, desiredBitrate, adUnitData);
+};
 
-    callback(status, response, xhr.getAllResponseHeaders(), statusText);
+VPAIDAdUnitWrapper.prototype.resizeAd = function (width, height, viewMode, cb) {
+  // NOTE: AdSizeChange event is only supported on VPAID 2.0 so for the moment we are not going to use it
+  // and will assume that everything is fine after the async call
+  this.adUnitAsyncCall('resizeAd', width, height, viewMode, cb);
+};
+
+VPAIDAdUnitWrapper.prototype.startAd = function (cb) {
+  this.waitForEvent('AdStarted', cb);
+  this._adUnit.startAd();
+};
+
+VPAIDAdUnitWrapper.prototype.stopAd = function (cb) {
+  this.waitForEvent('AdStopped', cb);
+  this._adUnit.stopAd();
+};
+
+VPAIDAdUnitWrapper.prototype.pauseAd = function (cb) {
+  this.waitForEvent('AdPaused', cb);
+  this._adUnit.pauseAd();
+};
+
+VPAIDAdUnitWrapper.prototype.resumeAd = function (cb) {
+  this.waitForEvent('AdPlaying', cb);
+  this._adUnit.resumeAd();
+};
+
+VPAIDAdUnitWrapper.prototype.expandAd = function (cb) {
+  this.waitForEvent('AdExpandedChange', cb);
+  this._adUnit.expandAd();
+};
+
+VPAIDAdUnitWrapper.prototype.collapseAd = function (cb) {
+  this.waitForEvent('AdExpandedChange', cb);
+  this._adUnit.collapseAd();
+};
+
+VPAIDAdUnitWrapper.prototype.skipAd = function (cb) {
+  this.waitForEvent('AdSkipped', cb);
+  this._adUnit.skipAd();
+};
+
+// VPAID property getters
+['adLinear', 'adWidth', 'adHeight', 'adExpanded', 'adSkippableState', 'adRemainingTime', 'adDuration', 'adVolume', 'adCompanions', 'adIcons'].forEach(function (property) {
+  var getterName = 'get' + utilities.capitalize(property);
+
+  VPAIDAdUnitWrapper.prototype[getterName] = function (cb) {
+    this.adUnitAsyncCall(getterName, cb);
   };
-
-  xhr.onerror = requestError;
-  xhr.onabort = requestError;
-
-  xhr.send();
-
-  if (timeout > 0) {
-    timeoutId = setTimeout(function () {
-      if (xhr) {
-        xhr.abort();
-      }
-    }, timeout);
-  }
-
-  function sanityCheck(url, callback, options) {
-    if (!utilities.isString(url) || utilities.isEmptyString(url)) {
-      throw new HttpRequestError('Invalid url \'' + url + '\'');
-    }
-
-    if (!utilities.isFunction(callback)) {
-      throw new HttpRequestError('Invalid handler \'' + callback + '\' for the http request');
-    }
-
-    if (utilities.isDefined(options) && !utilities.isObject(options)) {
-      throw new HttpRequestError('Invalid options map \'' + options + '\'');
-    }
-  }
-
-  function setHeaders(xhr, headers) {
-    utilities.forEach(headers, function (value, key) {
-      if (utilities.isDefined(value)) {
-        xhr.setRequestHeader(key, value);
-      }
-    });
-  }
-
-  function requestError() {
-    callback(-1, null, null, '');
-  }
-};
-
-HttpRequest.prototype.get = function (url, callback, options) {
-  this.run('GET', url, processResponse, options);
-
-  function processResponse(status, response, headersString, statusText) {
-    if (isSuccess(status)) {
-      callback(null, response, status, headersString, statusText);
-    } else {
-      callback(new HttpRequestError(statusText), response, status, headersString, statusText);
-    }
-  }
-
-  function isSuccess(status) {
-    return 200 <= status && status < 300;
-  }
-};
-
-function createXhr() {
-  var xhr = new XMLHttpRequest();
-
-  if (!('withCredentials' in xhr)) {
-    // XDomainRequest for IE.
-    xhr = new XDomainRequest();
-  }
-
-  return xhr;
-}
-
-var http = new HttpRequest(createXhr);
-
-module.exports = {
-  http: http,
-  HttpRequest: HttpRequest,
-  HttpRequestError: HttpRequestError,
-  createXhr: createXhr
-};
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(48)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".vjs-label-hidden {\n  display: none !important;\n}\n\n.vjs-default-skin div.vjs-ads-label {\n  font-size: 13px;\n  line-height: 30px;\n  font-weight: normal;\n  text-align: center;\n  color: white;\n  display: none;\n  width: auto;\n  padding-left: 10px;\n}\n\n.vjs-ad-playing .vjs-control.vjs-ads-label {\n  display: block;\n}\n\n.vjs-black-poster {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  margin: 0;\n  padding: 0;\n  background-repeat: no-repeat;\n  background-position: 50% 50%;\n  background-size: contain;\n  cursor: pointer;\n  background-color: #000;\n}\n\n.vjs-has-started .vjs-black-poster.vjs-hidden {\n  display: none;\n}\n\n.vjs-using-native-controls .vjs-black-poster {\n  display: none;\n}\n\ndiv.VPAID-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\ndiv.vjs-vpaid-ad div.vjs-progress-control,\ndiv.vjs-vpaid-ad div.vjs-time-controls,\ndiv.vjs-vpaid-ad div.vjs-time-divider {\n  display: none;\n}\n\ndiv.vjs-vpaid-ad.vjs-vpaid-flash-ad div.VPAID-container {\n  background-color: #000;\n}\n\ndiv.vjs-vpaid-ad .vjs-tech {\n  z-index: 0;\n}\n\n/**\n * videojs.ads.css\n */\n\n/* Ad playback */\n\n.vjs-ad-playing .vjs-progress-control {\n  pointer-events: none;\n}\n\n.vjs-ad-playing .vjs-play-control.vjs-paused,\n.vjs-ad-playing .vjs-volume-level,\n.vjs-ad-playing .vjs-play-progress {\n  background-color: #ffe400 !important;\n}\n\ndiv.vast-skip-button {\n  display: block;\n  position: absolute;\n  bottom: 20%;\n  right: 0;\n  background-color: #000;\n  color: white;\n  font-size: 15px;\n  font-weight: bold;\n  width: auto;\n  padding: 8px;\n  z-index: 2;\n  border: 1px solid white;\n  border-right: none;\n}\n\n.vast-skip-button.enabled {\n  cursor: pointer;\n  color: #fff;\n}\n\n.vast-skip-button.enabled:hover {\n  cursor: pointer;\n  background: #333;\n}\n\n.vast-blocker {\n  display: block;\n  position: absolute;\n  margin: 0;\n  padding: 0;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n\n.vast-skip-button.enabled::after {\n  content: \">>\";\n  position: relative;\n  top: 1px;\n  margin-left: 8px;\n}\n\n/* Ad loading */\n\n.vjs-ad-playing.vjs-vast-ad-loading .vjs-loading-spinner {\n  display: block;\n  z-index: 10;\n  /* only animate when showing because it can be processor heavy */\n  -webkit-animation: spin 1.5s infinite linear;\n  animation: spin 1.5s infinite linear;\n}\n\n.vjs-vast-ad-loading div.vjs-big-play-button {\n  display: none !important;\n}\n\n.vjs-ad-playing .vjs-slider-handle::before {\n  display: none;\n}\n\n.vjs-ad-playing .vjs-live-controls {\n  display: none;\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "VPAIDFlash.swf";
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-
-var stylesInDom = {};
-
-var	memoize = function (fn) {
-	var memo;
-
-	return function () {
-		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-		return memo;
-	};
-};
-
-var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
-	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-	// Tests for existence of standard globals is to allow style-loader
-	// to operate correctly into non-standard environments
-	// @see https://github.com/webpack-contrib/style-loader/issues/177
-	return window && document && document.all && !window.atob;
 });
 
-var getElement = (function (fn) {
-	var memo = {};
-
-	return function(selector) {
-		if (typeof memo[selector] === "undefined") {
-			memo[selector] = fn.call(this, selector);
-		}
-
-		return memo[selector]
-	};
-})(function (target) {
-	return document.querySelector(target)
-});
-
-var singleton = null;
-var	singletonCounter = 0;
-var	stylesInsertedAtTop = [];
-
-var	fixUrls = __webpack_require__(51);
-
-module.exports = function(list, options) {
-	if (typeof DEBUG !== "undefined" && DEBUG) {
-		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (!options.singleton) options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-	if (!options.insertInto) options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (!options.insertAt) options.insertAt = "bottom";
-
-	var styles = listToStyles(list, options);
-
-	addStylesToDom(styles, options);
-
-	return function update (newList) {
-		var mayRemove = [];
-
-		for (var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-
-		if(newList) {
-			var newStyles = listToStyles(newList, options);
-			addStylesToDom(newStyles, options);
-		}
-
-		for (var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-
-			if(domStyle.refs === 0) {
-				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
+// VPAID property setters
+VPAIDAdUnitWrapper.prototype.setAdVolume = function (volume, cb) {
+  this.adUnitAsyncCall('setAdVolume', volume, cb);
 };
 
-function addStylesToDom (styles, options) {
-	for (var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-
-		if(domStyle) {
-			domStyle.refs++;
-
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles (list, options) {
-	var styles = [];
-	var newStyles = {};
-
-	for (var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = options.base ? item[0] + options.base : item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-
-		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
-		else newStyles[id].parts.push(part);
-	}
-
-	return styles;
-}
-
-function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
-
-	if (!target) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-
-	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
-
-	if (options.insertAt === "top") {
-		if (!lastStyleElementInsertedAtTop) {
-			target.insertBefore(style, target.firstChild);
-		} else if (lastStyleElementInsertedAtTop.nextSibling) {
-			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			target.appendChild(style);
-		}
-		stylesInsertedAtTop.push(style);
-	} else if (options.insertAt === "bottom") {
-		target.appendChild(style);
-	} else {
-		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-	}
-}
-
-function removeStyleElement (style) {
-	if (style.parentNode === null) return false;
-	style.parentNode.removeChild(style);
-
-	var idx = stylesInsertedAtTop.indexOf(style);
-	if(idx >= 0) {
-		stylesInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement (options) {
-	var style = document.createElement("style");
-
-	options.attrs.type = "text/css";
-
-	addAttrs(style, options.attrs);
-	insertStyleElement(options, style);
-
-	return style;
-}
-
-function createLinkElement (options) {
-	var link = document.createElement("link");
-
-	options.attrs.type = "text/css";
-	options.attrs.rel = "stylesheet";
-
-	addAttrs(link, options.attrs);
-	insertStyleElement(options, link);
-
-	return link;
-}
-
-function addAttrs (el, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		el.setAttribute(key, attrs[key]);
-	});
-}
-
-function addStyle (obj, options) {
-	var style, update, remove, result;
-
-	// If a transform function was defined, run it on the css
-	if (options.transform && obj.css) {
-	    result = options.transform(obj.css);
-
-	    if (result) {
-	    	// If transform returns a value, use that instead of the original css.
-	    	// This allows running runtime transformations on the css.
-	    	obj.css = result;
-	    } else {
-	    	// If the transform function returns a falsy value, don't add this css.
-	    	// This allows conditional loading of css
-	    	return function() {
-	    		// noop
-	    	};
-	    }
-	}
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-
-		style = singleton || (singleton = createStyleElement(options));
-
-		update = applyToSingletonTag.bind(null, style, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-
-	} else if (
-		obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function"
-	) {
-		style = createLinkElement(options);
-		update = updateLink.bind(null, style, options);
-		remove = function () {
-			removeStyleElement(style);
-
-			if(style.href) URL.revokeObjectURL(style.href);
-		};
-	} else {
-		style = createStyleElement(options);
-		update = applyToTag.bind(null, style);
-		remove = function () {
-			removeStyleElement(style);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle (newObj) {
-		if (newObj) {
-			if (
-				newObj.css === obj.css &&
-				newObj.media === obj.media &&
-				newObj.sourceMap === obj.sourceMap
-			) {
-				return;
-			}
-
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag (style, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (style.styleSheet) {
-		style.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = style.childNodes;
-
-		if (childNodes[index]) style.removeChild(childNodes[index]);
-
-		if (childNodes.length) {
-			style.insertBefore(cssNode, childNodes[index]);
-		} else {
-			style.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag (style, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		style.setAttribute("media", media)
-	}
-
-	if(style.styleSheet) {
-		style.styleSheet.cssText = css;
-	} else {
-		while(style.firstChild) {
-			style.removeChild(style.firstChild);
-		}
-
-		style.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports) {
-
-
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-
-module.exports = function (css) {
-  // get current location
-  var location = typeof window !== "undefined" && window.location;
-
-  if (!location) {
-    throw new Error("fixUrls requires window.location");
-  }
-
-	// blank or null?
-	if (!css || typeof css !== "string") {
-	  return css;
-  }
-
-  var baseUrl = location.protocol + "//" + location.host;
-  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-
-	// convert each url(...)
-	/*
-	This regular expression is just a way to recursively match brackets within
-	a string.
-
-	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-	   (  = Start a capturing group
-	     (?:  = Start a non-capturing group
-	         [^)(]  = Match anything that isn't a parentheses
-	         |  = OR
-	         \(  = Match a start parentheses
-	             (?:  = Start another non-capturing groups
-	                 [^)(]+  = Match anything that isn't a parentheses
-	                 |  = OR
-	                 \(  = Match a start parentheses
-	                     [^)(]*  = Match anything that isn't a parentheses
-	                 \)  = Match a end parentheses
-	             )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-	 \)  = Match a close parens
-
-	 /gi  = Get all matches, not the first.  Be case insensitive.
-	 */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl
-			.trim()
-			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
-			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
-
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
-		  return fullMatch;
-		}
-
-		// convert the url to a full url
-		var newUrl;
-
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-		  	//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
-
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
-
-	// send back the fixed css
-	return fixedCss;
-};
-
+module.exports = VPAIDAdUnitWrapper;
 
 /***/ }),
 /* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+
+
+__webpack_require__(53);
+__webpack_require__(54);
+__webpack_require__(28);
+
+var videoJsVAST = __webpack_require__(33);
+
+videojs.plugin('vastClient', videoJsVAST);
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
 
 
 var baseVideoJsComponent = videojs.Component;
 
-var AdsLabel = __webpack_require__(44)(baseVideoJsComponent);
+var AdsLabel = __webpack_require__(26)(baseVideoJsComponent);
 
 videojs.AdsLabel = videojs.Component.extend(AdsLabel);
 
 /***/ }),
-/* 53 */,
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
 
 var baseVideoJsComponent = videojs.Component;
 
-var BlackPoster = __webpack_require__(45)(baseVideoJsComponent);
+var BlackPoster = __webpack_require__(27)(baseVideoJsComponent);
 
 videojs.BlackPoster = videojs.Component.extend(BlackPoster);
-
-/***/ }),
-/* 55 */,
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(52);
-__webpack_require__(54);
-__webpack_require__(27);
-
-var videoJsVAST = __webpack_require__(26);
-
-videojs.plugin('vastClient', videoJsVAST);
 
 /***/ })
 /******/ ]);

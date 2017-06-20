@@ -1,0 +1,17 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions"],
+        "uglify": true
+      },
+      "loose": true,
+      "modules": false
+    }]
+  ],
+  "plugins": [
+    "ramda",
+    "lodash",
+    ["transform-class-properties", { "spec": true }]
+  ]
+}

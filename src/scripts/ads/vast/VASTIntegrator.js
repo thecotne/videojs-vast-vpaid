@@ -229,6 +229,7 @@ VASTIntegrator.prototype._addSkipButton = function addSkipButton (source, tracke
 
     if (timeLeft > 0) {
       skipButton.innerHTML = 'Skip in ' + utilities.toFixedDigits(timeLeft, 2) + '...';
+      dom.removeClass(skipButton, 'enabled');
     // eslint-disable-next-line
     } else if (!dom.hasClass(skipButton, 'enabled')) {
       dom.addClass(skipButton, 'enabled');
